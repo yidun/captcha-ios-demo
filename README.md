@@ -110,7 +110,7 @@ VerifyCode iOS SDK 接入指南
 
 * 1、在项目对应的 bridging-header.h 中引入头文件，如下：
 
-		#import <Bugrpt/NTESCrashReporter.h>
+		#import <VerifyCode/NTESVerifyCodeManager.h>
 	
  
  __备注:__  Swift 调用 Objective-C 需要一个名为 `<工程名>-Bridging-Header.h` 的桥接头文件。文件的作用为 Swift 调用 Objective-C 对象提供桥接。
