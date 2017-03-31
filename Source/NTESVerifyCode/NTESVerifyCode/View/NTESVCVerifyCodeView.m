@@ -110,6 +110,7 @@
  */
 - (void)stopLoad{
     if (self.uiWebView) {
+        self.uiWebView.delegate = nil;
         [self.uiWebView stopLoading];
     }else if(self.wkWebView){
         [self.wkWebView stopLoading];

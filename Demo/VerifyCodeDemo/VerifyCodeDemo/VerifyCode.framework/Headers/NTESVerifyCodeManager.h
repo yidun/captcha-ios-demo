@@ -66,7 +66,7 @@
  *  @abstract 配置参数
  *
  * @param captcha_id 验证码id
- * @param timeoutInterval 展示验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
+ * @param timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
  *
  */
 - (void)configureVerifyCode:(NSString *)captcha_id
@@ -75,9 +75,6 @@
 
 /**
  *  @abstract 展示验证码视图
- *
- *  @discussion
- *  实现方式 直接在 keyWindow 上添加遮罩视图、验证码视图
  *
  */
 - (void)openVerifyCodeView;

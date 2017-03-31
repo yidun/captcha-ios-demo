@@ -9,7 +9,7 @@
 #ifndef VerifyCode_NTESVCDefines_h
 #define VerifyCode_NTESVCDefines_h
 
-#define VerifyCode_IOS_SDK_VERSION      @"1.0.1"
+#define VerifyCode_IOS_SDK_VERSION      @"1.0.2"
 
 #define NSSTRINGFROMCSTR(cstr) [NSString stringWithUTF8String:cstr]
 

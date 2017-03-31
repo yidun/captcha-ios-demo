@@ -123,7 +123,7 @@
 - (void)generateBackGroundViewControl{
     self.backGroundViewControl = [[UIControl alloc] initWithFrame:[self generateScreenRect]];
     self.backGroundViewControl.alpha = 1.0;
-    [self.backGroundViewControl addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
+    [self.backGroundViewControl addTarget:self action:@selector(closeVCViewIfIsOpen) forControlEvents:UIControlEventTouchUpInside];
     [self.backGroundViewControl setUserInteractionEnabled:YES];
 }
 

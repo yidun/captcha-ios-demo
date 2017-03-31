@@ -56,7 +56,7 @@
     
     [NTESVCDeviceInfo sharedInstance].captchaId = captcha_id;
     self.isInit = YES;
-    DDLogWORKFLOW(@"初始化完成");
+    DDLogWORKFLOW(@"设置参数完成");
 }
 
 - (void)openVerifyCodeView{
