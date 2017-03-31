@@ -158,3 +158,37 @@ VerifyCode iOS SDK 接入指南
  		*  @说明 默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
  		*/
 		- (void)enableLog:(BOOL)enabled;
+
+		
+### 四、注意事项
+
+* 1、验证码视图为什么没有显示？
+	 
+	 没有显示的原因是topView获取的方式在不同的条件下，需要修改。
+	 它的实现代码在`NTESVCController.m`文件里，对应的方法为: `- (UIView *)getTopView`
+	 
+	    - (UIView *)getTopView{
+    
+           UIView *topView = [[[UIApplication sharedApplication] delegate] window];
+
+           return topView;
+        }
+        
+     这段代码的意思是，在多个UIWindow存在的情况下，获取正在使用的UIWindow作为topView。
+     不同的产品可以根据自己的需求修改这段代码，比如直接使用keyWindow或者任意自定义的UIWindow作为topView，或者以UIWindow的subviews的最前面的视图作为topView，例如:
+     
+     
+        - (UIView *)getTopView{
+    
+           UIView *topView = nil;
+    
+           UIApplication *app = [UIApplication sharedApplication];
+           if (app) {
+               UIWindow *topWindow = [[[UIApplication sharedApplication].windows  sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
+                 return win1.windowLevel - win2.windowLevel;
+               }] lastObject];
+               topView = [[topWindow subviews] lastObject];
+          }
+    
+          return topView;
+        }
