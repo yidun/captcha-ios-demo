@@ -36,8 +36,12 @@ VerifyCode iOS SDK 接入指南
     		// sdk调用
     		self.manager = [NTESVerifyCodeManager sharedInstance];
     		self.manager.delegate = self;
-    		// 设置背景透明度
-    		manager.alpha = 0.7;
+    		
+    		// 设置透明度
+        	self.manager.alpha = 0.7;
+        
+        	// 设置frame
+        	self.manager.frame = CGRectNull;
     
     		NSString *captchaId = @"ede087b9bdb0447e8ef64655785aab49";
     		[self.manager configureVerifyCode:captchaId timeout:5.0];
@@ -45,7 +49,7 @@ VerifyCode iOS SDK 接入指南
 		
 * 3、在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
 
-   		[manager openVerifyCodeView:nil];
+   		[self.manager openVerifyCodeView:nil];
    		
 * 4、如果需要处理VerifyCode SDK的回调信息，则实现NTESVerifyCodeManagerDelegate即可
 		
