@@ -91,8 +91,11 @@ NSString *NTESCDecodeString(NTESVCCSEncodedString *str) {
     
     if(!uuid) {
         CFUUIDRef tuuid = CFUUIDCreate(kCFAllocatorDefault);
-        CFStringRef cfstring = CFUUIDCreateString(kCFAllocatorDefault, tuuid);
-        uuid = (__bridge NSString *)cfstring;
+        CFStringRef cfstring = CFUUIDCreateString(kCFAllocatorDefault, tuuid);        
+        uuid = [NSString stringWithFormat:@"%@", cfstring];
+        
+        CFRelease(cfstring);
+        CFRelease(tuuid);
     }
     
     NSString *letters = NTESCDecodeString(&_5850BBF9126580);

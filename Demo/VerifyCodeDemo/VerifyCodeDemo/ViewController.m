@@ -38,7 +38,14 @@
         NSString *captchaid = @"0489d7c00eff49089c56dfcd4b67f250";
         [self.manager configureVerifyCode:captchaid timeout:10.0];
         
-        [self.manager openVerifyCodeView];
+        // 设置透明度
+        self.manager.alpha = 0.7;
+        
+        // 设置frame
+        self.manager.frame = CGRectNull;
+        
+        // 显示验证码
+        [self.manager openVerifyCodeView:nil];
     }    
 }
 

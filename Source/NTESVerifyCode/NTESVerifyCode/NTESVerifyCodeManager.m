@@ -9,10 +9,10 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "NTESVerifyCodeManager.h"
 #import "./Log/NTESVCPrintLog.h"
-#import "NTESVCDeviceInfo.h"
-#import "NTESVCNetRequest.h"
-#import "NTESVCDefines.h"
-#import "NTESVCController.h"
+#import "./Util/NTESVCDeviceInfo.h"
+#import "./Util/NTESVCDefines.h"
+#import "./Net/NTESVCNetRequest.h"
+#import "./View/NTESVCController.h"
 
 
 @interface NTESVerifyCodeManager ()<NTESVCVerifyCodeViewDelegate>
@@ -23,6 +23,17 @@
 @end
 
 @implementation NTESVerifyCodeManager
+
+#pragma mark - public property
+
+- (void)setAlpha:(CGFloat)alpha
+{
+    [NTESVCController sharedInstance].blurEffectAlpha = alpha;
+}
+
+- (void)setFrame:(CGRect)frame{
+    [NTESVCController sharedInstance].displayFrame = frame;
+}
 
 #pragma mark - public method
 
@@ -62,7 +73,16 @@
 - (void)openVerifyCodeView{
     
     if (self.controller && self.isInit) {
-        [self.controller openVCView:YES];
+        [self.controller openVCView:nil];
+    }else{
+        DDLogWORKFLOW(@"还未初始化相关参数，请检查接口调用");
+    }
+}
+
+- (void)openVerifyCodeView:(UIView *)topView{
+    
+    if (self.controller && self.isInit) {
+        [self.controller openVCView:topView];
     }else{
         DDLogWORKFLOW(@"还未初始化相关参数，请检查接口调用");
     }
@@ -75,19 +95,21 @@
     
     //默认只打印workflow
 #ifdef __OPTIMIZE__
-    if(enabled)
+    if(enabled){
         // 开启后Release下只会打印workflow和BGRLogLevelError
         VCddLogLevel = BGRPrintLevelError;
-    else
+    }else{
         // 关闭后，只打印workflow
         VCddLogLevel = BGRPrintLevelOff;
+    }
 #else
-    if(enabled)
+    if(enabled){
         // 开启后打印全部
         VCddLogLevel = BGRPrintLevelAll;
-    else
+    }else{
         // 关闭后，只打印workflow
         VCddLogLevel = BGRPrintLevelOff;
+    }
 #endif
     
 }
@@ -127,8 +149,7 @@
 - (void)viewValidateFinish:(NSString *)result validate:(NSString *)validate message:(NSString *)message{
     
     BOOL bRet = YES;
-    if ([result isEqualToString:@"true"])
-    {
+    if ([result isEqualToString:VERIFTCODE_VALIDATE_SUCCESS]){
         [[NTESVCController sharedInstance] closeVCViewIfIsOpen];
     }else{
         bRet = NO;

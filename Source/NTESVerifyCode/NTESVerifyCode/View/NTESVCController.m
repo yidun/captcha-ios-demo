@@ -24,12 +24,18 @@
     dispatch_once(&onceToken, ^{
         sharedObject = [[NTESVCController alloc] init];
         sharedObject.deviceOrientation = [[NTESVCDeviceInfo sharedInstance] getDeviceOrientation];
+        sharedObject.blurEffectAlpha = 0.8;   // 默认0.8
+        sharedObject.displayFrame = CGRectZero;
+        sharedObject.topView = nil;
     });
     
     return sharedObject;
 }
 
-- (void)openVCView:(BOOL)animated{
+- (void)openVCView:(UIView *)topView{
+    
+    self.topView = topView;
+    
     [self closeVCViewIfIsOpen];
     [self showVCView];
     
@@ -54,15 +60,16 @@
 }
 
 - (void)showVCView {
-    self.topView = [self getTopView];
+    
+    // 没有设置topView,则主动获取
+    if (!self.topView) {
+        self.topView = [self getTopView];
+    }
+    
     if (self.topView) {
-        if([self visualEffectEnable]) {
-            [self generateVisualView];
-            [self.topView addSubview:self.visualEffectView];
-        }else{
-            [self generateGeneView];
-            [self.topView addSubview:self.geneEffectView];
-        }
+        
+        [self generateGeneView];
+        [self.topView addSubview:self.geneEffectView];
         
         [self generateBackGroundViewControl];
         [self.topView addSubview:self.backGroundViewControl];
@@ -84,44 +91,41 @@
     return topView;
 }
 
-- (BOOL)visualEffectEnable{
+- (CGRect)generateBackGroundRect{
     
-    if(IOS_VERSION_8_OR_LATER){
-        return YES;
+    CGRect rect = CGRectNull;
+    
+    if (self.topView) {
+        rect = CGRectMake(0, 0, self.topView.bounds.size.width, self.topView.bounds.size.height);
+    }else{
+        // 计算长度大小
+        CGFloat dWidth = SCREEN_WIDTH;
+        CGFloat dHeight = SCREENH_HEIGHT;
+        if (self.deviceOrientation == VCDeviceOrientationLandscape) {
+            dWidth = SCREENH_HEIGHT;
+            dHeight = SCREEN_WIDTH;
+        }
+        rect = CGRectMake(0, 0, dWidth, dHeight);
     }
-    else{
-        return NO;
-    }
-}
-
-- (CGRect)generateScreenRect{
-    // 计算长度大小
-    CGFloat dWidth = SCREEN_WIDTH;
-    CGFloat dHeight = SCREENH_HEIGHT;
-    if (self.deviceOrientation == VCDeviceOrientationLandscape) {
-        dWidth = SCREENH_HEIGHT;
-        dHeight = SCREEN_WIDTH;
-    }
-    CGRect rect = CGRectMake(0, 0, dWidth, dHeight);
     
     return rect;
 }
 
-- (void)generateVisualView{
+/*- (void)generateVisualView{
     //实现模糊效果
     self.visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    self.visualEffectView.frame = [self generateScreenRect];
-    self.visualEffectView.alpha = 1.0;
-}
+    self.visualEffectView.frame = [self generateBackGroundRect];
+    self.visualEffectView.alpha = self.blurEffectAlpha;
+}*/
 
 - (void)generateGeneView{
-    self.geneEffectView = [[UIView alloc] initWithFrame:[self generateScreenRect]];
+    self.geneEffectView = [[UIView alloc] initWithFrame:[self generateBackGroundRect]];
     self.geneEffectView.backgroundColor = [UIColor whiteColor];
-    self.geneEffectView.alpha = 1.0;
+    self.geneEffectView.alpha = self.blurEffectAlpha;
 }
 
 - (void)generateBackGroundViewControl{
-    self.backGroundViewControl = [[UIControl alloc] initWithFrame:[self generateScreenRect]];
+    self.backGroundViewControl = [[UIControl alloc] initWithFrame:[self generateBackGroundRect]];
     self.backGroundViewControl.alpha = 1.0;
     [self.backGroundViewControl addTarget:self action:@selector(closeVCViewIfIsOpen) forControlEvents:UIControlEventTouchUpInside];
     [self.backGroundViewControl setUserInteractionEnabled:YES];
@@ -132,20 +136,14 @@
     if (self.verifyCodeView) {
         [self.verifyCodeView removeFromSuperview];
     }
-    if([self visualEffectEnable]) {
-        if (self.visualEffectView) {
-            [self.visualEffectView removeFromSuperview];
-            self.visualEffectView = nil;
-        }
-    }else{
-        if (self.geneEffectView) {
-            [self.geneEffectView removeFromSuperview];
-            self.geneEffectView = nil;
-        }
-    }
     
     if (self.backGroundViewControl) {
         [self.backGroundViewControl removeFromSuperview];
+    }
+    
+    if (self.geneEffectView) {
+        [self.geneEffectView removeFromSuperview];
+        self.geneEffectView = nil;
     }
   
     self.isShowingView = NO;
@@ -163,16 +161,23 @@
 }
 
 - (CGRect)generateFrame{
+    CGRect rect = CGRectNull;
     
-    // 计算长度大小
-    CGFloat dWidth = SCREEN_WIDTH;
-    CGFloat dHeight = SCREENH_HEIGHT;
-    if (self.deviceOrientation == VCDeviceOrientationLandscape) {
-        dWidth = SCREENH_HEIGHT;
-        dHeight = SCREEN_WIDTH;
+    CGFloat dWidth = 0;
+    CGFloat dHeight= 0;
+    if (self.topView) {
+        dWidth = self.topView.bounds.size.width;
+        dHeight = self.topView.bounds.size.height;
+    }else{
+        // 计算长度大小
+        dWidth = SCREEN_WIDTH;
+        dHeight = SCREENH_HEIGHT;
+        if (self.deviceOrientation == VCDeviceOrientationLandscape) {
+            dWidth = SCREENH_HEIGHT;
+            dHeight = SCREEN_WIDTH;
+        }
     }
-    
-    DDLogDebug(@"view screen width:%f, height:%f", dWidth, dHeight);
+    DDLogDebug(@"verify view screen width:%f, height:%f", dWidth, dHeight);
     
     CGFloat viewWidth = 0.0;
     CGFloat viewHeight = 0.0;
@@ -197,39 +202,38 @@
     [NTESVCDeviceInfo sharedInstance].width = viewWidth;
     
     // webview
-    CGRect rect = CGRectMake((dWidth - viewWidth)/2.0, (dHeight - viewHeight) / 2.0, viewWidth, viewHeight);
+    rect = CGRectMake((dWidth - viewWidth)/2.0, (dHeight - viewHeight) / 2.0, viewWidth, viewHeight);
     
     return rect;
 }
 
 - (void)generateVerifyCodeView{
     
-    CGRect rec = [self generateFrame];
-    DDLogDebug(@"验证码视图尺寸:(%f,%f,%f,%f)", rec.origin.x, rec.origin.y, rec.size.width, rec.size.height);
-    self.verifyCodeView = [[NTESVCVerifyCodeView alloc] initWithFrame:rec];
+    // 没有设置位置,则初始化
+    if ( CGRectEqualToRect(self.displayFrame, CGRectZero) || CGRectEqualToRect(self.displayFrame, CGRectNull)) {
+        self.displayFrame = [self generateFrame];
+    }
+    
+    DDLogDebug(@"验证码视图尺寸:(%f,%f,%f,%f)", self.displayFrame.origin.x, self.displayFrame.origin.y, self.displayFrame.size.width, self.displayFrame.size.height);
+    self.verifyCodeView = [[NTESVCVerifyCodeView alloc] initWithFrame:self.displayFrame];
     self.verifyCodeView.delegate = (id<NTESVCVerifyCodeViewDelegate>)[NTESVerifyCodeManager sharedInstance];
 }
 
 - (void)layoutCustomViews{
     
-    if(self.visualEffectView){
-        self.visualEffectView.frame = [self generateScreenRect];
-        //DDLogDebug(@"self.visualEffectView.frame:(%f,%f,%f,%f)", self.visualEffectView.frame.origin.x, self.visualEffectView.frame.origin.y, self.visualEffectView.frame.size.width, self.visualEffectView.frame.size.height);
-        [self.visualEffectView setNeedsLayout];
-    }
     if (self.geneEffectView) {
-        self.geneEffectView.frame = [self generateScreenRect];
+        self.geneEffectView.frame = [self generateBackGroundRect];
         //DDLogDebug(@"self.geneEffectView:(%f,%f,%f,%f)", self.geneEffectView.frame.origin.x, self.geneEffectView.frame.origin.y, self.geneEffectView.frame.size.width, self.geneEffectView.frame.size.height);
         [self.geneEffectView setNeedsLayout];
     }
     if (self.backGroundViewControl) {
-        self.backGroundViewControl.frame = [self generateScreenRect];
+        self.backGroundViewControl.frame = [self generateBackGroundRect];
         //DDLogDebug(@"self.backGroundViewControl.frame:(%f,%f,%f,%f)", self.backGroundViewControl.frame.origin.x, self.backGroundViewControl.frame.origin.y, self.backGroundViewControl.frame.size.width, self.backGroundViewControl.frame.size.height);
         [self.backGroundViewControl setNeedsLayout];
     }
     if (self.verifyCodeView) {
         CGRect rec = [self generateFrame];
-        DDLogDebug(@"横竖屏切换后验证码视图尺寸:(%f,%f,%f,%f)", rec.origin.x, rec.origin.y, rec.size.width, rec.size.height);
+        //DDLogDebug(@"横竖屏切换后验证码视图尺寸:(%f,%f,%f,%f)", rec.origin.x, rec.origin.y, rec.size.width, rec.size.height);
         [self.verifyCodeView setFrame:rec];
         [self.verifyCodeView layoutCustomViews];
         [self.verifyCodeView setNeedsLayout];

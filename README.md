@@ -36,6 +36,8 @@ VerifyCode iOS SDK 接入指南
     		// sdk调用
     		self.manager = [NTESVerifyCodeManager sharedInstance];
     		self.manager.delegate = self;
+    		// 设置背景透明度
+    		manager.alpha = 0.7;
     
     		NSString *captchaId = @"ede087b9bdb0447e8ef64655785aab49";
     		[self.manager configureVerifyCode:captchaId timeout:5.0];
@@ -43,7 +45,7 @@ VerifyCode iOS SDK 接入指南
 		
 * 3、在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
 
-   		[self.manager openVerifyCodeView];
+   		[manager openVerifyCodeView:nil];
    		
 * 4、如果需要处理VerifyCode SDK的回调信息，则实现NTESVerifyCodeManagerDelegate即可
 		
@@ -104,6 +106,7 @@ VerifyCode iOS SDK 接入指南
     		//App添加自己的处理逻辑
 		}
 
+       
        __备注:__  如果不需要处理VerifyCode SDK的回调信息，也可不实现
 
 #### 2.2 Swift 工程
@@ -119,45 +122,77 @@ VerifyCode iOS SDK 接入指南
 
 ### 三、SDK 接口
 
-* 1、单例
+* 1、属性
+		
+		/**
+ 		* @abstract    delegate,见NTESVerifyCodeManagerDelegate
+ 		*/
+		@property(nonatomic, weak) id<NTESVerifyCodeManagerDelegate>delegate;
+
+		/**
+ 		* @abstract    验证码图片显示的frame
+ 		*
+ 		* @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9
+ 		*/
+		@property(nonatomic) CGRect            frame;
+
+		/**
+	 	* @abstract    验证码图片背景的透明度
+ 		*
+ 		* @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
+ 		*/
+		@property(nonatomic) CGFloat           alpha;
+
+* 2、单例
 	
 		/**
- 		*  @abstract 单例
+ 		*  @abstract 	单例
  		*
- 		*  @return 返回NTESVerifyCodeManager对象
+ 		*  @return 		返回NTESVerifyCodeManager对象
  		*/
 		+ (NTESVerifyCodeManager *)sharedInstance;
 
-* 2、初始化
+* 3、初始化
 
 		/**
- 		*  @abstract 配置参数
+ 		*  @abstract 	配置参数
  		*
- 		* @param captcha_id 验证码id
- 		* @param timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
+ 		* @param 		captcha_id 			验证码id
+ 		* @param 		timeoutInterval 	加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
  		*
  		*/
 		- (void)configureVerifyCode:(NSString *)captcha_id
                     timeout:(NSTimeInterval)timeoutInterval;
 
-* 3、弹出验证码
+* 4、弹出验证码
 
 		/**
  		*  @abstract 展示验证码视图
  		*
+ 		*  @说明      展示位置:[[[UIApplication sharedApplication] delegate] window];全屏居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9.
  		*/
 		- (void)openVerifyCodeView;
+- 
 
-* 4、log打印
+
+		/**
+ 		*  @abstract   在指定的视图上展示验证码视图
+ 		*
+ 		*  @param      topView         加载验证码控件的父视图,可以为nil。如果传递为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
+ 		*
+ 		*/
+		- (void)openVerifyCodeView:(UIView *)topView;
+
+
+* 5、log打印
 		
 		/**
- 		*  是否开启sdk日志打印
+ 		*  @abstract	是否开启sdk日志打印
  		*
- 		*  @param enabled YES:开启;NO:不开启
+ 		*  @param 		enabled 		YES:开启;NO:不开启
  		*
- 		*  @说明 默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
+ 		*  @说明 		   默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
  		*/
-		- (void)enableLog:(BOOL)enabled;
 
 		
 ### 四、注意事项

@@ -9,7 +9,7 @@
 #ifndef VerifyCode_NTESVCDefines_h
 #define VerifyCode_NTESVCDefines_h
 
-#define VerifyCode_IOS_SDK_VERSION      @"1.0.2"
+#define VerifyCode_IOS_SDK_VERSION      @"1.0.3"
 
 #define NSSTRINGFROMCSTR(cstr) [NSString stringWithUTF8String:cstr]
 
@@ -86,6 +86,8 @@ typedef NS_ENUM(NSInteger, VCDeviceOrientation) {
 #define VERIFTCODE_JAVASCRIPT_CLOSE         @"closeWindow"
 #define VERIFTCODE_JAVASCRIPT_ONREADY       @"onReady"
 #define VERIFTCODE_JAVASCRIPT_ONERROR       @"onError"
+
+#define VERIFTCODE_VALIDATE_SUCCESS         @"true"
 
 #pragma mark app状态
 typedef NS_ENUM(NSInteger, APPLIFECYCLESTATUS) {

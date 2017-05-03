@@ -18,12 +18,16 @@
 // 设备方向
 @property(nonatomic, assign)VCDeviceOrientation deviceOrientation;
 
+// 显示的视图以及位置
 @property(nonatomic, strong)UIView *topView;
-@property(nonatomic, strong)UIVisualEffectView *visualEffectView;
+@property(nonatomic, assign)CGRect displayFrame;
+
 @property(nonatomic, strong)UIView *geneEffectView;
 
 @property(nonatomic, strong)UIControl *backGroundViewControl;
 @property(nonatomic, strong)NTESVCVerifyCodeView *verifyCodeView;
+
+@property(nonatomic, assign)CGFloat blurEffectAlpha;
 
 /**
  * delegate,见NTESVCVerifyCodeViewDelegate
@@ -39,6 +43,6 @@
 
 - (void)closeVCViewIfIsOpen;
 
-- (void)openVCView:(BOOL)animated;
+- (void)openVCView:(UIView *)topView;
 
 @end

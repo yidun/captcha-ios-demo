@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol NTESVerifyCodeManagerDelegate<NSObject>
 @optional
@@ -51,40 +52,63 @@
 @interface NTESVerifyCodeManager : NSObject
 
 /**
- * delegate,见NTESVerifyCodeManagerDelegate
+ * @abstract    delegate,见NTESVerifyCodeManagerDelegate
  */
 @property(nonatomic, weak) id<NTESVerifyCodeManagerDelegate>delegate;
 
 /**
- *  @abstract 单例
+ * @abstract    验证码图片显示的frame
  *
- *  @return 返回NTESVerifyCodeManager对象
+ * @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9
+ */
+@property(nonatomic) CGRect            frame;
+
+/**
+ * @abstract    验证码图片背景的透明度
+ *
+ * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
+ */
+@property(nonatomic) CGFloat           alpha;
+
+
+/**
+ *  @abstract   单例
+ *
+ *  @return     返回NTESVerifyCodeManager对象
  */
 + (NTESVerifyCodeManager *)sharedInstance;
 
 /**
- *  @abstract 配置参数
+ *  @abstract   配置参数
  *
- * @param captcha_id 验证码id
- * @param timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
+ *  @param      captcha_id      验证码id
+ *  @param      timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
  *
  */
 - (void)configureVerifyCode:(NSString *)captcha_id
                     timeout:(NSTimeInterval)timeoutInterval;
 
-
 /**
- *  @abstract 展示验证码视图
+ *  @abstract   展示验证码视图
  *
+ *  @说明        展示位置:[[[UIApplication sharedApplication] delegate] window];全屏居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9.
  */
 - (void)openVerifyCodeView;
 
 /**
- *  是否开启sdk日志打印
+ *  @abstract   在指定的视图上展示验证码视图
  *
- *  @param enabled YES:开启;NO:不开启
+ *  @param      topView         加载验证码控件的父视图,可以为nil。如果传递为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
  *
- *  @说明 默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
+ */
+- (void)openVerifyCodeView:(UIView *)topView;
+
+/**
+ *  @abstract   是否开启sdk日志打印
+ *
+ *  @param      enabled           YES:开启;NO:不开启
+ *
+ *  @说明        默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
  */
 - (void)enableLog:(BOOL)enabled;
 
