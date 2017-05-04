@@ -212,6 +212,8 @@
     // 没有设置位置,则初始化
     if ( CGRectEqualToRect(self.displayFrame, CGRectZero) || CGRectEqualToRect(self.displayFrame, CGRectNull)) {
         self.displayFrame = [self generateFrame];
+    }else{
+        [NTESVCDeviceInfo sharedInstance].width = self.displayFrame.size.width;
     }
     
     DDLogDebug(@"验证码视图尺寸:(%f,%f,%f,%f)", self.displayFrame.origin.x, self.displayFrame.origin.y, self.displayFrame.size.width, self.displayFrame.size.height);
