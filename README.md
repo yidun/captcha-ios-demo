@@ -203,7 +203,7 @@ VerifyCode iOS SDK 接入指南
 
 * 1、验证码视图为什么没有显示？
 	 
-	 没有显示的原因是topView获取的方式在不同的条件下，需要修改。
+	 这种情况多见于APP不传递topView。没有显示的原因是topView获取的方式在不同的条件下，需要修改。
 	 它的实现代码在`NTESVCController.m`文件里，对应的方法为: `- (UIView *)getTopView`
 	 
 	    - (UIView *)getTopView{
@@ -231,3 +231,22 @@ VerifyCode iOS SDK 接入指南
     
           return topView;
         }
+        
+        
+* 2、如何自定义验证码视图？
+	
+	如果用户对验证码视图需要自定义，比如加一下UIButton控件，修改`NTESVCController`类的`- (void)addVCViewOnBackgroundControl`方法即可，比如:
+		
+		- (void)addVCViewOnBackgroundControl{
+    
+    		[self generateVerifyCodeView];
+    		[self.backGroundViewControl addSubview:self.verifyCodeView];
+    
+    		// 自定义显示界面,验证码下加一个UIButton，UIButton的frame根据实际情况赋值
+    		UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 20)];
+    		cancelButton.backgroundColor = [UIColor yellowColor];
+    		[cancelButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    		[cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    		[self.backGroundViewControl addSubview:cancelButton];
+		}
+	
