@@ -205,11 +205,19 @@ VerifyCode iOS SDK 接入指南
 
 	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/init.jpg" width="50%" height="50%">
 	
-* 2、验证
+* 2、滑块验证
 	
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify.jpg" width="50%" height="50%">
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_huakuai.jpg" width="50%" height="50%">
 	
-* 3、结果
+* 3、点选验证
+	
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_dianxuan.jpg" width="50%" height="50%">
+	
+* 4、短信验证
+	
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_duanxin.jpg" width="50%" height="50%">
+	
+* 5、结果
 	
 	如果验证成功,则验证码图片消失;验证失败则弹出新的验证码
 	
