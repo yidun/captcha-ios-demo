@@ -3,9 +3,31 @@ VerifyCode iOS SDK 接入指南
 
 ### 一、SDK集成
 
+#### CocoaPods集成方式
+* 1、更新Podfile文件
+
+	在工程的 Podfile 里对应的 Target 中添加以下代码
+	
+		pod 'VerifyCode'
+		
+* 2、集成SDK
+	
+	在工程的当前目录下, 运行 `pod install` 或者 `pod update`
+	
+	__备注:__
+	
+	1. 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
+
+	2. 如果想使用最新版本的SDK，则执行`pod update`
+	3. 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
+platform :ios, '7.0'
+
 #### 手动集成方式
 
-* 1、获取VerifyCode SDK包。
+* 1、下载VerifyCode SDK包
+
+     地址: `https://github.com/yidun/captcha-ios-demo`
+     
 
 * 2、导入 `VerifyCode.framework` 到XCode工程：
   * 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)
@@ -43,7 +65,8 @@ VerifyCode iOS SDK 接入指南
         	// 设置frame
         	self.manager.frame = CGRectNull;
     
-    		NSString *captchaId = @"ede087b9bdb0447e8ef64655785aab49";
+     		// captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
+			NSString *captchaId = @"a05f036b70ab447b87cc788af9a60974";
     		[self.manager configureVerifyCode:captchaId timeout:5.0];
 		}
 		
@@ -136,7 +159,7 @@ VerifyCode iOS SDK 接入指南
 		/**
  		* @abstract    验证码图片显示的frame
  		*
- 		* @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9
+ 		* @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
  		*/
 		@property(nonatomic) CGRect            frame;
 
@@ -173,7 +196,7 @@ VerifyCode iOS SDK 接入指南
 		/**
  		*  @abstract 展示验证码视图
  		*
- 		*  @说明      展示位置:[[[UIApplication sharedApplication] delegate] window];全屏居中显示,宽度为屏幕宽度的4/5,高度为宽度的5/9.
+ 		*  @说明      展示位置:[[[UIApplication sharedApplication] delegate] window];全屏居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65.
  		*/
 		- (void)openVerifyCodeView;
 - 
@@ -182,7 +205,9 @@ VerifyCode iOS SDK 接入指南
 		/**
  		*  @abstract   在指定的视图上展示验证码视图
  		*
- 		*  @param      topView         加载验证码控件的父视图,可以为nil。如果传递为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
+ 		*  @param      topView         加载验证码控件的父视图,可以为nil。
+ 		*                              (1)如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
+ 		*                              (2)如果传递值不为nil，则注意topView的宽高比例，高度至少为:宽度/2.0 + 65,否则可能出现高度显示不全的情况
  		*
  		*/
 		- (void)openVerifyCodeView:(UIView *)topView;
