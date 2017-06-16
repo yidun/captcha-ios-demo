@@ -59,7 +59,9 @@
 /**
  * @abstract    验证码图片显示的frame
  *
- * @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
+ * @说明         验证码控件显示的位置,可以不传递。
+ *              (1)如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
+ *              (2)如果传递,则frame的宽度至少为270;高度至少为:宽度/2.0 + 65.
  */
 @property(nonatomic) CGRect            frame;
 
@@ -100,7 +102,7 @@
  *
  *  @param      topView         加载验证码控件的父视图,可以为nil。
  *                              (1)如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
- *                              (2)如果传递值不为nil，则注意topView的宽高比例，高度至少为:宽度/2.0 + 65,否则可能出现高度显示不全的情况
+ *                              (2)如果传递值不为nil，则注意topView的宽高值，宽度至少为270;高度至少为:宽度/2.0 + 65.
  *
  */
 - (void)openVerifyCodeView:(UIView *)topView;

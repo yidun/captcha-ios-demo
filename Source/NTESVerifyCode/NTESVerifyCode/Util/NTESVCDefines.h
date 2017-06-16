@@ -9,7 +9,7 @@
 #ifndef VerifyCode_NTESVCDefines_h
 #define VerifyCode_NTESVCDefines_h
 
-#define VerifyCode_IOS_SDK_VERSION      @"1.0.3"
+#define VerifyCode_IOS_SDK_VERSION      @"2.0.1"
 
 #define NSSTRINGFROMCSTR(cstr) [NSString stringWithUTF8String:cstr]
 
@@ -67,7 +67,12 @@ typedef NS_ENUM(NSInteger, VCDeviceOrientation) {
 #define VERIFTCODE_WIDTH            @"width"
 
 #define VERIFTCODE_LOCALURL_HEADER  @"file://"
-#define VERIFTCODE_URL              @"https://c.dun.163yun.com/api/v1/mobile.html"
+
+#ifndef __OPTIMIZE__
+#define VERIFTCODE_URL              @"http://nctest-captcha.nis.netease.com/v2.x/test/mobile.html"
+#else
+#define VERIFTCODE_URL              @"https://c.dun.163yun.com/api/v2/mobile.html"
+#endif
 
 // 超时的最长时间
 #define VERIFTCODE_TIMEOUT          10.0

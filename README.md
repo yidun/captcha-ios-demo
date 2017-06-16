@@ -16,10 +16,11 @@ VerifyCode iOS SDK 接入指南
 	
 	__备注:__
 	
-	1. 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
+	(1). 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
 
-	2. 如果想使用最新版本的SDK，则执行`pod update`
-	3. 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
+	(2). 如果想使用最新版本的SDK，则执行`pod update`
+	
+	(3). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
 platform :ios, '7.0'
 
 #### 手动集成方式
@@ -152,16 +153,15 @@ platform :ios, '7.0'
 * 1、属性
 		
 		/**
- 		* @abstract    delegate,见NTESVerifyCodeManagerDelegate
- 		*/
-		@property(nonatomic, weak) id<NTESVerifyCodeManagerDelegate>delegate;
-
-		/**
  		* @abstract    验证码图片显示的frame
  		*
- 		* @说明         验证码控件显示的位置,可以不传递。如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
+ 		* @说明         验证码控件显示的位置,可以不传递。
+ 		*              (1)如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
+ 		*              (2)如果传递,则frame的宽度至少为270;高度至少为:宽度/2.0 + 65.
  		*/
 		@property(nonatomic) CGRect            frame;
+- 
+
 
 		/**
 	 	* @abstract    验证码图片背景的透明度
@@ -207,9 +207,9 @@ platform :ios, '7.0'
  		*
  		*  @param      topView         加载验证码控件的父视图,可以为nil。
  		*                              (1)如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
- 		*                              (2)如果传递值不为nil，则注意topView的宽高比例，高度至少为:宽度/2.0 + 65,否则可能出现高度显示不全的情况
+ 		*                              (2)如果传递值不为nil，则注意topView的宽高值，宽度至少为270;高度至少为:宽度/2.0 + 65.
  		*
- 		*/
+	 	*/
 		- (void)openVerifyCodeView:(UIView *)topView;
 
 

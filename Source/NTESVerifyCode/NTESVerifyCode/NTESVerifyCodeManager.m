@@ -150,6 +150,8 @@
     
     BOOL bRet = YES;
     if ([result isEqualToString:VERIFTCODE_VALIDATE_SUCCESS]){
+        // 验证成功后，延迟一段时间再关闭。暂时不加
+        // sleep(1);
         [[NTESVCController sharedInstance] closeVCViewIfIsOpen];
     }else{
         bRet = NO;

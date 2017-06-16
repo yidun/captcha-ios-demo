@@ -179,6 +179,7 @@
     }
     DDLogDebug(@"verify view screen width:%f, height:%f", dWidth, dHeight);
     
+    // view的高度 = view宽度/2 + 65
     CGFloat viewWidth = 0.0;
     CGFloat viewHeight = 0.0;
     if(IS_IPHONE){
@@ -188,7 +189,7 @@
         }
         
         viewWidth = width * 4.0 / 5.0;
-        viewHeight = viewWidth * 5 / 9;
+
     }else{
         CGFloat width = dWidth;
         if (dHeight < dWidth) {
@@ -196,7 +197,23 @@
         }
         
         viewWidth = width * 3.0 / 5.0;
-        viewHeight = viewWidth * 5 / 9;
+    }
+    
+    // 服务器的图片最小260的宽度，并且左右各有5像素的空格
+    if(viewWidth < 260){
+        viewWidth = 260;
+    }
+    viewWidth += 10;
+    
+    // 高宽比
+    viewHeight = viewWidth / 2.0 + 65;
+    
+    // 如果计算出来高宽，超出topView，则以topView为准
+    if(viewWidth > dWidth){
+        viewWidth = dWidth;
+    }
+    if (viewHeight > dHeight) {
+        viewHeight = dHeight;
     }
     
     [NTESVCDeviceInfo sharedInstance].width = viewWidth;

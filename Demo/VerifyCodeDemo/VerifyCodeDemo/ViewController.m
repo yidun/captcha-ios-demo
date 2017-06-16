@@ -34,8 +34,8 @@
         // 如果需要了解组件的执行情况,则实现回调
         self.manager.delegate = self;
         
-        // captchaid的值是每个产品从后台生成的,比如 @"0489d7c00eff49089c56dfcd4b67f250"
-        NSString *captchaid = @"3fd5cf9ced2642a19fe8831d1b9821ac";
+        // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
+        NSString *captchaid = @"a05f036b70ab447b87cc788af9a60974";
         [self.manager configureVerifyCode:captchaid timeout:10.0];
         
         // 设置透明度
