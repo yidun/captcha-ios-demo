@@ -27,7 +27,7 @@ platform :ios, '7.0'
 
 * 1、下载VerifyCode SDK包
 
-     地址: `https://github.com/yidun/captcha-ios-demo`
+     地址: https://github.com/yidun/captcha-ios-demo
      
 
 * 2、导入 `VerifyCode.framework` 到XCode工程：
