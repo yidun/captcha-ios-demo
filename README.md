@@ -20,7 +20,9 @@ VerifyCode iOS SDK 接入指南
 
 	(2). 如果想使用最新版本的SDK，则执行`pod update`
 	
-	(3). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
+	(3). 如果pod不成功，建议执行下面的命令清空缓存: `rm ~/Library/Caches/CocoaPods/search_index.json`，然后再pod
+	
+	(4). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
 platform :ios, '7.0'
 
 #### 手动集成方式
