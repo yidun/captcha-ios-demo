@@ -180,8 +180,9 @@
     DDLogDebug(@"verify view screen width:%f, height:%f", dWidth, dHeight);
     
     // view的高度 = view宽度/2 + 65
-    CGFloat viewWidth = 0.0;
-    CGFloat viewHeight = 0.0;
+    // view的宽度必须为整数，因为webview加载的验证码图片是整数，否则会出现长度偏差，在右边会显示一条黑线
+    NSInteger viewWidth = 0.0;
+    NSInteger viewHeight = 0.0;
     if(IS_IPHONE){
         CGFloat width = dWidth;
         if (dHeight < dWidth) {
