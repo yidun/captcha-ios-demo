@@ -134,8 +134,8 @@
 			children = (
 				E658CB3F1DFD65D0001C0B60 /* NTESVCActivityIndicatorView.h */,
 				E658CB401DFD65D0001C0B60 /* NTESVCActivityIndicatorView.m */,
-				E64C60021DFA4BDE00BFC0CC /* NTESVCVerifyCodeView.m */,
 				E64C60031DFA4BDE00BFC0CC /* NTESVCVerifyCodeView.h */,
+				E64C60021DFA4BDE00BFC0CC /* NTESVCVerifyCodeView.m */,
 				E61297201DF9468000E85571 /* NTESVCController.h */,
 				E61297211DF9468000E85571 /* NTESVCController.m */,
 			);

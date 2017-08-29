@@ -39,7 +39,7 @@
         } else {
             alpha = 1.0 / 180 * (i - 180 + 1);
         }
-        [self drawCircleWithContext:context beginAngle:beginAngle toAngle:toAngle color:_color alpha:alpha];
+        [self drawCircleWithContext:context beginAngle:beginAngle toAngle:toAngle color:self.color alpha:alpha];
     }
 }
 

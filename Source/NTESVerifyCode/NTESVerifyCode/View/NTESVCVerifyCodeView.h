@@ -56,6 +56,9 @@
 
 @interface NTESVCVerifyCodeView : UIView<UIWebViewDelegate, WKScriptMessageHandler, WKNavigationDelegate, UIScrollViewDelegate>
 
+// 是否有网络
+@property(nonatomic, assign)BOOL hasNetwork;
+
 // 超时
 @property(nonatomic, assign)BOOL isTimeOut;
 
@@ -77,11 +80,14 @@
 
 @property(nonatomic, strong)NTESVCActivityIndicatorView *activityIndicicator;
 
+// 显示loading提示
+@property(nonatomic, strong)UILabel *loadingText;
+
 // 显示loading错误标题
 @property(nonatomic, strong)UILabel *loadErrorTitle;
 
-// 显示loading提示以及错误提示
-@property(nonatomic, strong)UILabel *loadingText;
+// 显示错误提示
+@property(nonatomic, strong)UILabel *loadErrorText;
 
 /**
  * delegate,见NTESVCVerifyCodeViewDelegate

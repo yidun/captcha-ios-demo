@@ -47,7 +47,7 @@
         self.timer = nil;
         
         //定制View
-        self.backgroundColor = [UIColor colorWithRed:85.0 / 255.0 green:198.0 / 255.0 blue:240.0 / 255.0 alpha:1.0];
+        self.backgroundColor = [UIColor colorWithRed:245.0 / 255.0 green:245.0 / 255.0 blue:245.0 / 255.0 alpha:1.0];
         self.alpha = 1;
         
         self.userInteractionEnabled = YES; //设置为NO后，不再响应touch方法
@@ -66,7 +66,7 @@
 - (void)startLoad{
     
     // 有网络才去加载
-    if([NTESVCUtil isNetworkReachable]){
+    if(self.hasNetwork){
         // 加载页面
         NSURL *baseUrl = [NTESVCDeviceInfo sharedInstance].baseUrl;
         
@@ -129,10 +129,16 @@
         }else{
             [self initUIWebView];
         }
-        
-        [self initIndicicatorView];
     }
     
+    // 虽然有时显示是有网络的，但是可能代理、认证的原因，仍然会加载失败，需要错误提示
+    [self initLoadingErrorView];
+    
+    // 如果没网络，其实这个用处不大，因为在loadWeb的时候，会判断是否有网络，没网络就直接进入错误提示页面
+    self.hasNetwork = [NTESVCUtil isNetworkReachable];
+    if (!self.hasNetwork) {
+        [self initIndicicatorView];
+    }
 }
 
 - (void)initWKWebView{
@@ -194,6 +200,9 @@
     float indicicatorY = self.frame.size.height /2.0 - height /2.0;
     indicicatorY = indicicatorY * 3 / 5;
     self.activityIndicicator = [[NTESVCActivityIndicatorView alloc] initWithFrame: CGRectMake(indicicatorX, indicicatorY, width , height)];
+    
+    DDLogDebug(@"NTESVCActivityIndicatorView:(%f,%f,%f,%f)", self.activityIndicicator.frame.origin.x, self.activityIndicicator.frame.origin.y, self.activityIndicicator.frame.size.width, self.activityIndicicator.frame.size.height);
+    
     [self addSubview:self.activityIndicicator];
     [self showWaitingDialog];
     
@@ -204,27 +213,46 @@
     float labelY = indicicatorY + height + 15;
     self.loadingText = [[UILabel alloc] initWithFrame: CGRectMake(labelX, labelY, labelWidth , labelHeight)];
     self.loadingText.text = VERIFTCODE_LOADING;
-    self.loadingText.textColor = [UIColor whiteColor];
+    self.loadingText.textColor = [UIColor colorWithRed:51.0 / 255.0 green:51.0 / 255.0 blue:51.0 / 255.0 alpha:1.0];
     self.loadingText.textAlignment = NSTextAlignmentCenter;
     self.loadingText.adjustsFontSizeToFitWidth = YES;
+    self.loadingText.font = [UIFont fontWithName:@"Helvetica" size:22];
     self.loadingText.backgroundColor = [UIColor clearColor];
     [self addSubview:self.loadingText];
-    
+}
+
+- (void)initLoadingErrorView{
     // loading错误标题
     float labelErrorX = 0;
-    float labelErrorY = labelY - 40;
     float labelErrorWidth = self.frame.size.width;
     float labelErrorHeight = 40;
-
+    float labelErrorY = self.frame.size.height /4.0 ;
+    
     self.loadErrorTitle = [[UILabel alloc] initWithFrame: CGRectMake(labelErrorX, labelErrorY, labelErrorWidth , labelErrorHeight)];
     self.loadErrorTitle.text = VERIFTCODE_ERROR_TITLE;
-    self.loadErrorTitle.textColor = [UIColor whiteColor];
+    self.loadErrorTitle.textColor = [UIColor colorWithRed:51.0 / 255.0 green:51.0 / 255.0 blue:51.0 / 255.0 alpha:1.0];
     self.loadErrorTitle.textAlignment = NSTextAlignmentCenter;
     self.loadErrorTitle.adjustsFontSizeToFitWidth = YES;
     self.loadErrorTitle.alpha = 0.0;
-    self.loadErrorTitle.font = [UIFont fontWithName:@"Helvetica" size:24];
-    self.loadingText.backgroundColor = [UIColor clearColor];
+    self.loadErrorTitle.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
+    self.loadErrorTitle.backgroundColor = [UIColor clearColor];
     [self addSubview:self.loadErrorTitle];
+    
+    // loading错误内容
+    float labelErrorTextX = 0;
+    float labelErrorTextWidth = self.frame.size.width;
+    float labelErrorTextHeight = 40;
+    float labelErrorTextY = labelErrorY + labelErrorHeight + 10;
+    
+    self.loadErrorText = [[UILabel alloc] initWithFrame: CGRectMake(labelErrorTextX, labelErrorTextY, labelErrorTextWidth , labelErrorTextHeight)];
+    self.loadErrorText.text = VERIFTCODE_ERROR_TEXT;
+    self.loadErrorText.textColor = [UIColor colorWithRed:51.0 / 255.0 green:51.0 / 255.0 blue:51.0 / 255.0 alpha:1.0];
+    self.loadErrorText.textAlignment = NSTextAlignmentCenter;
+    self.loadErrorText.adjustsFontSizeToFitWidth = YES;
+    self.loadErrorText.alpha = 0.0;
+    self.loadErrorText.font = [UIFont fontWithName:@"Helvetica" size:16];
+    self.loadErrorText.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.loadErrorText];
 }
 
 - (void)layoutCustomViews{
@@ -326,7 +354,7 @@
         self.backgroundColor = [UIColor clearColor];
     }completion:^(BOOL finish){
         [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            // 如果有失败消息,则不现实webview
+            // 如果有失败消息,则不显示webview
             if(!self.isFailed){
                 if(IOS_VERSION_9_OR_LATER){
                     self.wkWebView.alpha = 1.0;
@@ -351,6 +379,7 @@
     if (self.isLoading) {
         self.isLoading = NO;
         [self hideWaitingDialog];
+        self.loadingText.alpha = 0.0;
     }
     
     DDLogInfo(@"updateLoadingErrorView");
@@ -368,7 +397,7 @@
         }
     }
     
-    self.backgroundColor = [UIColor colorWithRed:218.0 / 255.0 green:172.0 / 255.0 blue:55.0 / 255.0 alpha:1.0];
+    self.backgroundColor = [UIColor colorWithRed:245.0 / 255.0 green:245.0 / 255.0 blue:245.0 / 255.0 alpha:1.0];
     
     self.loadErrorTitle.alpha = 1.0;
     if (title && title.length > 0) {
@@ -377,11 +406,11 @@
         self.loadErrorTitle.text = VERIFTCODE_ERROR_TITLE;
     }
     
-    self.loadingText.alpha = 1.0;
+    self.loadErrorText.alpha = 1.0;
     if (text && text.length > 0) {
-        self.loadingText.text = text;
+        self.loadErrorText.text = text;
     }else{
-        self.loadingText.text = VERIFTCODE_ERROR_TEXT;
+        self.loadErrorText.text = VERIFTCODE_ERROR_TEXT;
     }
 }
 
@@ -451,6 +480,8 @@
                 }
                 
                 self.isFailed = YES;
+                
+                // 在网络很差的情况下: "开发者" -> "Very Bad Network",可能会出现先收到"didFailNavigation"错误，然后收到 "onError callback"
                 [self updateLoadingErrorView:VERIFTCODE_CAPTCHAID_ERROR_TITLE text:VERIFTCODE_CAPTCHAID_ERROR_TEXT];
             };
         }
@@ -496,6 +527,8 @@
             }
             
             self.isFailed = YES;
+            
+            // 在网络很差的情况下: "开发者" -> "Very Bad Network",可能会出现先收到"didFailNavigation"错误，然后收到 "onError callback"
             [self updateLoadingErrorView:VERIFTCODE_CAPTCHAID_ERROR_TITLE text:VERIFTCODE_CAPTCHAID_ERROR_TEXT];
         }
     }
@@ -622,6 +655,11 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     DDLogInfo(@"webViewDidFinishLoad");
+    
+    //修改服务器页面的meta的值
+    /*NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"", webView.frame.size.width];
+    [webView stringByEvaluatingJavaScriptFromString:meta];*/
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if(self.timer){
         [self.timer invalidate];

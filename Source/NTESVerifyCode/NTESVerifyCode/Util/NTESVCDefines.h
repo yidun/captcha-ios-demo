@@ -9,7 +9,7 @@
 #ifndef VerifyCode_NTESVCDefines_h
 #define VerifyCode_NTESVCDefines_h
 
-#define VerifyCode_IOS_SDK_VERSION      @"2.0.2"
+#define VerifyCode_IOS_SDK_VERSION      @"2.0.3"
 
 #define NSSTRINGFROMCSTR(cstr) [NSString stringWithUTF8String:cstr]
 
@@ -79,7 +79,7 @@ typedef NS_ENUM(NSInteger, VCDeviceOrientation) {
 
 // 提示信息
 #define VERIFTCODE_LOADING          @"拼命加载中..."
-#define VERIFTCODE_ERROR_TITLE      @"出现错误"
+#define VERIFTCODE_ERROR_TITLE      @"网络异常"
 #define VERIFTCODE_ERROR_TEXT       @"请点击空白处关闭验证视图重试"
 #define VERIFTCODE_CAPTCHAID_ERROR_TITLE    @"captchaId错误"
 #define VERIFTCODE_CAPTCHAID_ERROR_TEXT     @"请点击空白处关闭并检查captchaId"
