@@ -16,11 +16,11 @@ VerifyCode iOS SDK 接入指南
 	
 	__备注:__
 	
-	(1). 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
+	(1). 命令行下执行`pod search VerifyCode`,如果提示找不到该pod，则需要先执行`pod install`;如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
 
 	(2). 如果想使用最新版本的SDK，则执行`pod update`
 	
-	(3). 如果pod不成功，建议执行下面的命令清空缓存: `rm ~/Library/Caches/CocoaPods/search_index.json`，然后再pod
+	(3). 如果`pod install`不成功，建议执行下面的命令清空缓存: `rm ~/Library/Caches/CocoaPods/search_index.json`，然后再`pod install`
 	
 	(4). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
 platform :ios, '7.0'
