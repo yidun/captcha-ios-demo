@@ -3,39 +3,21 @@ VerifyCode iOS SDK 接入指南
 
 ### 一、SDK集成
 
-#### CocoaPods集成方式
-* 1、更新Podfile文件
-
-	在工程的 Podfile 里对应的 Target 中添加以下代码
-	
-		pod 'VerifyCode'
-		
-* 2、集成SDK
-	
-	在工程的当前目录下, 运行 `pod install` 或者 `pod update`
-	
-	__备注:__
-	
-	(1). 命令行下执行`pod search VerifyCode`,如果提示找不到该pod，则需要先执行`pod install`;如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
-
-	(2). 如果想使用最新版本的SDK，则执行`pod update`
-	
-	(3). 如果`pod install`不成功，建议执行下面的命令清空缓存: `rm ~/Library/Caches/CocoaPods/search_index.json`，然后再`pod install`
-	
-	(4). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
-platform :ios, '7.0'
 
 #### 手动集成方式
 
 * 1、下载VerifyCode SDK包
 
-     地址: https://github.com/yidun/captcha-ios-demo
+     地址: `https://github.com/yidun/captcha-ios-demo`
      
 
 * 2、导入 `VerifyCode.framework` 到XCode工程：
-  * 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)
+  * 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)。
+
+* 3、导入`NTESVerifyCodeResources.bundle`到工程中：
+  * 进入`Build Phase`，在`Copy Bundle Resources`选项中，添加`NTESVerifyCodeResources.bundle`文件(请勾选Copy items if needed选项) 。
   
-  * 添加依赖库
+* 4、添加依赖库
   `SystemConfiguration.framework` `JavaScriptCore.framework`、`WebKit.framework`
   
    __备注:__  

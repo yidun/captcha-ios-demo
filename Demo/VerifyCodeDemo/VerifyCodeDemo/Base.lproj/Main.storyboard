@@ -41,7 +41,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJk-l1-oFA">
-                                <rect key="frame" x="172" y="407" width="31" height="30"/>
+                                <rect key="frame" x="172" y="537" width="31" height="30"/>
                                 <state key="normal" title="登录"/>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VpJ-Vj-4pr">
@@ -67,7 +67,7 @@
                             <constraint firstItem="Vfj-xK-wbS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KLn-fu-jB8"/>
                             <constraint firstItem="swS-8i-S8H" firstAttribute="leading" secondItem="NhG-RB-xbM" secondAttribute="trailing" constant="8" id="R4v-V2-XAw"/>
                             <constraint firstItem="Vfj-xK-wbS" firstAttribute="top" secondItem="swS-8i-S8H" secondAttribute="bottom" constant="15" id="VYR-xm-Bgm"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jJk-l1-oFA" secondAttribute="bottom" constant="230" id="Vy2-Ca-z0B"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jJk-l1-oFA" secondAttribute="bottom" constant="100" id="Vy2-Ca-z0B"/>
                             <constraint firstItem="VpJ-Vj-4pr" firstAttribute="leading" secondItem="IU7-jw-BU5" secondAttribute="trailing" constant="8" id="WA4-Bt-qFe"/>
                             <constraint firstItem="NhG-RB-xbM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YPt-Ol-Y7z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VpJ-Vj-4pr" secondAttribute="trailing" constant="24" id="gs7-4i-Jlw"/>

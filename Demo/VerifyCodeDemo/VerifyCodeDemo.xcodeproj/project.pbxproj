@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E64D29E41FF64835001657D3 /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E64D29E31FF64835001657D3 /* NTESVerifyCodeResources.bundle */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E64D29E31FF64835001657D3 /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NTESVerifyCodeResources.bundle; path = VerifyCodeDemo/NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		E6BA08301E1B980800B34EF1 = {
 			isa = PBXGroup;
 			children = (
+				E64D29E31FF64835001657D3 /* NTESVerifyCodeResources.bundle */,
 				E6BA08611E1B988400B34EF1 /* VerifyCode.framework */,
 				E6BA083B1E1B980800B34EF1 /* VerifyCodeDemo */,
 				E6BA08551E1B980800B34EF1 /* VerifyCodeDemoTests */,
@@ -225,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E64D29E41FF64835001657D3 /* NTESVerifyCodeResources.bundle in Resources */,
 				E6BA084C1E1B980800B34EF1 /* LaunchScreen.storyboard in Resources */,
 				E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */,
 				E6BA08471E1B980800B34EF1 /* Main.storyboard in Resources */,
@@ -464,6 +468,7 @@
 				E6BA085D1E1B980800B34EF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E6BA085E1E1B980800B34EF1 /* Build configuration list for PBXNativeTarget "VerifyCodeDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +477,7 @@
 				E6BA08601E1B980800B34EF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
