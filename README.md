@@ -43,6 +43,10 @@ platform :ios, '7.0'
    (1)如果已存在上述的系统framework，则忽略
    
    (2)SDK 最低兼容系统版本 iOS 7.0
+   
+   (3)如果出现VerifyCode的相关头文件找不到的问题，则 `Build Settings` -> `Framework Search Paths`里手动添加framework的路径
+   
+   <img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/framework_path.jpg" width="50%" height="50%">
 
   
 ### 二、SDK 使用
