@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
+    NTESVerifyCodeLangCN = 1,
+    NTESVerifyCodeLangEN,
+};
+
 @protocol NTESVerifyCodeManagerDelegate<NSObject>
 @optional
 
@@ -71,6 +76,14 @@
  * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
  */
 @property(nonatomic) CGFloat           alpha;
+
+/**
+ * @abstract    验证码语言选项
+ *
+ * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangCN表示英文
+ *              不传默认中文。
+ */
+@property(nonatomic) NTESVerifyCodeLang    lang;
 
 
 /**

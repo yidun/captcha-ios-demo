@@ -38,6 +38,9 @@
         NSString *captchaid = @"a05f036b70ab447b87cc788af9a60974";
         [self.manager configureVerifyCode:captchaid timeout:10.0];
         
+        // 设置语言
+        self.manager.lang = NTESVerifyCodeLangCN;
+        
         // 设置透明度
         self.manager.alpha = 0.7;
         
