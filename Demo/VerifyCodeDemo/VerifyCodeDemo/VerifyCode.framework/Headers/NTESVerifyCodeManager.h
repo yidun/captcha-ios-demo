@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
 /**
  * @abstract    验证码语言选项
  *
- * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangCN表示英文
+ * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
  *              不传默认中文。
  */
 @property(nonatomic) NTESVerifyCodeLang    lang;
