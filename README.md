@@ -31,10 +31,11 @@ platform :ios, '7.0'
      
 
 * 2、导入 `VerifyCode.framework` 到XCode工程：
-  * 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)。
-
+  * 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)
+  
 * 3、导入`NTESVerifyCodeResources.bundle`到工程中：
   * 进入`Build Phase`，在`Copy Bundle Resources`选项中，添加`NTESVerifyCodeResources.bundle`文件(请勾选Copy items if needed选项) 。
+
   
 * 4、添加依赖库
   `SystemConfiguration.framework` `JavaScriptCore.framework`、`WebKit.framework`
@@ -43,10 +44,6 @@ platform :ios, '7.0'
    (1)如果已存在上述的系统framework，则忽略
    
    (2)SDK 最低兼容系统版本 iOS 7.0
-   
-   (3)如果出现VerifyCode的相关头文件找不到的问题，则 `Build Settings` -> `Framework Search Paths`里手动添加framework的路径
-   
-   <img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/framework_path.jpg" width="50%" height="50%">
 
   
 ### 二、SDK 使用
@@ -66,10 +63,7 @@ platform :ios, '7.0'
     		// sdk调用
     		self.manager = [NTESVerifyCodeManager sharedInstance];
     		self.manager.delegate = self;
-    		        
-        	// 设置语言
-        	self.manager.lang = NTESVerifyCodeLangCN;
-        	
+    		
     		// 设置透明度
         	self.manager.alpha = 0.7;
         
@@ -78,7 +72,7 @@ platform :ios, '7.0'
     
      		// captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
 			NSString *captchaId = @"a05f036b70ab447b87cc788af9a60974";
-    		[self.manager configureVerifyCode:captchaId timeout:5.0];
+    		[self.manager configureVerifyCode:self.captchaId timeout:5];
 		}
 		
 * 3、在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
@@ -179,17 +173,42 @@ platform :ios, '7.0'
  		* @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
  		*/
 		@property(nonatomic) CGFloat           alpha;
+-		
+		
+		/**
+ 		 * @abstract    验证码语言选项
+		 *
+		 * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
+ 		 *              不传默认中文。
+ 		 */
+		 @property(nonatomic) NTESVerifyCodeLang    lang;
+		 
+-	
+	 
+		/**
+ 		* @abstract    验证码滑块icon url，不传则使用易盾默认滑块显示。
+ 		*/
+		@property(nonatomic) NSString *slideIconURL;
 - 
 
-
 		/**
-	 	* @abstract    验证码语言选项
- 		*
- 		* @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
- 		* 			   不传默认中文。
- 		*/
-		@property(nonatomic) NTESVerifyCodeLang           lang;
+		 * @abstract    验证码验证成功的滑块icon url，不传则使用易盾默认滑块显示。
+		 */
+		@property(nonatomic) NSString *slideIconSuccessURL;
+
+- 
+		/**
+		 * @abstract    验证码滑块滑动过程中的icon url，不传则使用易盾默认滑块显示。
+		 */
+		@property(nonatomic) NSString *slideIconMovingURL;
 		
+- 
+		
+		/**
+		 * @abstract    验证码验证失败的滑块icon url，不传则使用易盾默认滑块显示。
+		 */
+		@property(nonatomic) NSString *slideIconErrorURL;
+
 * 2、单例
 	
 		/**
@@ -202,12 +221,12 @@ platform :ios, '7.0'
 * 3、初始化
 
 		/**
- 		*  @abstract 	配置参数
- 		*
- 		* @param 		captcha_id 			验证码id
- 		* @param 		timeoutInterval 	加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
- 		*
- 		*/
+		 *  @abstract   配置参数
+		 *
+		 *  @param      captcha_id      验证码id
+		 *  @param      timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
+		 *
+		 */
 		- (void)configureVerifyCode:(NSString *)captcha_id
                     timeout:(NSTimeInterval)timeoutInterval;
 
