@@ -42,7 +42,10 @@
         self.manager.lang = NTESVerifyCodeLangCN;
         
         // 设置透明度
-        self.manager.alpha = 0.7;
+        self.manager.alpha = 0.3;
+        
+        // 设置颜色
+        self.manager.color = [UIColor blackColor];
         
         // 设置frame
         self.manager.frame = CGRectNull;

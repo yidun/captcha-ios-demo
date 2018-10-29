@@ -24,6 +24,12 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
     NTESVerifyCodeLangTL,
     // 越南语
     NTESVerifyCodeLangVT,
+    // 法语
+    NTESVerifyCodeLangFRA,
+    // 俄语
+    NTESVerifyCodeLangRUS,
+    // 阿拉伯语
+    NTESVerifyCodeLangKSA,
 };
 
 @protocol NTESVerifyCodeManagerDelegate<NSObject>
@@ -85,9 +91,16 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
 /**
  * @abstract    验证码图片背景的透明度
  *
- * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
+ * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.3
  */
 @property(nonatomic) CGFloat           alpha;
+
+/**
+ * @abstract    验证码图片背景的颜色
+ *
+ * @说明         默认值:黑色
+ */
+@property(nonatomic) UIColor           *color;
 
 /**
  * @abstract    验证码语言选项

@@ -10,8 +10,26 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
+    // 中文
     NTESVerifyCodeLangCN = 1,
+    // 英文
     NTESVerifyCodeLangEN,
+    // 繁体
+    NTESVerifyCodeLangTW,
+    // 日文
+    NTESVerifyCodeLangJP,
+    // 韩文
+    NTESVerifyCodeLangKR,
+    // 泰文
+    NTESVerifyCodeLangTL,
+    // 越南语
+    NTESVerifyCodeLangVT,
+    // 法语
+    NTESVerifyCodeLangFRA,
+    // 俄语
+    NTESVerifyCodeLangRUS,
+    // 阿拉伯语
+    NTESVerifyCodeLangKSA,
 };
 
 @protocol NTESVerifyCodeManagerDelegate<NSObject>
@@ -73,17 +91,44 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
 /**
  * @abstract    验证码图片背景的透明度
  *
- * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
+ * @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.3
  */
 @property(nonatomic) CGFloat           alpha;
 
 /**
+ * @abstract    验证码图片背景的颜色
+ *
+ * @说明         默认值:黑色
+ */
+@property(nonatomic) UIColor           *color;
+
+/**
  * @abstract    验证码语言选项
  *
- * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
+ * @说明         验证码枚举类型NTESVerifyCodeLang，可选范围见枚举定义。
  *              不传默认中文。
  */
 @property(nonatomic) NTESVerifyCodeLang    lang;
+
+/**
+ * @abstract    验证码滑块icon url，不传则使用易盾默认滑块显示。
+ */
+@property(nonatomic) NSString *slideIconURL;
+
+/**
+ * @abstract    验证码验证成功的滑块icon url，不传则使用易盾默认滑块显示。
+ */
+@property(nonatomic) NSString *slideIconSuccessURL;
+
+/**
+ * @abstract    验证码滑块滑动过程中的icon url，不传则使用易盾默认滑块显示。
+ */
+@property(nonatomic) NSString *slideIconMovingURL;
+
+/**
+ * @abstract    验证码验证失败的滑块icon url，不传则使用易盾默认滑块显示。
+ */
+@property(nonatomic) NSString *slideIconErrorURL;
 
 
 /**

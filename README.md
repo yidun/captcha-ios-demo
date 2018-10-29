@@ -27,7 +27,7 @@ platform :ios, '7.0'
 
 * 1、下载VerifyCode SDK包
 
-     地址: `https://github.com/yidun/captcha-ios-demo`
+   * 地址: `https://github.com/yidun/captcha-ios-demo`
      
 
 * 2、导入 `VerifyCode.framework` 到XCode工程：
@@ -173,7 +173,15 @@ platform :ios, '7.0'
  		* @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
  		*/
 		@property(nonatomic) CGFloat           alpha;
--		
+- 
+
+		/**
+		 * @abstract    验证码图片背景的颜色
+		 *
+		 * @说明         默认值:黑色
+		 */
+		@property(nonatomic) UIColor           *color;
+- 
 		
 		/**
  		 * @abstract    验证码语言选项
