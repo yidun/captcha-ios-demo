@@ -20,8 +20,8 @@ VerifyCode iOS SDK 接入指南
 
 	(2). 如果想使用最新版本的SDK，则执行`pod update`
 	
-	(3). 如果你的工程设置的"Deplyment Target"低于 7.0，则在Podfile文件的前面加上以下语句
-platform :ios, '7.0'
+	(3). 如果你的工程设置的"Deplyment Target"低于 8.0，则在Podfile文件的前面加上以下语句
+platform :ios, '8.0'
 
 #### 手动集成方式
 
@@ -43,7 +43,7 @@ platform :ios, '7.0'
    __备注:__  
    (1)如果已存在上述的系统framework，则忽略
    
-   (2)SDK 最低兼容系统版本 iOS 7.0
+   (2)SDK 最低兼容系统版本 iOS 8.0
 
   
 ### 二、SDK 使用
@@ -295,57 +295,6 @@ platform :ios, '7.0'
 	
 	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_new.jpg" width="50%" height="50%">
 
-
-### 五、注意事项
-
-* 1、如何自定义验证码视图？
-	
-	如果用户对验证码视图需要自定义，比如加一下UIButton控件，修改`NTESVCController`类的`- (void)addVCViewOnBackgroundControl`方法即可，比如:
-		
-		- (void)addVCViewOnBackgroundControl{
-    
-    		[self generateVerifyCodeView];
-    		[self.backGroundViewControl addSubview:self.verifyCodeView];
-    
-    		// 自定义显示界面,验证码下加一个UIButton，UIButton的frame根据实际情况赋值
-    		UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 20)];
-    		cancelButton.backgroundColor = [UIColor yellowColor];
-    		[cancelButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    		[cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    		[self.backGroundViewControl addSubview:cancelButton];
-		}
-		
-* 2、验证码视图为什么没有显示？
-	 
-	 这种情况多见于APP不传递topView。没有显示的原因是topView获取的方式在不同的条件下，需要修改。
-	 它的实现代码在`NTESVCController.m`文件里，对应的方法为: `- (UIView *)getTopView`
-	 
-	    - (UIView *)getTopView{
-    
-           UIView *topView = [[[UIApplication sharedApplication] delegate] window];
-
-           return topView;
-        }
-        
-     这段代码的意思是，在多个UIWindow存在的情况下，获取正在使用的UIWindow作为topView。
-     不同的产品可以根据自己的需求修改这段代码，比如直接使用keyWindow或者任意自定义的UIWindow作为topView，或者以UIWindow的subviews的最前面的视图作为topView，例如:
-     
-     
-        - (UIView *)getTopView{
-    
-           UIView *topView = nil;
-    
-           UIApplication *app = [UIApplication sharedApplication];
-           if (app) {
-               UIWindow *topWindow = [[[UIApplication sharedApplication].windows  sortedArrayUsingComparator:^NSComparisonResult(UIWindow *win1, UIWindow *win2) {
-                 return win1.windowLevel - win2.windowLevel;
-               }] lastObject];
-               topView = [[topWindow subviews] lastObject];
-          }
-    
-          return topView;
-        }
-        
         
 
 	
