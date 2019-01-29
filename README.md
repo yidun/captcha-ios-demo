@@ -62,7 +62,7 @@ platform :ios, '8.0'
 
 		#import <VerifyCode/NTESVerifyCodeManager.h>
 		
-* 2、在页面初始化的地方初始化 SDK，SDK同时支持无感知验证码和传统验证码，需在官网申请不同的captchaID，如下：
+* 2、在页面初始化的地方初始化 SDK，SDK同时支持无感知验证码和普通验证码，需在官网申请不同的captchaID，如下：
 
 		- (void)viewDidLoad {
     		[super viewDidLoad];
@@ -80,7 +80,7 @@ platform :ios, '8.0'
     
      		// captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
      		
-			// 传统验证码
+			// 普通验证码
 			// NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
 			// self.manager.mode = NTESVerifyCodeNormal;
         
@@ -200,7 +200,7 @@ platform :ios, '8.0'
  		* @abstract    设置验证码类型
  		*/
 		typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
-		    // 传统验证码
+		    // 普通验证码
 		    NTESVerifyCodeNormal = 1,
 		    // 无感知验证码
 		    NTESVerifyCodeBind,
@@ -275,7 +275,7 @@ platform :ios, '8.0'
 		 * @abstract    设置验证码类型
 		 *
 		 * @说明         验证码枚举类型NTESVerifyCodeMode，可选类型见枚举定义
-		 *              不传默认传统验证码。
+		 *              不传默认普通验证码。
 		 *
 		 */
 		@property(nonatomic) NTESVerifyCodeMode mode;		
@@ -342,21 +342,15 @@ platform :ios, '8.0'
 	
 * 2、滑块验证
 	
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_huakuai.jpg" width="50%" height="50%">
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/tuodong_en.png" width="50%" height="50%">
 	
 * 3、点选验证
 	
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_dianxuan.jpg" width="50%" height="50%">
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/dianxuan_cn.png" width="50%" height="50%">
 	
 * 4、短信验证
 	
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_duanxin.jpg" width="50%" height="50%">
-	
-* 5、结果
-	
-	如果验证成功,则验证码图片消失;验证失败则弹出新的验证码
-	
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/verify_new.jpg" width="50%" height="50%">
+	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/duanxin_cn.png" width="50%" height="50%">
 
         
 
