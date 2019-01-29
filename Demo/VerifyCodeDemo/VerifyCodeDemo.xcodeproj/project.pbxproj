@@ -193,7 +193,7 @@
 				TargetAttributes = {
 					E6BA08381E1B980800B34EF1 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = QR44GS97KP;
+						DevelopmentTeam = J7ZZQ73G43;
 						ProvisioningStyle = Automatic;
 					};
 					E6BA08511E1B980800B34EF1 = {
@@ -389,7 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
-				DEVELOPMENT_TEAM = QR44GS97KP;
+				DEVELOPMENT_TEAM = J7ZZQ73G43;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/VerifyCodeDemo",
@@ -398,6 +398,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -409,7 +410,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
-				DEVELOPMENT_TEAM = QR44GS97KP;
+				DEVELOPMENT_TEAM = J7ZZQ73G43;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/VerifyCodeDemo",
@@ -418,6 +419,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

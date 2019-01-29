@@ -14,6 +14,10 @@ VerifyCode iOS SDK 接入指南
 	
 	在工程的当前目录下, 运行 `pod install` 或者 `pod update`
 	
+* 3、工程设置
+	
+	在工程target目录内，需将Build Settings —> other link flags设置为-ObjC。
+	
 	__备注:__
 	
 	(1). 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
@@ -40,6 +44,10 @@ platform :ios, '8.0'
 * 4、添加依赖库
   `SystemConfiguration.framework` `JavaScriptCore.framework`、`WebKit.framework`
   
+* 5、工程设置
+	
+	在工程target目录内，需将Build Settings —> other link flags设置为-ObjC。
+  
    __备注:__  
    (1)如果已存在上述的系统framework，则忽略
    
@@ -54,7 +62,7 @@ platform :ios, '8.0'
 
 		#import <VerifyCode/NTESVerifyCodeManager.h>
 		
-* 2、在页面初始化的地方初始化 SDK，如下：
+* 2、在页面初始化的地方初始化 SDK，SDK同时支持无感知验证码和传统验证码，需在官网申请不同的captchaID，如下：
 
 		- (void)viewDidLoad {
     		[super viewDidLoad];
@@ -71,8 +79,14 @@ platform :ios, '8.0'
         	self.manager.frame = CGRectNull;
     
      		// captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
-			NSString *captchaId = @"a05f036b70ab447b87cc788af9a60974";
-    		[self.manager configureVerifyCode:self.captchaId timeout:5];
+     		
+			// 传统验证码
+			// NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
+			// self.manager.mode = NTESVerifyCodeNormal;
+        
+	        // 无感知验证码
+	        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
+	        self.manager.mode = NTESVerifyCodeBind;
 		}
 		
 * 3、在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
@@ -96,9 +110,9 @@ platform :ios, '8.0'
 		/**
  		* 验证码组件初始化出错
  		*
- 		* @param message 错误信息
+ 		* @param error 错误信息
  		*/
-		- (void)verifyCodeInitFailed:(NSString *)message{
+		- (void)verifyCodeInitFailed:(NSArray *)error{
     		// App添加自己的处理逻辑
 		}
 	
@@ -154,7 +168,45 @@ platform :ios, '8.0'
 
 ### 三、SDK 接口
 
-* 1、属性
+* 1、枚举
+
+		/**
+ 		* @abstract    设置验证码语言类型
+ 		*/
+		typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
+		    // 中文
+		    NTESVerifyCodeLangCN = 1,
+		    // 英文
+		    NTESVerifyCodeLangEN,
+		    // 繁体
+		    NTESVerifyCodeLangTW,
+		    // 日文
+		    NTESVerifyCodeLangJP,
+		    // 韩文
+		    NTESVerifyCodeLangKR,
+		    // 泰文
+		    NTESVerifyCodeLangTL,
+		    // 越南语
+		    NTESVerifyCodeLangVT,
+		    // 法语
+		    NTESVerifyCodeLangFRA,
+		    // 俄语
+		    NTESVerifyCodeLangRUS,
+		    // 阿拉伯语
+		    NTESVerifyCodeLangKSA,
+		};
+		
+		/**
+ 		* @abstract    设置验证码类型
+ 		*/
+		typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
+		    // 传统验证码
+		    NTESVerifyCodeNormal = 1,
+		    // 无感知验证码
+		    NTESVerifyCodeBind,
+		};
+
+* 2、属性
 		
 		/**
  		* @abstract    验证码图片显示的frame
@@ -216,8 +268,19 @@ platform :ios, '8.0'
 		 * @abstract    验证码验证失败的滑块icon url，不传则使用易盾默认滑块显示。
 		 */
 		@property(nonatomic) NSString *slideIconErrorURL;
+		
+-
 
-* 2、单例
+		/**
+		 * @abstract    设置验证码类型
+		 *
+		 * @说明         验证码枚举类型NTESVerifyCodeMode，可选类型见枚举定义
+		 *              不传默认传统验证码。
+		 *
+		 */
+		@property(nonatomic) NTESVerifyCodeMode mode;		
+
+* 3、单例
 	
 		/**
  		*  @abstract 	单例
@@ -226,7 +289,7 @@ platform :ios, '8.0'
  		*/
 		+ (NTESVerifyCodeManager *)sharedInstance;
 
-* 3、初始化
+* 4、初始化
 
 		/**
 		 *  @abstract   配置参数
@@ -238,7 +301,7 @@ platform :ios, '8.0'
 		- (void)configureVerifyCode:(NSString *)captcha_id
                     timeout:(NSTimeInterval)timeoutInterval;
 
-* 4、弹出验证码
+* 5、弹出验证码
 
 		/**
  		*  @abstract 展示验证码视图
@@ -260,7 +323,7 @@ platform :ios, '8.0'
 		- (void)openVerifyCodeView:(UIView *)topView;
 
 
-* 5、log打印
+* 6、log打印
 		
 		/**
  		*  @abstract	是否开启sdk日志打印

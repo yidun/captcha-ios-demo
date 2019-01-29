@@ -35,7 +35,15 @@
         self.manager.delegate = self;
         
         // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
-        NSString *captchaid = @"a05f036b70ab447b87cc788af9a60974";
+        
+        // 传统验证码
+//        NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
+//        self.manager.mode = NTESVerifyCodeNormal;
+        
+        // 无感知验证码
+        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
+        self.manager.mode = NTESVerifyCodeBind;
+        
         [self.manager configureVerifyCode:captchaid timeout:10.0];
         
         // 设置语言
@@ -49,6 +57,8 @@
         
         // 设置frame
         self.manager.frame = CGRectNull;
+        
+        
         
         // 显示验证码
         [self.manager openVerifyCodeView:nil];

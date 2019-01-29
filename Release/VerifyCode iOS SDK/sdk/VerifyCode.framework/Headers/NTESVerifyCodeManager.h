@@ -32,6 +32,13 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
     NTESVerifyCodeLangKSA,
 };
 
+typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
+    // 传统验证码
+    NTESVerifyCodeNormal = 1,
+    // 无感知验证码
+    NTESVerifyCodeBind,
+};
+
 @protocol NTESVerifyCodeManagerDelegate<NSObject>
 @optional
 
@@ -45,7 +52,7 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
  *
  * @param error 错误信息
  */
-- (void)verifyCodeInitFailed:(NSString *)error;
+- (void)verifyCodeInitFailed:(NSArray *)error;
 
 /**
  * 完成验证之后的回调
@@ -130,6 +137,14 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
  */
 @property(nonatomic) NSString *slideIconErrorURL;
 
+/**
+ * @abstract    设置验证码类型
+ *
+ * @说明         验证码枚举类型NTESVerifyCodeMode，可选类型见枚举定义
+ *              不传默认传统验证码。
+ *
+ */
+@property(nonatomic) NTESVerifyCodeMode mode;
 
 /**
  *  @abstract   单例
