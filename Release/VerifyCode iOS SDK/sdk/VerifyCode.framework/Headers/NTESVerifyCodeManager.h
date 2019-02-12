@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * @abstract    设置验证码语言类型
+ */
 typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
     // 中文
     NTESVerifyCodeLangCN = 1,
@@ -32,6 +35,9 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
     NTESVerifyCodeLangKSA,
 };
 
+/**
+ * @abstract    设置验证码类型
+ */
 typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
     // 传统验证码
     NTESVerifyCodeNormal = 1,
