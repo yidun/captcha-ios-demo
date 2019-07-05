@@ -194,6 +194,30 @@ platform :ios, '8.0'
 		    NTESVerifyCodeLangRUS,
 		    // 阿拉伯语
 		    NTESVerifyCodeLangKSA,
+		    // 德语
+		    NTESVerifyCodeLangDE,
+		    // 意大利语
+		    NTESVerifyCodeLangIT,
+		    // 希伯来语
+		    NTESVerifyCodeLangHE,
+		    // 印地语
+		    NTESVerifyCodeLangHI,
+		    // 印尼语
+		    NTESVerifyCodeLangID,
+		    // 缅甸语
+		    NTESVerifyCodeLangMY,
+		    // 老挝语
+		    NTESVerifyCodeLangLO,
+		    // 马来语
+		    NTESVerifyCodeLangMS,
+		    // 波兰语
+		    NTESVerifyCodeLangPL,
+		    // 葡萄牙语
+		    NTESVerifyCodeLangPT,
+		    // 西班牙语
+		    NTESVerifyCodeLangES,
+		    // 土耳其语
+		    NTESVerifyCodeLangTR,
 		};
 		
 		/**
@@ -269,7 +293,7 @@ platform :ios, '8.0'
 		 */
 		@property(nonatomic) NSString *slideIconErrorURL;
 		
--
+- 
 
 		/**
 		 * @abstract    设置验证码类型
@@ -278,7 +302,22 @@ platform :ios, '8.0'
 		 *              不传默认普通验证码。
 		 *
 		 */
-		@property(nonatomic) NTESVerifyCodeMode mode;		
+		@property(nonatomic) NTESVerifyCodeMode mode;
+		
+- 
+		/**
+		 * @abstract    设置极端情况下，当验证码服务不可用时，是否开启降级方案。
+		 *              默认开启，当触发降级开关时，将直接通过验证，进入下一步。
+		 */
+		@property(nonatomic) BOOL openFallBack;
+		
+- 		
+
+		/**
+		 * @abstract    设置发生第fallBackCount次错误时，将触发降级。取值范围 >=1
+		 *              默认设置为3次，第三次服务器发生错误时，触发降级，直接通过验证。
+		 */
+		@property(nonatomic) NSUInteger fallBackCount;				
 
 * 3、单例
 	
@@ -295,7 +334,7 @@ platform :ios, '8.0'
 		 *  @abstract   配置参数
 		 *
 		 *  @param      captcha_id      验证码id
-		 *  @param      timeoutInterval 加载验证码的超时时间,最长10s。这个时间尽量设置长一些，比如5秒以上(5-10s)
+		 *  @param      timeoutInterval 加载验证码的超时时间,最长12s。这个时间尽量设置长一些，比如7秒以上(7-12s)
 		 *
 		 */
 		- (void)configureVerifyCode:(NSString *)captcha_id
@@ -332,7 +371,7 @@ platform :ios, '8.0'
  		*
  		*  @说明 		   默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
  		*/
-
+		- (void)enableLog:(BOOL)enabled;
 		
 ### 四、效果演示
 

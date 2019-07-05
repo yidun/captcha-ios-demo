@@ -44,7 +44,7 @@
         NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
         self.manager.mode = NTESVerifyCodeBind;
         
-        [self.manager configureVerifyCode:captchaid timeout:10.0];
+        [self.manager configureVerifyCode:captchaid timeout:7.0];
         
         // 设置语言
         self.manager.lang = NTESVerifyCodeLangCN;
@@ -58,7 +58,9 @@
         // 设置frame
         self.manager.frame = CGRectNull;
         
-        
+        // 是否开启降级方案
+        self.manager.openFallBack = YES;
+        self.manager.fallBackCount = 3;
         
         // 显示验证码
         [self.manager openVerifyCodeView:nil];
