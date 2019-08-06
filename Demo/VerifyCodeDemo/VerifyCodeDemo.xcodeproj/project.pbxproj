@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DCA2CE3822CEF26000C3B64A /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA2CE3622CEF26000C3B64A /* VerifyCode.framework */; };
+		DC6733CC22F83B6C000786A5 /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6733CB22F83B6C000786A5 /* VerifyCode.framework */; };
 		DCA2CE3922CEF26000C3B64A /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCA2CE3722CEF26000C3B64A /* NTESVerifyCodeResources.bundle */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
@@ -32,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DCA2CE3622CEF26000C3B64A /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/VerifyCode_iOS_SDK/sdk/VerifyCode.framework; sourceTree = "<group>"; };
+		DC6733CB22F83B6C000786A5 /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/VerifyCode_iOS_SDK/sdk/VerifyCode.framework; sourceTree = "<group>"; };
 		DCA2CE3722CEF26000C3B64A /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NTESVerifyCodeResources.bundle; path = ../../Release/VerifyCode_iOS_SDK/sdk/NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCA2CE3822CEF26000C3B64A /* VerifyCode.framework in Frameworks */,
+				DC6733CC22F83B6C000786A5 /* VerifyCode.framework in Frameworks */,
 				E6BA086B1E1B9ADA00B34EF1 /* WebKit.framework in Frameworks */,
 				E6BA08691E1B9AD600B34EF1 /* JavaScriptCore.framework in Frameworks */,
 				E6BA08671E1B9ACF00B34EF1 /* SystemConfiguration.framework in Frameworks */,
@@ -80,8 +80,8 @@
 		E6BA08301E1B980800B34EF1 = {
 			isa = PBXGroup;
 			children = (
+				DC6733CB22F83B6C000786A5 /* VerifyCode.framework */,
 				DCA2CE3722CEF26000C3B64A /* NTESVerifyCodeResources.bundle */,
-				DCA2CE3622CEF26000C3B64A /* VerifyCode.framework */,
 				E6BA083B1E1B980800B34EF1 /* VerifyCodeDemo */,
 				E6BA08551E1B980800B34EF1 /* VerifyCodeDemoTests */,
 				E6BA083A1E1B980800B34EF1 /* Products */,
