@@ -189,11 +189,11 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
 @property(nonatomic) NSUInteger fallBackCount;
 
 /**
- *  @abstract   单例
+ *  @abstract   初始化方法
  *
- *  @return     返回NTESVerifyCodeManager对象
+ *  @return     返回NTESVerifyCodeManager实例对象
  */
-+ (NTESVerifyCodeManager *)sharedInstance;
++ (NTESVerifyCodeManager *)getInstance;
 
 /**
  *  @abstract   配置参数

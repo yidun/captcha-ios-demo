@@ -28,7 +28,7 @@
 
 - (IBAction)openView:(id)sender {
     
-    self.manager =  [NTESVerifyCodeManager sharedInstance];
+    self.manager =  [NTESVerifyCodeManager getInstance];
     if (self.manager) {
         
         // 如果需要了解组件的执行情况,则实现回调
@@ -37,12 +37,12 @@
         // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
         
         // 传统验证码
-//        NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
-//        self.manager.mode = NTESVerifyCodeNormal;
+        NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
+        self.manager.mode = NTESVerifyCodeNormal;
         
         // 无感知验证码
-        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
-        self.manager.mode = NTESVerifyCodeBind;
+//        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
+//        self.manager.mode = NTESVerifyCodeBind;
         
         [self.manager configureVerifyCode:captchaid timeout:7.0];
         
