@@ -24,8 +24,8 @@ VerifyCode iOS SDK 接入指南
 
 	(2). 如果想使用最新版本的SDK，则执行`pod update`
 	
-	(3). 如果你的工程设置的"Deplyment Target"低于 8.0，则在Podfile文件的前面加上以下语句
-platform :ios, '8.0'
+	(3). 如果你的工程设置的"Deplyment Target"低于 9.0，则在Podfile文件的前面加上以下语句
+platform :ios, '9.0'
 
 #### 手动集成方式
 
@@ -51,7 +51,7 @@ platform :ios, '8.0'
    __备注:__  
    (1)如果已存在上述的系统framework，则忽略
    
-   (2)SDK 最低兼容系统版本 iOS 8.0
+   (2)SDK 最低兼容系统版本 iOS 9.0
 
   
 ### 二、SDK 使用
