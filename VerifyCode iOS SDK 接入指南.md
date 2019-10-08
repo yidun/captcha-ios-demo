@@ -69,7 +69,7 @@ platform :ios, '8.0'
     
     
     		// sdk调用
-    		self.manager = [NTESVerifyCodeManager sharedInstance];
+    		self.manager = [NTESVerifyCodeManager getInstance];
     		self.manager.delegate = self;
     		
     		// 设置透明度
@@ -319,16 +319,16 @@ platform :ios, '8.0'
 		 */
 		@property(nonatomic) NSUInteger fallBackCount;				
 
-* 3、单例
+* 3、初始化
 	
 		/**
- 		*  @abstract 	单例
- 		*
- 		*  @return 		返回NTESVerifyCodeManager对象
- 		*/
-		+ (NTESVerifyCodeManager *)sharedInstance;
+		 *  @abstract   初始化方法
+		 *
+		 *  @return     返回NTESVerifyCodeManager实例对象
+		 */
+		+ (NTESVerifyCodeManager *)getInstance;
 
-* 4、初始化
+* 4、配置参数
 
 		/**
 		 *  @abstract   配置参数
