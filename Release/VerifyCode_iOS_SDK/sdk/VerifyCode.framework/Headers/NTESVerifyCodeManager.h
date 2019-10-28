@@ -189,6 +189,12 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
 @property(nonatomic) NSUInteger fallBackCount;
 
 /**
+* @abstract    是否隐藏关闭按钮
+*              默认不隐藏，设置为YES隐藏，NO不隐藏
+*/
+@property(nonatomic) BOOL closeButtonHidden;
+
+/**
  *  @abstract   初始化方法
  *
  *  @return     返回NTESVerifyCodeManager实例对象
@@ -217,7 +223,8 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
  *
  *  @param      topView         加载验证码控件的父视图,可以为nil。
  *                              (1)如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
- *                              (2)如果传递值不为nil，则注意topView的宽高值，宽度至少为270;高度至少为:宽度/2.0 + 65.
+ *                              (2)如果传递值不为nil，则注意topView的宽高值，宽度需为验证码frame宽度加上左右padding:frame.size.width + 16*2;高度至少为验证码framek高度加上上下padding:frame.size.height + 48 + 25
+
  *
  */
 - (void)openVerifyCodeView:(UIView *)topView;

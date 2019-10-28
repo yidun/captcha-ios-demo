@@ -62,6 +62,9 @@
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
         
+        // 是否隐藏关闭按钮
+        self.manager.closeButtonHidden = NO;
+        
         // 显示验证码
         [self.manager openVerifyCodeView:nil];
     }    
