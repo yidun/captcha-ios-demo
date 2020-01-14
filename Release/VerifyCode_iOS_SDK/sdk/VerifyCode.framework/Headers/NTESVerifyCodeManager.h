@@ -195,6 +195,12 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
 @property(nonatomic) BOOL closeButtonHidden;
 
 /**
+ * @abstract    点击背景是否可以关闭验证码视图
+ *              默认可以关闭。
+ */
+@property(nonatomic) BOOL shouldCloseByTouchBackground;
+
+/**
  *  @abstract   初始化方法
  *
  *  @return     返回NTESVerifyCodeManager实例对象
