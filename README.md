@@ -372,6 +372,13 @@ platform :ios, '9.0'
  		*  @说明 		   默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
  		*/
 		- (void)enableLog:(BOOL)enabled;
+		- 
+* 7、验证码SDK版本号
+		/**
+		* @abstract    验证码SDK版本号
+		*/
+ 		-(NSString *)getSDKVersion;
+
 		
 ### 四、效果演示
 
