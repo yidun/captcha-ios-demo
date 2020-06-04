@@ -8,7 +8,7 @@ VerifyCode iOS SDK 接入指南
 
 	在工程的 Podfile 里对应的 Target 中添加以下代码
 	
-		pod 'VerifyCode'
+		pod 'NTESVerifyCode'
 		
 * 2、集成SDK
 	
@@ -20,7 +20,7 @@ VerifyCode iOS SDK 接入指南
 	
 	__备注:__
 	
-	(1). 命令行下执行`pod search VerifyCode`,如显示的`VerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
+	(1). 命令行下执行`pod search NTESVerifyCode`,如显示的`NTESVerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
 
 	(2). 如果想使用最新版本的SDK，则执行`pod update`
 	
