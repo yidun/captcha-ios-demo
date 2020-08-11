@@ -65,6 +65,11 @@
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
         
+//        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
+//        NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];
+//        [self.manager configLoadingImage:nil gifData:imageData];
+//        [self.manager configLoadingText:@"1111"];
+        
         // 显示验证码
         [self.manager openVerifyCodeView:nil];
     }    
@@ -107,14 +112,8 @@
     NSLog(@"收到关闭验证码视图的回调");
 }
 
-/**
- * 网络错误
- *
- * @param error 网络错误信息
- */
-- (void)verifyCodeNetError:(NSError *)error{
-    //用户关闭验证后执行的方法
-    NSLog(@"收到网络错误的回调:%@(%ld)", [error localizedDescription], (long)error.code);
+- (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close {
+    
 }
 
 @end
