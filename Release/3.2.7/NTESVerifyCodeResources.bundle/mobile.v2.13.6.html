@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" id="viewport" content="initial-scale=1, maximum-scale=1"/>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <title>易盾验证码</title>
+  <style>
+    * {
+      margin: 0;
+    }
+    body {
+      overflow: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+    .captcha {
+      padding: 5px;
+    }
+    .log {
+      font-size: 10px;
+      line-height: 10px;
+      word-wrap: break-word;
+    }
+    .yidun_popup {
+      position: relative !important;
+    }
+    .yidun_popup .yidun_modal {
+      top: 0 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="captcha__wrapper">
+    <div class="captcha" id="captcha"></div>
+    <div class="log" id="debug"></div>
+  </div>
+  <!-- <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script> -->
+<script type="text/javascript">/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	__webpack_require__(3);
+	__webpack_require__(5);
+	__webpack_require__(4);
+
+	var debugEl = document.getElementById('debug');
+	var captchaEl = document.getElementById('captcha');
+	var FLOAT_MODE = 'float';
+	var BIND_MODE = 'bind';
+	var POPUP_MODE = 'popup';
+	var isProd = ("production") === 'production';
+	var isDev = ("production") === 'development';
+
+	var _require = __webpack_require__(1),
+	    CAPTCHA_TYPE = _require.CAPTCHA_TYPE,
+	    RUN_ENV = _require.RUN_ENV;
+
+	var initNECaptchaWithFallback = __webpack_require__(2);
+
+	// hack for webpack
+	window.clickOutSide = clickOutSide;
+	window.log = log;
+
+	window.closeCaptcha = closeCaptcha;
+	window.captchaVerify = captchaVerify;
+	window.popupCaptcha = popupCaptcha;
+
+	function log(str) {
+	  if (!debugMode) return;
+	  var p = document.createElement('p');
+	  p.appendChild(document.createTextNode(str));
+	  debugEl.insertBefore(p, debugEl.firstChild);
+	}
+
+	function clickOutSide() {
+	  // eslint-disable-line
+	  var onFloatHeightChange = defaultOptions.onFloatHeightChange;
+	  var _previousData = previousData,
+	      controlBarHeight = _previousData.controlBarHeight;
+
+	  onFloatHeightChange({ total: controlBarHeight, controlBarHeight: controlBarHeight, gapHeight: 0, imagePanelHeight: 0 });
+	}
+
+	function closeCaptcha() {
+	  captchaIns && captchaIns.close();
+	}
+
+	function captchaVerify() {
+	  captchaIns && captchaIns.verify();
+	}
+
+	function popupCaptcha() {
+	  captchaIns && captchaIns.popUp();
+	}
+
+	function getArgs() {
+	  var args = {};
+	  var url = location.href;
+	  if (url.indexOf('?') === -1) return args;
+
+	  var items = url.split('?')[1].split('&');
+	  for (var i = 0, l = items.length; i < l; i++) {
+	    var splits = items[i].split('=');
+	    var key = '';
+	    var value = '';
+	    if (window.decodeURIComponent) {
+	      key = window.decodeURIComponent(splits[0]);
+	      value = window.decodeURIComponent(splits[1]);
+	    } else {
+	      key = splits[0];
+	      value = splits[1];
+	    }
+	    combineArg(args, key, value);
+	  }
+
+	  function combineArg(obj, key, value) {
+	    var index = key.indexOf('.');
+	    if (index > -1) {
+	      var curKey = key.slice(0, index);
+	      !obj[curKey] && (obj[curKey] = {});
+	      combineArg(obj[curKey], key.slice(index + 1), value);
+	    } else {
+	      obj[key] = value;
+	    }
+	  }
+	  return args;
+	}
+
+	function postMessageBridge(event, data) {
+	  // data 只是是字符串数组
+	  var androidBridge = window.JSInterface;
+	  var quickBridge = window.system;
+	  var iOSBridge = window.webkit && window.webkit.messageHandlers;
+	  var wxBridge = options.target === 'wx' && window.wx && window.wx.miniProgram && window.wx.miniProgram.redirectTo;
+	  var globalBridge = window[event];
+
+	  if (wxBridge) {
+	    var whiteEvents = ['onValidate', 'onError'];
+	    if (event === 'onValidate' && data[0] === 'false') return;
+	    whiteEvents.includes(event) && window.wx.miniProgram.redirectTo({ url: '/pages/captcha/index?from=h5&event=' + event + '&data=' + data[1] });
+	    return;
+	  }
+
+	  if (androidBridge) {
+	    data ? androidBridge[event].apply(androidBridge, data) : androidBridge[event]();
+	  } else if (quickBridge) {
+	    quickBridge.postMessage(JSON.stringify({ type: event, data: data }));
+	  } else if (iOSBridge) {
+	    iOSBridge[event].postMessage(data || null);
+	  } else if (globalBridge) {
+	    globalBridge.apply(window, data);
+	  } else {
+	    log(event + ' not defined');
+	  }
+	}
+
+	function mergeOptionsDeep(defaultOptions, navtiveOptions) {
+	  var _navtiveOptions$feedb = navtiveOptions.feedbackEnable,
+	      feedbackEnable = _navtiveOptions$feedb === undefined ? false : _navtiveOptions$feedb,
+	      _navtiveOptions$defau = navtiveOptions.defaultFallback,
+	      defaultFallback = _navtiveOptions$defau === undefined ? true : _navtiveOptions$defau,
+	      _navtiveOptions$error = navtiveOptions.errorFallbackCount,
+	      errorFallbackCount = _navtiveOptions$error === undefined ? 3 : _navtiveOptions$error,
+	      _navtiveOptions$os = navtiveOptions.os,
+	      os = _navtiveOptions$os === undefined ? '' : _navtiveOptions$os,
+	      _navtiveOptions$mobil = navtiveOptions.mobileTimeout,
+	      mobileTimeout = _navtiveOptions$mobil === undefined ? 10000 : _navtiveOptions$mobil,
+	      restOptions = _objectWithoutProperties(navtiveOptions, ['feedbackEnable', 'defaultFallback', 'errorFallbackCount', 'os', 'mobileTimeout']);
+
+	  return Object.assign(defaultOptions, _extends({}, restOptions, {
+	    runEnv: RUN_ENV[os.toUpperCase()],
+	    defaultFallback: defaultFallback !== 'false',
+	    errorFallbackCount: parseInt(errorFallbackCount),
+	    feedbackEnable: feedbackEnable === 'true',
+	    os: os,
+	    mobileTimeout: parseInt(mobileTimeout)
+	  }));
+	}
+
+	var captchaIns = null;
+	var previousData = {};
+	var defaultOptions = {
+	  element: captchaEl,
+	  mode: 'popup',
+	  enableClose: true,
+	  width: 330,
+	  protocol: isProd ? 'https' : 'http',
+	  feedbackEnable: false,
+	  runEnv: '',
+	  defaultFallback: true,
+	  staticServer: isDev ? 'localhost:9000' : undefined,
+	  onVerify: function onVerify(err, ret) {
+	    if (isInitTimeout) return;
+	    var result = !err; // 新的接口定义, err不为null时,表示出错,为null表示成功
+	    var validate = ret ? ret['validate'] : '';
+
+	    log('result= ' + result + ', validate= ' + validate);
+	    var msg = result ? '验证成功' : '验证失败';
+	    var value = '' + result; // 避免iOS/android对bool类型转换不同，这里统一转换成字符串处理
+	    var next = '' + !!(err && err.data.type === CAPTCHA_TYPE.INTELLISENSE);
+	    postMessageBridge('onValidate', [value, validate, msg, next]);
+	  },
+	  onReady: function onReady() {
+	    if (isInitTimeout) return;
+	    log('onReady');
+	    postMessageBridge('onReady', [document.body.offsetWidth, document.body.offsetHeight]);
+	  },
+	  onFloatHeightChange: function onFloatHeightChange(args) {
+	    if (options.mode !== FLOAT_MODE) return;
+	    log('onFloatHeightChange emited');
+	    if (args.imagePanelHeight === previousData.imagePanelHeight) return;
+	    log('onFloatHeightChange real change');
+	    previousData = args;
+	    var _previousData2 = previousData,
+	        total = _previousData2.total,
+	        controlBarHeight = _previousData2.controlBarHeight,
+	        gapHeight = _previousData2.gapHeight,
+	        imagePanelHeight = _previousData2.imagePanelHeight;
+
+	    var data = [total, controlBarHeight, gapHeight, imagePanelHeight].map(function (item) {
+	      return '' + item;
+	    });
+
+	    var isShow = imagePanelHeight !== 0;
+	    document.body.style.paddingTop = isShow ? total - controlBarHeight + 'px' : 0;
+	    isShow ? postMessageBridge('onFloatHeightChange', data) : setTimeout(function () {
+	      return postMessageBridge('onFloatHeightChange', data);
+	    }, 10);
+	  }
+	};
+	var navtiveOptions = getArgs();
+	var options = mergeOptionsDeep(defaultOptions, navtiveOptions);
+	var CLIENT_ENV = ['iOS', 'android'];
+	var debugMode = navtiveOptions.debug === 'true';
+
+	if (isDev) {
+	  Object.assign(options, {
+	    captchaType: 'jigsaw',
+	    __serverConfig__: {
+	      staticServers: [''],
+	      resources: ['/core.js', '/light.js'],
+	      theme: 'light',
+	      customStyles: true
+	    },
+	    wmServerConfig: {
+	      toolPath: 'tool.min.js',
+	      configServer: 'ac-test.dun.163yun.com',
+	      apiServer: 'ac-test.dun.163yun.com',
+	      staticServer: 'acstatic-test.dun.163yun.com'
+	    },
+	    theme: 'light'
+	  });
+	}
+
+	if (options.mode === FLOAT_MODE || (options.mode === BIND_MODE || options.mode === POPUP_MODE) && CLIENT_ENV.indexOf(options.os) > -1) {
+	  captchaEl.style.padding = 0;
+	} else {
+	  if (options.target !== 'wx' && options.width !== 'auto') options.width = options.width - 10;
+	}
+
+	if (options.target === 'wx') {
+	  captchaEl.style.padding = '18px';
+	}
+
+	if (debugMode) {
+	  log('window.screen.width = ' + window.screen.width);
+	  log('body.width = ' + document.body.offsetWidth);
+	  log('captchaEl.width = ' + captchaEl.offsetWidth);
+	  log('args.width = ' + navtiveOptions.width);
+	  log('opts.width = ' + options.width);
+	  for (var k in navtiveOptions) {
+	    log(k + '=' + navtiveOptions[k]);
+	  }
+	}
+
+	var TIMEOUT_ERROR = 1004;
+	var isInitTimeout = false;
+	options.initTimeoutError = function (triggerError) {
+	  var initTimeout = false;
+	  var timer = setTimeout(function () {
+	    initTimeout = true;
+
+	    var error = new Error();
+	    error.code = TIMEOUT_ERROR;
+	    error.message = 'Captcha: init captcha timeout';
+	    triggerError(error);
+	  }, options.mobileTimeout);
+	  return {
+	    isError: function isError() {
+	      return initTimeout;
+	    },
+	    resetError: function resetError() {
+	      initTimeout = false;
+	    },
+	    resetTimer: function resetTimer() {
+	      clearTimeout(timer);
+	    }
+	  };
+	};
+
+	initNECaptchaWithFallback(options, function (instance) {
+	  isInitTimeout = false;
+	  captchaIns = instance;
+	  log('onLoad');
+	  postMessageBridge('onLoad');
+	}, function (e) {
+	  log(JSON.stringify(e));
+	  if (e.code === TIMEOUT_ERROR) {
+	    isInitTimeout = true;
+	  } else {
+	    isInitTimeout = false;
+	  }
+	  postMessageBridge('onError', [JSON.stringify(e)]);
+	});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+	exports.CAPTCHA_TYPE = {
+	  JIGSAW: 2,
+	  POINT: 3,
+	  SMS: 4,
+	  INTELLISENSE: 5,
+	  ICON_POINT: 7,
+	  INFERENCE: 9
+	};
+
+	exports.CAPTCHA_CLASS = {
+	  CAPTCHA: 'yidun',
+	  PANEL: 'yidun_panel',
+	  SLIDE_INDICATOR: 'yidun_slide_indicator',
+	  SLIDER: 'yidun_slider',
+	  JIGSAW: 'yidun_jigsaw',
+	  POINT: 'point',
+	  SMS: 'yidun_sms',
+	  TIPS: 'yidun_tips',
+	  REFRESH: 'yidun_refresh',
+	  CONTROL: 'yidun_control',
+	  BGIMG: 'yidun_bgimg',
+	  INPUT: 'yidun_input',
+	  LOADBOX: 'yidun_loadbox',
+	  LOADICON: 'yidun_loadicon',
+	  LOADTEXT: 'yidun_loadtext',
+	  ERROR: 'error',
+	  WARN: 'warn',
+	  VERIFY: 'verifying',
+	  SUCCESS: 'success',
+	  LOADING: 'loading',
+	  LOADFAIL: 'loadfail'
+	};
+
+	exports.WIDTH_LIMIT = [220, 10000];
+
+	exports.SAMPLE_NUM = 50;
+
+	exports.DEVICE = {
+	  MOUSE: 1,
+	  TOUCH: 2,
+	  MOUSE_TOUCH: 3
+	};
+
+	exports.MAX_VERIFICATION = 5;
+
+	exports.RTL_LANGS = ['ar', 'he'];
+
+	exports.CACHE_MIN = 1000 * 60; // 缓存时长单位，1分钟
+
+	exports.FILE_DETECT_KEY = {
+	  'core': 'NECaptcha',
+	  'light': 'NECaptcha_theme_light',
+	  'dark': 'NECaptcha_theme_dark',
+	  'plugins': 'NECaptcha_plugin',
+	  'watchman': 'initWatchman'
+	};
+
+	exports.FEEDBACK_URL = 'http://support.dun.163.com/feedback/captcha';
+
+	exports.RUN_ENV = {
+	  WEB: 10,
+	  ANDROID: 20,
+	  IOS: 30,
+	  MINIPROGRAM: 40,
+	  JUMPER_MINI_PROGRAM: 50,
+	  QUICKAPP: 60
+	};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(process, module) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	/* eslint-disable no-undef */
+	(function (global, factory) {
+	  'use strict';
+
+	  if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
+	    module.exports = global.document ? factory(global) : function (w) {
+	      if (!w.document) {
+	        throw new Error('initNECaptchaWithFallback requires a window with a document');
+	      }
+	      return factory(w);
+	    };
+	  } else if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	      return factory(global);
+	    }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else {
+	    global.initNECaptchaWithFallback = factory(global);
+	  }
+	})(typeof window !== 'undefined' ? window : this, function (window) {
+	  'use strict';
+
+	  var errorCallbackCount = 0;
+
+	  // 常量
+	  var DEFAULT_VALIDATE = 'QjGAuvoHrcpuxlbw7cp4WnIbbjzG4rtSlpc7EDovNHQS._ujzPZpeCInSxIT4WunuDDh8dRZYF2GbBGWyHlC6q5uEi9x-TXT9j7J705vSsBXyTar7aqFYyUltKYJ7f4Y2TXm_1Mn6HFkb4M7URQ_rWtpxQ5D6hCgNJYC0HpRE7.2sttqYKLoi7yP1KHzK-PptdHHkVwb77cwS2EJW7Mj_PsOtnPBubTmTZLpnRECJR99dWTVC11xYG0sx8dJNLUxUFxEyzTfX4nSmQz_T5sXATRKHtVAz7nmV0De5unmflfAlUwMGKlCT1khBtewlgN5nHvyxeD8Z1_fPVzi9oznl-sbegj6lKfCWezmLcwft8.4yaVh6SlzXJq-FnSK.euq9OBd5jYc82ge2_hEca1fGU--SkPRzgwkzew4O4qjdS2utdPwFONnhKAIMJRPUmCV4lPHG1OeRDvyNV8sCnuFMw7leasxIhPoycl4pm5bNy70Z1laozEGJgItVNr3'; // 默认validate
+	  var FALLBACK_LANG = {
+	    'zh-CN': '前方拥堵，已自动跳过验证',
+	    'en': 'captcha error，Verified automatically'
+	  };
+	  var CACHE_MIN = 1000 * 60; // 缓存时长单位，1分钟
+	  var REQUEST_SCRIPT_ERROR = 502;
+
+	  var RESOURCE_CACHE = {};
+
+	  // 工具函数
+	  function loadScript(src, cb) {
+	    var head = document.head || document.getElementsByTagName('head')[0];
+	    var script = document.createElement('script');
+
+	    cb = cb || function () {};
+
+	    script.type = 'text/javascript';
+	    script.charset = 'utf8';
+	    script.async = true;
+	    script.src = src;
+
+	    if (!('onload' in script)) {
+	      script.onreadystatechange = function () {
+	        if (this.readyState !== 'complete' && this.readyState !== 'loaded') return;
+	        this.onreadystatechange = null;
+	        cb(null, script); // there is no way to catch loading errors in IE8
+	      };
+	    }
+
+	    script.onload = function () {
+	      this.onerror = this.onload = null;
+	      cb(null, script);
+	    };
+	    script.onerror = function () {
+	      // because even IE9 works not like others
+	      this.onerror = this.onload = null;
+	      cb(new Error('Failed to load ' + this.src), script);
+	    };
+
+	    head.appendChild(script);
+	  }
+
+	  function joinUrl(protocol, host, path) {
+	    protocol = protocol || '';
+	    host = host || '';
+	    path = path || '';
+	    if (protocol) {
+	      protocol = protocol.replace(/:?\/{0,2}$/, '://');
+	    }
+	    if (host) {
+	      var matched = host.match(/^([-0-9a-zA-Z.:]*)(\/.*)?/);
+	      host = matched[1];
+	      path = (matched[2] || '') + '/' + path;
+	    }
+	    !host && (protocol = '');
+
+	    return protocol + host + path;
+	  }
+
+	  function setDomText(el, value) {
+	    if (value === undefined) return;
+	    var nodeType = el.nodeType;
+	    if (nodeType === 1 || nodeType === 11 || nodeType === 9) {
+	      if (typeof el.textContent === 'string') {
+	        el.textContent = value;
+	      } else {
+	        el.innerText = value;
+	      }
+	    }
+	  }
+
+	  function queryAllByClassName(selector, node) {
+	    node = node || document;
+	    if (node.querySelectorAll) {
+	      return node.querySelectorAll(selector);
+	    }
+	    if (!/^\.[^.]+$/.test(selector)) return [];
+	    if (node.getElementsByClassName) {
+	      return node.getElementsByClassName(selector);
+	    }
+
+	    var children = node.getElementsByTagName('*');
+	    var current;
+	    var result = [];
+	    var className = selector.slice(1);
+	    for (var i = 0, l = children.length; i < l; i++) {
+	      current = children[i];
+	      if (~(' ' + current.className + ' ').indexOf(' ' + className + ' ')) {
+	        result.push(current);
+	      }
+	    }
+	    return result;
+	  }
+
+	  function assert(condition, msg) {
+	    if (!condition) throw new Error('[NECaptcha] ' + msg);
+	  }
+
+	  function isInteger(val) {
+	    if (Number.isInteger) {
+	      return Number.isInteger(val);
+	    }
+	    return typeof val === 'number' && isFinite(val) && Math.floor(val) === val;
+	  }
+
+	  function isArray(val) {
+	    if (Array.isArray) return Array.isArray(val);
+	    return Object.prototype.toString.call(val) === '[object Array]';
+	  }
+
+	  function ObjectAssign() {
+	    if (Object.assign) {
+	      return Object.assign.apply(null, arguments);
+	    }
+
+	    var target = {};
+	    for (var index = 1; index < arguments.length; index++) {
+	      var source = arguments[index];
+	      if (source != null) {
+	        for (var key in source) {
+	          if (Object.prototype.hasOwnProperty.call(source, key)) {
+	            target[key] = source[key];
+	          }
+	        }
+	      }
+	    }
+	    return target;
+	  }
+
+	  function getTimestamp(msec) {
+	    msec = !msec && msec !== 0 ? msec : 1;
+	    return parseInt(new Date().valueOf() / msec, 10);
+	  }
+
+	  // 降级方案
+	  function normalizeFallbackConfig(customConfig) {
+	    var siteProtocol = window.location.protocol.replace(':', '');
+	    var defaultConf = {
+	      protocol: siteProtocol === 'http' ? 'http' : 'https',
+	      lang: 'zh-CN',
+	      errorFallbackCount: 3
+	    };
+	    var config = ObjectAssign({}, defaultConf, customConfig);
+
+	    var errorFallbackCount = config.errorFallbackCount;
+	    assert(errorFallbackCount === undefined || isInteger(errorFallbackCount) && errorFallbackCount >= 1, 'errorFallbackCount must be an integer, and it\'s value greater than or equal one');
+
+	    return config;
+	  }
+
+	  function loadResource(config, cb) {
+	    if (window.initNECaptcha) return cb(null);
+	    var isDev = typeof process === 'undefined' || ("production") === 'development'; // 仅在demo中使用，示例代码中删除该变量
+	    function genUrl(server) {
+	      var path = 'load' + (isDev ? '' : '.min') + '.js';
+	      var urls = [];
+	      if (isArray(server)) {
+	        for (var i = 0, len = server.length; i < len; i++) {
+	          urls.push(joinUrl(config.protocol, server[i], path));
+	        }
+	      } else {
+	        var url = joinUrl(config.protocol, server, path);
+	        urls = [url, url];
+	      }
+
+	      return urls;
+	    }
+	    var urls = genUrl(config.staticServer || ['cstaticdun.126.net', 'cstatic.dun.163yun.com']);
+
+	    function step(i) {
+	      var url = urls[i] + '?v=' + getTimestamp(CACHE_MIN);
+	      loadScript(url, function (err) {
+	        if (err || !window.initNECaptcha) {
+	          // loadjs的全局变量
+	          i = i + 1;
+	          if (i === urls.length) {
+	            return cb(new Error('Failed to load script(' + url + ').' + (err ? err.message : 'unreliable script')));
+	          }
+	          return step(i);
+	        }
+	        return cb(null);
+	      });
+	    }
+	    step(0);
+	  }
+
+	  function initNECaptchaWithFallback(options, onload, onerror) {
+	    var captchaIns = null;
+
+	    var config = normalizeFallbackConfig(options);
+	    var defaultFallback = config.defaultFallback !== false;
+	    var langPkg = FALLBACK_LANG[config.lang === 'zh-CN' ? config.lang : 'en'];
+	    var storeKey = window.location.pathname + '_' + config.captchaId + '_NECAPTCHA_ERROR_COUNTS';
+	    try {
+	      errorCallbackCount = parseInt(localStorage.getItem(storeKey) || 0, 10);
+	    } catch (error) {}
+
+	    var fallbackFn = !defaultFallback ? config.onFallback || function () {} : function (validate) {
+	      function setFallbackTip(instance) {
+	        if (!instance) return;
+	        setFallbackTip(instance._captchaIns);
+	        if (!instance.$el) return;
+	        var tipEles = queryAllByClassName('.yidun-fallback__tip', instance.$el);
+	        if (!tipEles.length) return;
+
+	        // 确保在队列的最后
+	        setTimeout(function () {
+	          for (var i = 0, l = tipEles.length; i < l; i++) {
+	            setDomText(tipEles[i], langPkg);
+	          }
+	        }, 0);
+	      }
+	      setFallbackTip(captchaIns);
+
+	      config.onVerify && config.onVerify(null, { validate: validate });
+	    };
+	    var noFallback = !defaultFallback && !config.onFallback;
+
+	    var proxyOnError = function proxyOnError(error) {
+	      errorCallbackCount++;
+	      if (errorCallbackCount < config.errorFallbackCount) {
+	        try {
+	          localStorage.setItem(storeKey, errorCallbackCount);
+	        } catch (err) {}
+
+	        onerror(error);
+	      } else {
+	        fallbackFn(DEFAULT_VALIDATE);
+	        proxyRefresh();
+	        noFallback && onerror(error);
+	      }
+	    };
+
+	    var proxyRefresh = function proxyRefresh() {
+	      errorCallbackCount = 0;
+	      try {
+	        localStorage.setItem(storeKey, 0);
+	      } catch (err) {}
+	    };
+
+	    var triggerInitError = function triggerInitError(error) {
+	      if (initialTimer && initialTimer.isError()) {
+	        initialTimer.resetError();
+	        return;
+	      }
+	      initialTimer && initialTimer.resetTimer();
+	      noFallback ? onerror(error) : proxyOnError(error);
+	    };
+
+	    config.onError = function (error) {
+	      if (initialTimer && initialTimer.isError()) {
+	        initialTimer.resetError();
+	      }
+	      proxyOnError(error);
+	    };
+	    config.onDidRefresh = function () {
+	      if (initialTimer && initialTimer.isError()) {
+	        initialTimer.resetError();
+	      }
+	      proxyRefresh();
+	    };
+
+	    var initialTimer = options.initTimeoutError ? options.initTimeoutError(proxyOnError) : null; // initialTimer is only for mobile.html
+
+	    var loadResolve = function loadResolve() {
+	      window.initNECaptcha(config, function (instance) {
+	        if (initialTimer && initialTimer.isError()) return;
+	        initialTimer && initialTimer.resetTimer();
+	        captchaIns = instance;
+	        onload && onload(instance);
+	      }, triggerInitError);
+	    };
+	    var cacheId = 'load-queue';
+	    if (!RESOURCE_CACHE[cacheId]) {
+	      RESOURCE_CACHE[cacheId] = {
+	        rejects: [],
+	        resolves: [],
+	        status: 'error'
+	      };
+	    }
+	    if (RESOURCE_CACHE[cacheId].status === 'error') {
+	      RESOURCE_CACHE[cacheId].status = 'pending';
+	      loadResource(config, function (error) {
+	        if (error) {
+	          var err = new Error();
+	          err.code = REQUEST_SCRIPT_ERROR;
+	          err.message = config.staticServer + '/load.min.js error';
+
+	          var rejects = RESOURCE_CACHE[cacheId].rejects;
+	          for (var i = 0, iLen = rejects.length; i < iLen; i++) {
+	            rejects.pop()(err);
+	          }
+	          RESOURCE_CACHE[cacheId].status = 'error';
+	        } else {
+	          RESOURCE_CACHE[cacheId].status = 'done';
+	          var resolves = RESOURCE_CACHE[cacheId].resolves;
+	          for (var j = 0, jLen = resolves.length; j < jLen; j++) {
+	            resolves.pop()();
+	          }
+	        }
+	      });
+	    } else if (RESOURCE_CACHE[cacheId].status === 'done') {
+	      loadResolve();
+	    }
+	    if (RESOURCE_CACHE[cacheId].status === 'pending') {
+	      RESOURCE_CACHE[cacheId].rejects.push(function loadReject(err) {
+	        triggerInitError(err);
+	      });
+	      RESOURCE_CACHE[cacheId].resolves.push(loadResolve);
+	    }
+	  }
+
+	  return initNECaptchaWithFallback;
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)(module)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+	if (typeof Object.assign !== 'function') {
+	  Object.assign = function (target) {
+	    if (target == null) {
+	      throw new TypeError('Cannot convert undefined or null to object');
+	    }
+
+	    target = Object(target);
+	    for (var index = 1; index < arguments.length; index++) {
+	      var source = arguments[index];
+	      if (source != null) {
+	        for (var key in source) {
+	          if (Object.prototype.hasOwnProperty.call(source, key)) {
+	            target[key] = source[key];
+	          }
+	        }
+	      }
+	    }
+	    return target;
+	  };
+	}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	// Production steps of ECMA-262, Edition 5, 15.4.4.14
+	// Reference: http://es5.github.io/#x15.4.4.14
+	if (!Array.prototype.indexOf) {
+	  Array.prototype.indexOf = function (searchElement, fromIndex) {
+	    var k;
+
+	    // 1. Let O be the result of calling ToObject passing
+	    //    the this value as the argument.
+	    if (this == null) {
+	      throw new TypeError('"this" is null or not defined');
+	    }
+
+	    var O = Object(this);
+
+	    // 2. Let lenValue be the result of calling the Get
+	    //    internal method of O with the argument "length".
+	    // 3. Let len be ToUint32(lenValue).
+	    var len = O.length >>> 0;
+
+	    // 4. If len is 0, return -1.
+	    if (len === 0) {
+	      return -1;
+	    }
+
+	    // 5. If argument fromIndex was passed let n be
+	    //    ToInteger(fromIndex); else let n be 0.
+	    var n = +fromIndex || 0;
+
+	    if (Math.abs(n) === Infinity) {
+	      n = 0;
+	    }
+
+	    // 6. If n >= len, return -1.
+	    if (n >= len) {
+	      return -1;
+	    }
+
+	    // 7. If n >= 0, then Let k be n.
+	    // 8. Else, n<0, Let k be len - abs(n).
+	    //    If k is less than 0, then let k be 0.
+	    k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+	    // 9. Repeat, while k < len
+	    while (k < len) {
+	      // a. Let Pk be ToString(k).
+	      //   This is implicit for LHS operands of the in operator
+	      // b. Let kPresent be the result of calling the
+	      //    HasProperty internal method of O with argument Pk.
+	      //   This step can be combined with c
+	      // c. If kPresent is true, then
+	      //    i.  Let elementK be the result of calling the Get
+	      //        internal method of O with the argument ToString(k).
+	      //   ii.  Let same be the result of applying the
+	      //        Strict Equality Comparison Algorithm to
+	      //        searchElement and elementK.
+	      //  iii.  If same is true, return k.
+	      if (k in O && O[k] === searchElement) {
+	        return k;
+	      }
+	      k++;
+	    }
+	    return -1;
+	  };
+	}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+	// 实现 ECMA-262, Edition 5, 15.4.4.19
+	// 参考: http://es5.github.com/#x15.4.4.19
+	if (!Array.prototype.map) {
+	  Array.prototype.map = function (callback, thisArg) {
+	    var T, A, k;
+
+	    if (this == null) {
+	      throw new TypeError(' this is null or not defined');
+	    }
+
+	    // 1. 将O赋值为调用map方法的数组.
+	    var O = Object(this);
+
+	    // 2.将len赋值为数组O的长度.
+	    var len = O.length >>> 0;
+
+	    // 3.如果callback不是函数,则抛出TypeError异常.
+	    if (Object.prototype.toString.call(callback) !== '[object Function]') {
+	      throw new TypeError(callback + ' is not a function');
+	    }
+
+	    // 4. 如果参数thisArg有值,则将T赋值为thisArg;否则T为undefined.
+	    if (thisArg) {
+	      T = thisArg;
+	    }
+
+	    // 5. 创建新数组A,长度为原数组O长度len
+	    A = new Array(len);
+
+	    // 6. 将k赋值为0
+	    k = 0;
+
+	    // 7. 当 k < len 时,执行循环.
+	    while (k < len) {
+	      var kValue, mappedValue;
+
+	      // 遍历O,k为原数组索引
+	      if (k in O) {
+	        // kValue为索引k对应的值.
+	        kValue = O[k];
+
+	        // 执行callback,this指向T,参数有三个.分别是kValue:值,k:索引,O:原数组.
+	        mappedValue = callback.call(T, kValue, k, O);
+
+	        // 返回值添加到新数组A中.
+	        A[k] = mappedValue;
+	      }
+	      // k自增1
+	      k++;
+	    }
+
+	    // 8. 返回新数组A
+	    return A;
+	  };
+	}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+	// shim for using process in browser
+	var process = module.exports = {};
+
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+
+
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+
+
+
+	}
+	var queue = [];
+	var draining = false;
+	var currentQueue;
+	var queueIndex = -1;
+
+	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
+	    draining = false;
+	    if (currentQueue.length) {
+	        queue = currentQueue.concat(queue);
+	    } else {
+	        queueIndex = -1;
+	    }
+	    if (queue.length) {
+	        drainQueue();
+	    }
+	}
+
+	function drainQueue() {
+	    if (draining) {
+	        return;
+	    }
+	    var timeout = runTimeout(cleanUpNextTick);
+	    draining = true;
+
+	    var len = queue.length;
+	    while(len) {
+	        currentQueue = queue;
+	        queue = [];
+	        while (++queueIndex < len) {
+	            if (currentQueue) {
+	                currentQueue[queueIndex].run();
+	            }
+	        }
+	        queueIndex = -1;
+	        len = queue.length;
+	    }
+	    currentQueue = null;
+	    draining = false;
+	    runClearTimeout(timeout);
+	}
+
+	process.nextTick = function (fun) {
+	    var args = new Array(arguments.length - 1);
+	    if (arguments.length > 1) {
+	        for (var i = 1; i < arguments.length; i++) {
+	            args[i - 1] = arguments[i];
+	        }
+	    }
+	    queue.push(new Item(fun, args));
+	    if (queue.length === 1 && !draining) {
+	        runTimeout(drainQueue);
+	    }
+	};
+
+	// v8 likes predictible objects
+	function Item(fun, array) {
+	    this.fun = fun;
+	    this.array = array;
+	}
+	Item.prototype.run = function () {
+	    this.fun.apply(null, this.array);
+	};
+	process.title = 'browser';
+	process.browser = true;
+	process.env = {};
+	process.argv = [];
+	process.version = ''; // empty string to avoid regexp issues
+	process.versions = {};
+
+	function noop() {}
+
+	process.on = noop;
+	process.addListener = noop;
+	process.once = noop;
+	process.off = noop;
+	process.removeListener = noop;
+	process.removeAllListeners = noop;
+	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+
+	process.listeners = function (name) { return [] }
+
+	process.binding = function (name) {
+	    throw new Error('process.binding is not supported');
+	};
+
+	process.cwd = function () { return '/' };
+	process.chdir = function (dir) {
+	    throw new Error('process.chdir is not supported');
+	};
+	process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ })
+/******/ ]);</script></body>
+</html>

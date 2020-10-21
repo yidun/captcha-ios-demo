@@ -27,17 +27,16 @@
 
 
 - (IBAction)openView:(id)sender {
-    
     self.manager =  [NTESVerifyCodeManager getInstance];
     if (self.manager) {
         
         // 如果需要了解组件的执行情况,则实现回调
         self.manager.delegate = self;
         
-        // captchaid的值是每个产品从后台生成的,比如 @"a05f036b70ab447b87cc788af9a60974"
+        // captchaid的值是每个产品从后台生成的,比如 @""
         
         // 传统验证码
-        NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
+        NSString *captchaid = @"请输入从易盾后台生产的业务ID";
         self.manager.mode = NTESVerifyCodeNormal;
         
         // 无感知验证码
@@ -57,11 +56,11 @@
         
         // 设置frame
         self.manager.frame = CGRectNull;
+        self.manager.protocol = NTESVerifyCodeProtocolHttps;
         
         // 是否开启降级方案
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
-        
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
         
