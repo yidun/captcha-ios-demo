@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA4F4E7D24E2997000CF870C /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA4F4E7C24E2997000CF870C /* NTESVerifyCodeResources.bundle */; };
 		CA4F4E8824E29A9500CF870C /* face.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA4F4E8724E29A9500CF870C /* face.gif */; };
-		CAC71FC325401DFB00A5688F /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC71FC225401DFB00A5688F /* VerifyCode.framework */; };
+		CA83233B2541AC25005F8892 /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA83233A2541AC25005F8892 /* VerifyCode.framework */; };
+		CA83233D2541AC36005F8892 /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA83233C2541AC36005F8892 /* NTESVerifyCodeResources.bundle */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -33,10 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CA4F4E7C24E2997000CF870C /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NTESVerifyCodeResources.bundle; path = ../../Release/3.2.6/NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
 		CA4F4E7E24E299A400CF870C /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.6/VerifyCode.framework; sourceTree = "<group>"; };
 		CA4F4E8724E29A9500CF870C /* face.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face.gif; sourceTree = "<group>"; };
-		CAC71FC225401DFB00A5688F /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.7/VerifyCode.framework; sourceTree = "<group>"; };
+		CA83233A2541AC25005F8892 /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.8/VerifyCode.framework; sourceTree = "<group>"; };
+		CA83233C2541AC36005F8892 /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NTESVerifyCodeResources.bundle; path = ../../Release/3.2.8/NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAC71FC325401DFB00A5688F /* VerifyCode.framework in Frameworks */,
+				CA83233B2541AC25005F8892 /* VerifyCode.framework in Frameworks */,
 				E6BA086B1E1B9ADA00B34EF1 /* WebKit.framework in Frameworks */,
 				E6BA08691E1B9AD600B34EF1 /* JavaScriptCore.framework in Frameworks */,
 				E6BA08671E1B9ACF00B34EF1 /* SystemConfiguration.framework in Frameworks */,
@@ -83,8 +83,8 @@
 		E6BA08301E1B980800B34EF1 = {
 			isa = PBXGroup;
 			children = (
-				CAC71FC225401DFB00A5688F /* VerifyCode.framework */,
-				CA4F4E7C24E2997000CF870C /* NTESVerifyCodeResources.bundle */,
+				CA83233C2541AC36005F8892 /* NTESVerifyCodeResources.bundle */,
+				CA83233A2541AC25005F8892 /* VerifyCode.framework */,
 				E6BA083B1E1B980800B34EF1 /* VerifyCodeDemo */,
 				E6BA08551E1B980800B34EF1 /* VerifyCodeDemoTests */,
 				E6BA083A1E1B980800B34EF1 /* Products */,
@@ -234,10 +234,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA4F4E7D24E2997000CF870C /* NTESVerifyCodeResources.bundle in Resources */,
 				E6BA084C1E1B980800B34EF1 /* LaunchScreen.storyboard in Resources */,
 				CA4F4E8824E29A9500CF870C /* face.gif in Resources */,
 				E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */,
+				CA83233D2541AC36005F8892 /* NTESVerifyCodeResources.bundle in Resources */,
 				E6BA08471E1B980800B34EF1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +397,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				DEVELOPMENT_TEAM = XB333SWTAF;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.2.7";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.2.8";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -415,7 +415,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				DEVELOPMENT_TEAM = XB333SWTAF;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.2.7";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.2.8";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -39,10 +39,6 @@
         NSString *captchaid = @"请输入从易盾后台生产的业务ID";
         self.manager.mode = NTESVerifyCodeNormal;
         
-        // 无感知验证码
-//        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
-//        self.manager.mode = NTESVerifyCodeBind;
-        
         [self.manager configureVerifyCode:captchaid timeout:7.0];
         
         // 设置语言
@@ -61,6 +57,7 @@
         // 是否开启降级方案
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
+
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
         
