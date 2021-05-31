@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CA4F4E8824E29A9500CF870C /* face.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA4F4E8724E29A9500CF870C /* face.gif */; };
-		CAA54D522664BEF1007FBE05 /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA54D502664BEF1007FBE05 /* VerifyCode.framework */; };
-		CAA54D532664BEF1007FBE05 /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA54D512664BEF1007FBE05 /* NTESVerifyCodeResources.bundle */; };
+		CAA54DE12664E9B3007FBE05 /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */; };
+		CAA54DE32664E9C7007FBE05 /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA54DE22664E9C7007FBE05 /* VerifyCode.framework */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -35,8 +35,8 @@
 /* Begin PBXFileReference section */
 		CA4F4E7E24E299A400CF870C /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.6/VerifyCode.framework; sourceTree = "<group>"; };
 		CA4F4E8724E29A9500CF870C /* face.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face.gif; sourceTree = "<group>"; };
-		CAA54D502664BEF1007FBE05 /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.3.1/VerifyCode.framework; sourceTree = "<group>"; };
-		CAA54D512664BEF1007FBE05 /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NTESVerifyCodeResources.bundle; path = ../../Release/3.3.1/NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
+		CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
+		CAA54DE22664E9C7007FBE05 /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VerifyCode.framework; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA54D522664BEF1007FBE05 /* VerifyCode.framework in Frameworks */,
+				CAA54DE32664E9C7007FBE05 /* VerifyCode.framework in Frameworks */,
 				E6BA086B1E1B9ADA00B34EF1 /* WebKit.framework in Frameworks */,
 				E6BA08691E1B9AD600B34EF1 /* JavaScriptCore.framework in Frameworks */,
 				E6BA08671E1B9ACF00B34EF1 /* SystemConfiguration.framework in Frameworks */,
@@ -83,8 +83,8 @@
 		E6BA08301E1B980800B34EF1 = {
 			isa = PBXGroup;
 			children = (
-				CAA54D512664BEF1007FBE05 /* NTESVerifyCodeResources.bundle */,
-				CAA54D502664BEF1007FBE05 /* VerifyCode.framework */,
+				CAA54DE22664E9C7007FBE05 /* VerifyCode.framework */,
+				CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */,
 				E6BA083B1E1B980800B34EF1 /* VerifyCodeDemo */,
 				E6BA08551E1B980800B34EF1 /* VerifyCodeDemoTests */,
 				E6BA083A1E1B980800B34EF1 /* Products */,
@@ -237,7 +237,7 @@
 				E6BA084C1E1B980800B34EF1 /* LaunchScreen.storyboard in Resources */,
 				CA4F4E8824E29A9500CF870C /* face.gif in Resources */,
 				E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */,
-				CAA54D532664BEF1007FBE05 /* NTESVerifyCodeResources.bundle in Resources */,
+				CAA54DE12664E9B3007FBE05 /* NTESVerifyCodeResources.bundle in Resources */,
 				E6BA08471E1B980800B34EF1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +397,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				DEVELOPMENT_TEAM = AFKBK6V32D;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.3.1";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -415,7 +415,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				DEVELOPMENT_TEAM = AFKBK6V32D;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../Release/3.3.1";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
