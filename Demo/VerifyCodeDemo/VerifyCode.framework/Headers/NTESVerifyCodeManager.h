@@ -313,12 +313,12 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  */
 - (void)openVerifyCodeView:(UIView *  _Nullable)topView;
 
-///**
-// *  @abstract   关闭验证码视图
-// *
-// *  @说明       ⚠️ 此方法为主动关闭验证码视图，产品方可按需调用（验证成功和点击关闭按钮SDK会自动关闭验证码视图，并回调verifyCodeCloseWindow方法）
-// */
-//- (void)closeVerifyCodeView;
+/**
+ *  @abstract   关闭验证码视图
+ *
+ *  @说明       ⚠️ 此方法为主动关闭验证码视图，产品方可按需调用（验证成功和点击关闭按钮SDK会自动关闭验证码视图，并回调verifyCodeCloseWindow方法）
+ */
+- (void)closeVerifyCodeView;
 
 /**
  *  @abstract   是否开启sdk日志打印
