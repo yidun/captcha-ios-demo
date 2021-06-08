@@ -96,8 +96,12 @@ platform :ios, '9.0'
 3.在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
 
    		[self.manager openVerifyCodeView:nil];
+           
+4.关闭验证码视图，此方法为主动关闭验证码视图，产品方可按需调用，如下:
+
+           [self.manager closeVerifyCodeView:nil];
    		
-4.如果需要处理VerifyCode SDK的回调信息，则实现NTESVerifyCodeManagerDelegate即可
+5.如果需要处理VerifyCode SDK的回调信息，则实现NTESVerifyCodeManagerDelegate即可
 		
 (1) 初始化完成
 		
@@ -431,6 +435,14 @@ platform :ios, '9.0'
      */
 	- (void)configLoadingImage:(UIImage *_Nullable)animationImage
                    gifData:(NSData *_Nullable)gifData;
+
+10.关闭验证码视图， 此方法为主动关闭验证码视图，产品方可按需调用。
+        /**
+        *  @abstract   关闭验证码视图
+        *
+        *  @说明       ⚠️ 此方法为主动关闭验证码视图，产品方可按需调用（验证成功和点击关闭按钮SDK会自动关闭验证码视图，并回调verifyCodeCloseWindow方法）
+        */
+        - (void)closeVerifyCodeView;
 		
 ## 错误码定义
 
