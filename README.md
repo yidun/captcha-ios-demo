@@ -437,6 +437,7 @@ platform :ios, '9.0'
                    gifData:(NSData *_Nullable)gifData;
 
 10.关闭验证码视图， 此方法为主动关闭验证码视图，产品方可按需调用。
+
         /**
         *  @abstract   关闭验证码视图
         *
