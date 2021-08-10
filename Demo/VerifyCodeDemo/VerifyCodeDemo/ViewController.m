@@ -42,7 +42,7 @@
         [self.manager configureVerifyCode:captchaid timeout:7.0];
         
         // 设置语言
-        self.manager.lang = NTESVerifyCodeLangKSA;
+        self.manager.lang = NTESVerifyCodeLangCN;
         
         // 设置透明度
         self.manager.alpha = 0.3;
@@ -60,7 +60,7 @@
 
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
-        NSString *version = [self.manager getSDKVersion];
+        NSString  *version = [self.manager getSDKVersion];
         
 //        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
 //        NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];
@@ -83,12 +83,11 @@
 /**
  * 验证码组件初始化出错
  *
- * @param message 错误信息
+ * @param error 错误信息
  */
-- (void)verifyCodeInitFailed:(NSString *)message{
-    NSLog(@"收到初始化失败的回调:%@",message);
+- (void)verifyCodeInitFailed:(NSArray *)error {
+//    NSLog(@"收到初始化失败的回调:%@",error);
 }
-
 /**
  * 完成验证之后的回调
  *
