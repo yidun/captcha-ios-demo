@@ -333,6 +333,6 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
 /**
 * @abstract    验证码SDK版本号
 */
-- (NSString *_Nullable)getSDKVersion;
+- (NSString *)getSDKVersion;
 
 @end

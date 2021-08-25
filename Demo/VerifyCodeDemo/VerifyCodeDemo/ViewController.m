@@ -36,7 +36,7 @@
         // captchaid的值是每个产品从后台生成的,比如 @""
         
         // 传统验证码
-        NSString *captchaid = @"请输入易盾业务ID";
+        NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
         self.manager.mode = NTESVerifyCodeNormal;
         
         [self.manager configureVerifyCode:captchaid timeout:7.0];
