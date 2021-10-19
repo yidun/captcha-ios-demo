@@ -57,6 +57,8 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
     NTESVerifyCodeLangES,
     // 土耳其语
     NTESVerifyCodeLangTR,
+     // 荷兰语
+    NTESVerifyCodeLangNL,
 };
 
 /**
@@ -89,7 +91,7 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
     NTESVerifyCodeCloseAuto,
 };
 
-@protocol NTESVerifyCodeManagerDelegate<NSObject>
+@protocol NTESVerifyCodeManagerDelegate
 @optional
 
 /**
