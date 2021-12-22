@@ -263,8 +263,6 @@ platform :ios, '9.0'
 
 - 
 
-
-
 		/**
  		 * @abstract    验证码语言选项
 		 * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
@@ -274,7 +272,6 @@ platform :ios, '9.0'
 		 
 - 
 	 
-		
         
         /**
  		* @abstract    验证码滑块icon url，不传则使用易盾默认滑块显示。
@@ -282,8 +279,6 @@ platform :ios, '9.0'
 		@property(nonatomic) NSString *slideIconURL;
 
 - 
-
-		
         
         /**
 		 * @abstract    验证码验证成功的滑块icon url，不传则使用易盾默认滑块显示。
@@ -300,7 +295,6 @@ platform :ios, '9.0'
 - 
 
 		
-        
         /**
 		 * @abstract    设置验证码类型
 		 * @说明         验证码枚举类型NTESVerifyCodeMode，可选类型见枚举定义
@@ -309,8 +303,6 @@ platform :ios, '9.0'
 		@property(nonatomic) NTESVerifyCodeMode mode;		
 		
 - 
-
-	    
         
         /**
 		 * @abstract    设置极端情况下，当验证码服务不可用时，是否开启降级方案。
@@ -334,11 +326,7 @@ platform :ios, '9.0'
 		*              默认不隐藏，设置为YES隐藏，NO不隐藏
 		*/
 		@property(nonatomic) BOOL closeButtonHidden;	
-
-
  - 
- 
- 
  
        /**
        * @abstract    点击背景是否可以关闭验证码视图
@@ -347,16 +335,19 @@ platform :ios, '9.0'
        @property(nonatomic) BOOL shouldCloseByTouchBackground;	
        
  -        
-       
-       
+    
         /**
  		* @abstract   验证码ipv6配置。
  		*             默认为 no，传 yes 表示支持ipv6网络。
  		*/
 		@property(nonatomic) BOOL ipv6;
+        
+ - 
 
-
--   
+        /**
+        *  @abstractextraData透传业务数据
+        */
+        @property (nonatomic) NSString *extraData;
 
 
  3.初始化
