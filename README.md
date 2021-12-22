@@ -1,466 +1,200 @@
-# iOS
+# 行为式验证码
+全新人机验证方式，高效拦截机器行为，业务安全第一道防线。搭载风险感知引擎，智能切换验证难度，安全性高，极致用户体验。读屏软件深度适配，视障群体也可轻松使用，符合工信部无障碍适配要求
 
-## 运行环境
-SDK 兼容系统版本 iOS 8.0+
+## 平台支持（兼容性）
 
-## SDK集成
+| 条目        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| 适配版本    | iOS8以上                                                     |
+| 开发环境    | Xcode 11.4                                                    |
 
-### CocoaPods集成方式
- 1.更新Podfile文件
+## 环境准备
 
-	在工程的 Podfile 里对应的 Target 中添加以下代码
-	
-		pod 'NTESVerifyCode'
-		
- 2.集成SDK
-	
-	在工程的当前目录下, 运行 `pod install` 或者 `pod update`
-	
- 3.工程设置
-	
-	在工程target目录内，需将Build Settings —> other link flags设置为-ObjC。
-	
-	__备注:__
-	
-	(1). 命令行下执行`pod search NTESVerifyCode`,如显示的`NTESVerifyCode`版本不是最新的，则先执行`pod update`操作更新本地repo的内容
+[ CocoaPods 安装教程](https://guides.cocoapods.org/using/getting-started.html)
 
-	(2). 如果想使用最新版本的SDK，则执行`pod update`
-	
-	(3). 如果你的工程设置的"Deplyment Target"低于 9.0，则在Podfile文件的前面加上以下语句
-platform :ios, '9.0'
+## 资源引入/集成
 
-### 手动集成方式
+### 通过 CocoaPods 自动集成
 
- 1.下载VerifyCode SDK包
+podfile 里面添加以下代码：
 
-  **原生Demo下载：** [https://github.com/yidun/captcha-ios-demo](https://github.com/yidun/captcha-ios-demo)
-	 
-	 **RN Demo下载：** [React Native Demo](https://nos.netease.com/cloud-website-bucket/6903d3dcb564b09f3971351bf039e848.rar)
-     
- 2.导入 `VerifyCode.framework` 到XCode工程：
-   
-	 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)
-  
- 3.导入`NTESVerifyCodeResources.bundle`到工程中：
-   
-	 进入`Build Phase`，在`Copy Bundle Resources`选项中，添加`NTESVerifyCodeResources.bundle`文件(请勾选Copy items if needed选项) 。
+```ruby
+ source 'https://github.com/CocoaPods/Specs.git' // 指定下载源
  
- 4.添加依赖库
-  
-	`SystemConfiguration.framework` `JavaScriptCore.framework`、`WebKit.framework`
-  
- 5.工程设置
-	
-	在工程target目录内，需将Build Settings —> other link flags设置为-ObjC。
-  
-   __备注:__  
-   (1)如果已存在上述的系统framework，则忽略
-   
-   (2)SDK 最低兼容系统版本 iOS 9.0
+# 以下两种版本选择方式示例
 
-  
-### SDK 使用
+# 集成最新版SDK:
+pod 'NTESVerifyCode'
 
-#### Object-C 工程
+# 集成指定SDK，具体版本号可先执行 pod search NTESVerifyCode，根据返回的版本信息自行决定:
+pod 'NTESVerifyCode', '~> 3.3.3'
+```
 
-1.在项目需要使用SDK的文件中引入VerifyCode SDK头文件，如下：
+* 保存并执行 pod install 即可，若未执行 pod repo update，请执行pod install --repo-update
 
-		#import <VerifyCode/NTESVerifyCodeManager.h>
-		
-2.在页面初始化的地方初始化 SDK，SDK同时支持无感知验证码和常规验证码，需在官网申请不同的captchaID，如下：
+### 手动集成
+* 1、添加易盾SDK,将压缩包中所有资源添加到工程中(请勾选Copy items if needed选项)
+* 2、添加依赖库，在项目设置target -> 选项卡General ->Linked Frameworks and Libraries添加如下依赖库，如果已存在如下的系统framework，则忽略： 
+    * `SystemConfiguration.framework`
+    * `JavaScriptCore.framework`
+    * `WebKit.framework`
 
-		- (void)viewDidLoad {
-    		[super viewDidLoad];  
-				
-    		// sdk调用
-    		self.manager = [NTESVerifyCodeManager getInstance];
-    		self.manager.delegate = self;
-    		
-    		// 设置透明度
-        	self.manager.alpha = 0.7;
+## 项目开发配置
+
+* 1、在Xcode中找到`TARGETS-->Build Setting-->Linking-->Other Linker Flags`在这个选项中需要添加 `-ObjC`
+
+## 调用示例
+
+```
+
+// 在项目需要使用SDK的文件中引入 #import <VerifyCode/NTESVerifyCodeManager.h>
+
+@property(nonatomic, strong) NTESVerifyCodeManager *manager;
+
+/// 获取验证码管理对象
+self.manager = [NTESVerifyCodeManager getInstance];
+
+// sdk 调用
+ self.manager.mode = NTESVerifyCodeNormal;
         
-        	// 设置frame
-        	self.manager.frame = CGRectNull;
+[self.manager configureVerifyCode:请输入易盾业务ID timeout:超时时间];
+  
+// 显示验证码
+[self.manager openVerifyCodeView:nil];
+```
+更多使用场景请参考 [demo](https://github.com/yidun/captcha-ios-demo)
+  
+## SDK 方法说明
+
+### 1 获取 NTESVerifyCodeManager 实例化对象
+
+在项目需要使用 SDK 的文件中先引入#import <VerifyCode/NTESVerifyCodeManager.h> 然后再初始化的 SDK，如下：
+
+#### 代码说明：
+```
+self.manager = [NTESVerifyCodeManager getInstance];
+```        
+#### 返回值说明：
+
+|类型|描述|
+|----|----|
+|NSObject|验证码实例化对象|
+        
+### 2 初始化
+
+#### 代码说明：
+
+```
+[self.manager configureVerifyCode:请输入易盾业务ID timeout:超时时间];
+```   
+
+ * 入参说明：
+
+    |参数|类型|是否必填|默认值|描述|
+    |----|----|--------|------|----|
+    | businessId |NSString|是|无|易盾分配的业务id|
+    | timeout |NSString|是|无|加载验证码的超时时间,最长12秒。这个时间尽量设置长一些，比如7秒以上(7-12秒)|
     
-     		// captchaId从网易申请，比如@"a05f036b70ab447b87cc788af9a60974"
-     		
-			// 常规验证码（滑块拼图、图中点选、短信上行）
-			// NSString *captchaid = @"deecf3951a614b71b4b1502c072be1c1";
-			// self.manager.mode = NTESVerifyCodeNormal;
-        
-	        // 智能无感知验证码
-	        NSString *captchaid = @"6a5cab86b0eb4c309ccb61073c4ab672";
-	        self.manager.mode = NTESVerifyCodeBind;
-		}
-		
-3.在需要验证码验证的地方，调用SDK的openVerifyCodeView接口，如下:
+### 3 验证码元素配置
+配置项可以通过 self.manager 点语法配置 例如 self.manager.mode = NTESVerifyCodeNormal。
 
-   		[self.manager openVerifyCodeView:nil];
-           
-4.关闭验证码视图，此方法为主动关闭验证码视图，产品方可按需调用，如下:
+| 配置项 |类型|是否必填|默认值|描述|
+|----|----|--------|------|----|
+| frame | CGRect | 否 | NTESVerifyCodeNormal |验证码控件显示的位置,可以不传递。<br>(1)如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65。 <br>(2)如果传递,则frame的宽度至少为270;高度至少为:宽度/2.0 + 65。|
+| mode | enum | 否 | NTESVerifyCodeNormal | NTESVerifyCodeNormal 表示传统验证码<br> NTESVerifyCodeBind 表示无感知验证码|
+| protocol | enum | 否 |NTESVerifyCodeProtocolHttps | NTESVerifyCodeProtocolHttps 表示 HTTPS 协议<br> NTESVerifyCodeProtocolHttp 表示 HTTP 协议|
+| alpha | CGFloat | 否 |0.3 |验证码遮罩的透明度<br>范围:0~1，0表示全透明，1表示不透明。默认值:0.3|
+| color | UIColor | 否 |blackColor |验证码遮罩的颜色，默认值：黑色|
+| fallBackCount | NSUInteger | 否 | 3 | 设置发生第fallBackCount次错误时，将触发降级，取值范围 >=1。默认设置为3次，第三次服务器发生错误时，触发降级，直接通过验证。|
+| openFallBack | BOOL | 否 | YES | 设置极端情况下，当验证码服务不可用时，是否开启降级方案。默认开启，当触发降级开关时，将直接通过验证，进入下一步。|
+| closeButtonHidden | BOOL | 否 | NO |是否隐藏关闭按钮。默认不隐藏，设置为 YES 隐藏，NO 不隐藏|
+| shouldCloseByTouchBackground | BOOL | 否 | YES |点击背景是否可以关闭验证码视图，默认可以关闭。|
+| slideIconURL | NSString | 否 | 无 |验证码滑块 icon url，不传则使用易盾默认滑块显示。|
+| delegate | id <NTESVerifyCodeManagerDelegate> | 否 | 无 |遵守协议 self.manager.delegate = self|
+| lang | enum | 否 | NTESVerifyCodeLangCN | 设置验证码语言类型<br>NTESVerifyCodeLangCN 表示中文<br> NTESVerifyCodeLangEN 表示英文<br> NTESVerifyCodeLangTW 表示繁体<br> NTESVerifyCodeLangJP 表示日文<br> NTESVerifyCodeLangKR 表示韩文<br> NTESVerifyCodeLangTL 表示泰文<br> NTESVerifyCodeLangVT 表示越南语<br> NTESVerifyCodeLangFRA 表示法语<br> NTESVerifyCodeLangRUS 表示俄语<br> NTESVerifyCodeLangKSA 表示阿拉伯语 <br> NTESVerifyCodeLangDE 表示德语<br> NTESVerifyCodeLangIT 表示意大利语<br> NTESVerifyCodeLangHE 表示希伯来语<br> NTESVerifyCodeLangHI 表示印地语<br> NTESVerifyCodeLangID 表示印尼语<br> NTESVerifyCodeLangMY 表示缅甸语<br> NTESVerifyCodeLangLO 表示老挝语<br> NTESVerifyCodeLangMS 表示马来语<br> NTESVerifyCodeLangPL 表示波兰语<br> NTESVerifyCodeLangPT 表示葡萄牙语<br> NTESVerifyCodeLangES 表示西班牙语<br> NTESVerifyCodeLangTR 表示土耳其语|
+| extraData | NSString | 否 | 无 |extraData透传业务数据|
 
-           [self.manager closeVerifyCodeView:nil];
-   		
-5.如果需要处理VerifyCode SDK的回调信息，则实现NTESVerifyCodeManagerDelegate即可
-		
-(1) 初始化完成
-		
-		/**
- 		* 验证码组件初始化完成
- 		*/
-		- (void)verifyCodeInitFinish{
-    		// App添加自己的处理逻辑 
-		}
+### 4 弹出验证码
 
-(2) 初始化出错
-		
-		/**
- 		* 验证码组件初始化出错
- 		* @param error 错误信息，建议直接打印错误码，便于排查问题
- 		*/
-		- (void)verifyCodeInitFailed:(NSArray *)error{
-    		// App添加自己的处理逻辑
-		}
-	
-(3) 验证结果回调
-		
-		/**
- 		* 完成验证之后的回调
- 		* @param result 验证结果 BOOL:YES/NO
- 		* @param validate 二次校验数据，如果验证结果为false，validate返回空
- 		* @param message 结果描述信息
- 		*/
-		- (void)verifyCodeValidateFinish:(BOOL)result 
-				validate:(NSString *)validate 
-				message:(NSString *)message{
-			// App添加自己的处理逻辑
-    	}
+#### 代码说明：
 
-(4) 关闭验证码窗口的回调
-		
-		/**
- 		* 关闭验证码窗口后的回调
- 		*/
-		- (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close {
-    		//App添加自己的处理逻辑
-		}  
+```
+[self.manager openVerifyCodeView:nil];
+```
+ * 入参说明：
 
-### Swift 工程
-
-1.在项目对应的 bridging-header.h 中引入头文件，如下：
-
-		#import <VerifyCode/NTESVerifyCodeManager.h>
-	
- 
- __备注:__  Swift 调用 Objective-C 需要一个名为 `<工程名>-Bridging-Header.h` 的桥接头文件。文件的作用为 Swift 调用 Objective-C 对象提供桥接。
-
-
-2.其他调用同上
-
-## SDK 接口
-
-1.枚举
-
-		/**
- 		* @abstract    设置验证码语言类型
- 		*/
-		typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
-		    // 中文
-		    NTESVerifyCodeLangCN = 1,
-		    // 英文
-		    NTESVerifyCodeLangEN,
-		    // 繁体
-		    NTESVerifyCodeLangTW,
-		    // 日文
-		    NTESVerifyCodeLangJP,
-		    // 韩文
-		    NTESVerifyCodeLangKR,
-		    // 泰文
-		    NTESVerifyCodeLangTL,
-		    // 越南语
-		    NTESVerifyCodeLangVT,
-		    // 法语
-		    NTESVerifyCodeLangFRA,
-		    // 俄语
-		    NTESVerifyCodeLangRUS,
-		    // 阿拉伯语
-		    NTESVerifyCodeLangKSA,
-		    // 德语
-		    NTESVerifyCodeLangDE,
-		    // 意大利语
-		    NTESVerifyCodeLangIT,
-		    // 希伯来语
-		    NTESVerifyCodeLangHE,
-		    // 印地语
-		    NTESVerifyCodeLangHI,
-		    // 印尼语
-		    NTESVerifyCodeLangID,
-		    // 缅甸语
-		    NTESVerifyCodeLangMY,
-		    // 老挝语
-		    NTESVerifyCodeLangLO,
-		    // 马来语
-		    NTESVerifyCodeLangMS,
-		    // 波兰语
-		    NTESVerifyCodeLangPL,
-		    // 葡萄牙语
-		    NTESVerifyCodeLangPT,
-		    // 西班牙语
-		    NTESVerifyCodeLangES,
-		    // 土耳其语
-		    NTESVerifyCodeLangTR,
-		};
-		
-		/**
- 		* @abstract    设置验证码类型
- 		*/
-		typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
-		    // 普通验证码
-		    NTESVerifyCodeNormal = 1,
-		    // 无感知验证码
-		    NTESVerifyCodeBind,
-		};
-        
-        /**
-        * @abstract    验证码关闭的类型
-        */
-        typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
-            // 手动关闭
-            NTESVerifyCodeCloseManual = 1,
-            // 验证完毕后自动关闭
-            NTESVerifyCodeCloseAuto,
-        };
-
-
-2.属性
-		
-		/**
- 		* @abstract    验证码图片显示的frame
- 		* @说明         验证码控件显示的位置,可以不传递。
- 		*              (1)如果不传递或者传递为CGRectNull(CGRectZero),则使用默认值:topView的居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65
- 		*              (2)如果传递,则frame的宽度至少为270;高度至少为:宽度/2.0 + 65.
- 		*/
-		@property(nonatomic) CGRect            frame;
-
-- 
-
-
-
-		/**
-	 	* @abstract    验证码图片背景的透明度
- 		* @说明         范围:0~1，0表示全透明，1表示不透明。默认值:0.8
- 		*/
-		@property(nonatomic) CGFloat           alpha;
-		
--
-
-
-		/**
-		 * @abstract    验证码图片背景的颜色
-		 * @说明         默认值:黑色
-		 */
-		@property(nonatomic) UIColor           *color;
-
-- 
-
-		/**
- 		 * @abstract    验证码语言选项
-		 * @说明         验证码枚举类型NTESVerifyCodeLang，NTESVerifyCodeLangCN表示中文，NTESVerifyCodeLangEN表示英文
- 		 *              不传默认中文。
- 		 */
-		 @property(nonatomic) NTESVerifyCodeLang    lang;
-		 
-- 
-	 
-        
-        /**
- 		* @abstract    验证码滑块icon url，不传则使用易盾默认滑块显示。
- 		*/
-		@property(nonatomic) NSString *slideIconURL;
-
-- 
-        
-        /**
-		 * @abstract    验证码验证成功的滑块icon url，不传则使用易盾默认滑块显示。
-		 */
-		@property(nonatomic) NSString *slideIconSuccessURL;		
-
--
-
-		/**
-		 * @abstract    验证码验证失败的滑块icon url，不传则使用易盾默认滑块显示。
-		 */
-		@property(nonatomic) NSString *slideIconErrorURL;
-		
-- 
-
-		
-        /**
-		 * @abstract    设置验证码类型
-		 * @说明         验证码枚举类型NTESVerifyCodeMode，可选类型见枚举定义
-		 *              不传默认常规验证码（滑块拼图、图中点选、短信上行）。
-		 */
-		@property(nonatomic) NTESVerifyCodeMode mode;		
-		
-- 
-        
-        /**
-		 * @abstract    设置极端情况下，当验证码服务不可用时，是否开启降级方案。
-		 *              默认开启，当触发降级开关时，将直接通过验证，进入下一步。
-		 */
-		@property(nonatomic) BOOL openFallBack;
-		
-- 	
-
-
-		  /**
-	 	  * @abstract    设置发生第fallBackCount次错误时，将触发降级。取值范围 >=1
-		   *            默认设置为3次，第三次服务器发生错误时，触发降级，直接通过验证。
-		   */
-		 @property(nonatomic) NSUInteger fallBackCount;	
-		
--
-
-		/**
-		* @abstract    是否隐藏关闭按钮
-		*              默认不隐藏，设置为YES隐藏，NO不隐藏
-		*/
-		@property(nonatomic) BOOL closeButtonHidden;	
- - 
- 
-       /**
-       * @abstract    点击背景是否可以关闭验证码视图
-       *              默认可以关闭，设置为YES可以关闭，NO不可以关闭
-       */
-       @property(nonatomic) BOOL shouldCloseByTouchBackground;	
-       
- -        
+    |类型|是否必填|默认值|描述|
+    |----|--------|------|----|
+    |UIView|否|无|在指定的视图上展示验证码视图，如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]|
     
-        /**
- 		* @abstract   验证码ipv6配置。
- 		*             默认为 no，传 yes 表示支持ipv6网络。
- 		*/
-		@property(nonatomic) BOOL ipv6;
-        
- - 
+### 5 关闭验证码
 
-        /**
-        *  @abstractextraData透传业务数据
-        */
-        @property (nonatomic) NSString *extraData;
+#### 代码说明：
 
+```
+[self.manager closeVerifyCodeView];
+```
+### 6 SDK 日志打印
 
- 3.初始化
-	
-		/**
- 		* @abstract 	初始化方法
- 		* @return 		返回NTESVerifyCodeManager对象
- 		*/
-		+ (NTESVerifyCodeManager *)getInstance;
+#### 代码说明：
 
- 4.配置参数
+```
+[self.manager enableLog:];
+```
 
-		/**
-		 *  @abstract   配置参数
-		 *  @param      captcha_id      验证码id
-		 *  @param      timeoutInterval 加载验证码的超时时间,最长12s。这个时间尽量设置长一些，比如7秒以上(7-12s)
-		 */
-		- (void)configureVerifyCode:(NSString *)captcha_id
-                    timeout:(NSTimeInterval)timeoutInterval;
+ * 入参说明：
 
- 5.弹出验证码
+    |类型|是否必填|默认值|描述|
+    |----|--------|------|----|
+    |BOOL|否|NO|是否开启 SDK 日志打印,YES 表示开启;NO 表示不开启。默认为 NO|
+    
+### 7 验证码 SDK 版本号
 
-		/**
- 		*  @abstract 展示验证码视图
- 		*  @说明      展示位置:[[[UIApplication sharedApplication] delegate] window];全屏居中显示,宽度为屏幕宽度的4/5,高度:view宽度/2.0 + 65.
- 		*/
-		- (void)openVerifyCodeView;
+#### 代码说明：
 
-		/**
- 		*  @abstract   在指定的视图上展示验证码视图
- 		*  @param      topView         加载验证码控件的父视图,可以为nil。
- 		*                              (1)如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]
- 		*                              (2)如果传递值不为nil，则注意topView的宽高值，宽度至少为270;高度至少为:宽度/2.0 + 65.
-	 	*/
-		- (void)openVerifyCodeView:(UIView *)topView;
+```
+NSString  *version = [self.manager getSDKVersion];
+```
 
+ * 返回值说明：
 
- 6.log打印
-		
-		/**
- 		*  @abstract	是否开启sdk日志打印
- 		*  @param 		enabled 		YES:开启;NO:不开启
- 		*  @说明 		   默认为NO,只打印workflow;设为YES后，Release下只会打印workflow和BGRLogLevelError
- 		*/
-		- (void)enableLog:(BOOL)enabled;
- 7.获取验证码SDK版本号
+    |类型|描述|
+    |----|----|
+    |NSString|当前 SDK 的版本号|
+    
+### 8 验证码协议方法
 
-	
-		/**
-		* @abstract    验证码SDK版本号
-		*/
-		- (NSString *)getSDKVersion;
+#### 代码说明：
 
+```
+/**
+ * 验证码组件初始化完成
+ */
+- (void)verifyCodeInitFinish;
 
-8.自定义loading文案
- 
-    /**
-     *  @abstract   自定义loading文案
-     *
-     *  @param      loadingText  加载中的文案
-     *
-     */
-    - (void)configLoadingText:(NSString * _Nullable)loadingText;
+/**
+ * 验证码组件初始化出错
+ *
+ * @param error 错误信息
+ */
+- (void)verifyCodeInitFailed:(NSArray *)error;
 
-9.自定义loading图片， 支持gif、 png 、 jpg等格式。
+/**
+ * 完成验证之后的回调
+ *
+ * @param result 验证结果 BOOL:YES/NO
+ * @param validate 二次校验数据，如果验证结果为false，validate返回空
+ * @param message 结果描述信息
+ *
+ */
+- (void)verifyCodeValidateFinish:(BOOL)result validate:(NSString *)validate message:(NSString *)message;
 
-    /**
-     *  @abstract  自定义loading图片， 支持gif、 png 、 jpg等格式。
-     *
-     *  @说明      自定义 loading图片的参数配置。
-     *            (1) 图片格式为 gif 只需要传gifData 即可， animationImage传空。
-     *            (2) 图片格式为 png、 jpg时，需要配置animationImage ,gitData传空。
-     *
-     *  @param      animationImage  单张图片 ，
-     *  @param      gifData 图片格式为gif的二进制数据
-     */
-	- (void)configLoadingImage:(UIImage *_Nullable)animationImage
-                   gifData:(NSData *_Nullable)gifData;
+/**
+ * 关闭验证码窗口后的回调
+ *
+ * @param close 关闭的类型
+ */
+- (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close;
 
-10.关闭验证码视图， 此方法为主动关闭验证码视图，产品方可按需调用。
-
-        /**
-        *  @abstract   关闭验证码视图
-        *
-        *  @说明       ⚠️ 此方法为主动关闭验证码视图，产品方可按需调用（验证成功和点击关闭按钮SDK会自动关闭验证码视图，并回调verifyCodeCloseWindow方法）
-        */
-        - (void)closeVerifyCodeView;
-		
-## 错误码定义
-
-SDK会在回调方法`verifyCodeInitFailed:`和`verifyCodeNetError:`中抛出错误码，错误码说明如下：
-
-| 错误码 | 说明 |
-| -------| -----|
-| 501 | get请求失败 |
-| 502 | js资源加载超时 |
-| 503 | 图片加载超时 |
-| 1004 | 初始化失败 |
-| -1005 | 无网络连接 |
-		
-## 效果演示
-
- 1.初始化
-	<img src="https://github.com/yidun/captcha-ios-demo/raw/master/screenshots/init.jpg" width="50%" height="50%">
-	
-	
- 2.滑块验证
-	<img src="https://nos.netease.com/cloud-website-bucket/b981f3b08f1967f0aceab48ea3d6621a.png" width="50%" height="50%">
-	
-	
- 3.点选验证	
-	<img src="https://nos.netease.com/cloud-website-bucket/85ef8f718f6fd7774c27859938843343.png" width="50%" height="50%">
-	
- 4.短信验证	
-	<img src="https://nos.netease.com/cloud-website-bucket/b81b5f6cfd25e813de76eef0cee29d9e.png" width="50%" height="50%">
+```
 
