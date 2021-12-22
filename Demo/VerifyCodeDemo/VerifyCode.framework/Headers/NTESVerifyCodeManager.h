@@ -257,6 +257,12 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  */
 @property(nonatomic) BOOL shouldCloseByTouchBackground;
 
+
+/**
+ extraData透传业务数据
+ */
+@property (nonatomic) NSString *extraData;
+
 /**
  *  @abstract   初始化方法
  *
