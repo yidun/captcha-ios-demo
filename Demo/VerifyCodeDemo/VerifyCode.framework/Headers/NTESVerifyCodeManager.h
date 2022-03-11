@@ -13,52 +13,82 @@
  * @abstract    设置验证码语言类型
  */
 typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
-    // 中文
-    NTESVerifyCodeLangCN = 1,
-    // 英文
-    NTESVerifyCodeLangEN,
-    // 繁体
-    NTESVerifyCodeLangTW,
-    // 日文
-    NTESVerifyCodeLangJP,
-    // 韩文
-    NTESVerifyCodeLangKR,
-    // 泰文
-    NTESVerifyCodeLangTL,
-    // 越南语
-    NTESVerifyCodeLangVT,
-    // 法语
-    NTESVerifyCodeLangFRA,
-    // 俄语
-    NTESVerifyCodeLangRUS,
-    // 阿拉伯语
-    NTESVerifyCodeLangKSA,
-    // 德语
-    NTESVerifyCodeLangDE,
-    // 意大利语
-    NTESVerifyCodeLangIT,
-    // 希伯来语
-    NTESVerifyCodeLangHE,
-    // 印地语
-    NTESVerifyCodeLangHI,
-    // 印尼语
-    NTESVerifyCodeLangID,
-    // 缅甸语
-    NTESVerifyCodeLangMY,
-    // 老挝语
-    NTESVerifyCodeLangLO,
-    // 马来语
-    NTESVerifyCodeLangMS,
-    // 波兰语
-    NTESVerifyCodeLangPL,
-    // 葡萄牙语
-    NTESVerifyCodeLangPT,
-    // 西班牙语
-    NTESVerifyCodeLangES,
-    // 土耳其语
-    NTESVerifyCodeLangTR,
-     // 荷兰语
-    NTESVerifyCodeLangNL,
+    NTESVerifyCodeLangCN = 1, // 中文
+    NTESVerifyCodeLangEN,     // 英文
+    NTESVerifyCodeLangTW,     // 繁体
+    NTESVerifyCodeLangJP,     // 日文
+    NTESVerifyCodeLangKR,     // 韩文
+    NTESVerifyCodeLangTL,     // 泰文
+    NTESVerifyCodeLangVT,     // 越南语
+    NTESVerifyCodeLangFRA,    // 法语
+    NTESVerifyCodeLangRUS,    // 俄语
+    NTESVerifyCodeLangKSA,    // 阿拉伯语
+    NTESVerifyCodeLangDE,     // 德语
+    NTESVerifyCodeLangIT,     // 意大利语
+    NTESVerifyCodeLangHE,     // 希伯来语
+    NTESVerifyCodeLangHI,     // 印地语
+    NTESVerifyCodeLangID,     // 印尼语
+    NTESVerifyCodeLangMY,     // 缅甸语
+    NTESVerifyCodeLangLO,     // 老挝语
+    NTESVerifyCodeLangMS,     // 马来语
+    NTESVerifyCodeLangPL,     // 波兰语
+    NTESVerifyCodeLangPT,     // 葡萄牙语
+    NTESVerifyCodeLangES,     // 西班牙语
+    NTESVerifyCodeLangTR,     // 土耳其语
+    NTESVerifyCodeLangNL,     // 荷兰语
+    NTESVerifyCodeLangUG,     // 维吾尔语
+    NTESVerifyCodeLangMN,     // 蒙古语
+    NTESVerifyCodeLangMAI,    // 迈蒂利语
+    NTESVerifyCodeLangAS,     // 阿萨姆语
+    NTESVerifyCodeLangPA,     // 旁遮普语
+    NTESVerifyCodeLangOR,     // 欧里亚语
+    NTESVerifyCodeLangML,     // 马来亚拉姆语
+    NTESVerifyCodeLangKN,     // 卡纳达语
+    NTESVerifyCodeLangGU,     // 古吉拉特语
+    NTESVerifyCodeLangTA,     // 泰米尔语
+    NTESVerifyCodeLangMR,     // 马拉地语
+    NTESVerifyCodeLangTE,     // 泰卢固语
+    NTESVerifyCodeLangAM,     // 阿姆哈拉语
+    NTESVerifyCodeLangMI,     // 毛利语
+    NTESVerifyCodeLangSW,     // 斯瓦西里语
+    NTESVerifyCodeLangNE,     // 尼泊尔语
+    NTESVerifyCodeLangJV,     // 爪哇语
+    NTESVerifyCodeLangFIL,    // 菲律宾语
+    NTESVerifyCodeLangBN,     // 孟加拉语
+    NTESVerifyCodeLangKK,     // 哈萨克语（西里尔文）
+    NTESVerifyCodeLangBE,     // 白俄罗斯语
+    NTESVerifyCodeLangBO,     // 藏语
+    NTESVerifyCodeLangUR,     // 乌尔都语
+    NTESVerifyCodeLangSI,     // 僧伽罗语
+    NTESVerifyCodeLangKM,     // 高棉语
+    NTESVerifyCodeLangUZ,     // 乌兹别克语
+    NTESVerifyCodeLangAZ,     // 阿塞拜疆语
+    NTESVerifyCodeLangKA,     // 格鲁吉亚语
+    NTESVerifyCodeLangEU,     // 巴斯克语
+    NTESVerifyCodeLangGL,     // 加利西亚语
+    NTESVerifyCodeLangCA,     // 加泰罗尼亚语
+    NTESVerifyCodeLangFA,     // 波斯语
+    NTESVerifyCodeLangUK,     // 乌克兰语
+    NTESVerifyCodeLangHR,     // 克罗地亚语
+    NTESVerifyCodeLangSL,     // 斯洛文尼亚语
+    NTESVerifyCodeLangLT,     // 立陶宛语
+    NTESVerifyCodeLangLV,     // 拉脱维亚语
+    NTESVerifyCodeLangET,     // 爱沙尼亚语
+    NTESVerifyCodeLangFI,     // 芬兰语
+    NTESVerifyCodeLangBG,     // 保加利亚语
+    NTESVerifyCodeLangMK,     // 马其顿语
+    NTESVerifyCodeLangBS,     // 波斯尼亚语
+    NTESVerifyCodeLangSR,     // 塞尔维亚语（拉丁文）
+    NTESVerifyCodeLangEL,     // 希腊语
+    NTESVerifyCodeLangRO,     // 罗马尼亚语
+    NTESVerifyCodeLangSK,     // 斯洛伐克语
+    NTESVerifyCodeLangHU,     // 匈牙利语
+    NTESVerifyCodeLangCS,     // 捷克语
+    NTESVerifyCodeLangDA,     // 丹麦语
+    NTESVerifyCodeLangNN,     // 挪威语
+    NTESVerifyCodeLangSV,     // 瑞典语
+    NTESVerifyCodeLangPTBR,   // 巴西葡语
+    NTESVerifyCodeLangESLA,   // 拉美西语
 };
 
 /**
@@ -257,11 +287,15 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  */
 @property(nonatomic) BOOL shouldCloseByTouchBackground;
 
-
 /**
  extraData透传业务数据
  */
 @property (nonatomic) NSString *extraData;
+
+/**
+ 设置验证码字体大小，默认自适应系统字体大小。
+ */
+@property (nonatomic, strong) UIFont *systemFont;
 
 /**
  *  @abstract   初始化方法
