@@ -92,6 +92,20 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeLang) {
 };
 
 /**
+ * @abstract    验证码适老
+ */
+typedef NS_ENUM(NSInteger, NTESVerifyCodeFontSize) {
+    // 小号字体
+    NTESVerifyCodeFontSizeSmall = 1,
+    // 中号字体
+    NTESVerifyCodeFontSizeMedium,
+    // 大号字体
+    NTESVerifyCodeFontSizeLarge,
+    // 超大号字体
+    NTESVerifyCodeFontSizeXlarge
+};
+
+/**
  * @abstract    设置验证码类型
  */
 typedef NS_ENUM(NSInteger, NTESVerifyCodeMode) {
@@ -195,6 +209,14 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
 @property(nonatomic) NTESVerifyCodeLang    lang;
 
 /**
+ * @abstract    验证码适老化
+ *
+ * @说明          验证码适老化枚举类型NTESVerifyCodeFontSize，可选范围见枚举定义。
+ *              不传默认小号字体。
+ */
+@property(nonatomic) NTESVerifyCodeFontSize fontSize;
+
+/**
  * @abstract    验证码滑块icon url，不传则使用易盾默认滑块显示。
  */
 @property(nonatomic) NSString *slideIconURL;
@@ -291,11 +313,6 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  extraData透传业务数据
  */
 @property (nonatomic) NSString *extraData;
-
-/**
- 设置验证码字体大小，默认自适应系统字体大小。
- */
-@property (nonatomic, strong) UIFont *systemFont;
 
 /**
  *  @abstract   初始化方法
