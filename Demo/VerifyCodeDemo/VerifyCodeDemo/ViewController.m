@@ -42,7 +42,7 @@
         [self.manager configureVerifyCode:captchaid timeout:7.0];
         
         // 设置语言
-        self.manager.lang = NTESVerifyCodeLangESLA;
+        self.manager.lang = NTESVerifyCodeLangCN;
         
         // 设置透明度
         self.manager.alpha = 0.3;
