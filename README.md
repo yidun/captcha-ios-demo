@@ -113,6 +113,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
 | delegate | id <NTESVerifyCodeManagerDelegate> | 否 | 无 |遵守协议 self.manager.delegate = self|
 | lang | enum | 否 | NTESVerifyCodeLangCN | 设置验证码语言类型<br>NTESVerifyCodeLangCN 表示中文<br> NTESVerifyCodeLangEN 表示英文<br> NTESVerifyCodeLangTW 表示繁体<br> NTESVerifyCodeLangJP 表示日文<br> NTESVerifyCodeLangKR 表示韩文<br> NTESVerifyCodeLangTL 表示泰文<br> NTESVerifyCodeLangVT 表示越南语<br> NTESVerifyCodeLangFRA 表示法语<br> NTESVerifyCodeLangRUS 表示俄语<br> NTESVerifyCodeLangKSA 表示阿拉伯语 <br> NTESVerifyCodeLangDE 表示德语<br> NTESVerifyCodeLangIT 表示意大利语<br> NTESVerifyCodeLangHE 表示希伯来语<br> NTESVerifyCodeLangHI 表示印地语<br> NTESVerifyCodeLangID 表示印尼语<br> NTESVerifyCodeLangMY 表示缅甸语<br> NTESVerifyCodeLangLO 表示老挝语<br> NTESVerifyCodeLangMS 表示马来语<br> NTESVerifyCodeLangPL 表示波兰语<br> NTESVerifyCodeLangPT 表示葡萄牙语<br> NTESVerifyCodeLangES 表示西班牙语<br> NTESVerifyCodeLangTR 表示土耳其语 <br> NTESVerifyCodeLangNL 表示荷兰语<br> NTESVerifyCodeLangUG 表示维吾尔语 <br> NTESVerifyCodeLangMN 表示蒙古语 <br> NTESVerifyCodeLangMAI 表示迈蒂利语 <br> NTESVerifyCodeLangAS 表示阿萨姆语 <br> NTESVerifyCodeLangPA 表示旁遮普语 <br> NTESVerifyCodeLangOR 表示欧里亚语 <br> NTESVerifyCodeLangML 表示马来亚拉姆语 <br> NTESVerifyCodeLangKN 表示卡纳达语 <br> NTESVerifyCodeLangGU 表示古吉拉特语 <br> NTESVerifyCodeLangTA 表示泰米尔语 <br> NTESVerifyCodeLangMR 表示马拉地语 <br> NTESVerifyCodeLangTE 表示泰卢固语 <br> NTESVerifyCodeLangAM 表示阿姆哈拉语 <br> NTESVerifyCodeLangMI 表示毛利语 <br> NTESVerifyCodeLangSW 表示斯瓦西里语 <br> NTESVerifyCodeLangNE 表示尼泊尔语  <br> NTESVerifyCodeLangJV 表示爪哇语 <br> NTESVerifyCodeLangFIL 表示菲律宾语  <br> NTESVerifyCodeLangBN 表示孟加拉语 <br> NTESVerifyCodeLangKK 表示哈萨克语（西里尔文） <br> NTESVerifyCodeLangBE 表示白俄罗斯语 <br> NTESVerifyCodeLangBO 表示藏语 <br> NTESVerifyCodeLangUR 表示乌尔都语 <br> NTESVerifyCodeLangSI 表示僧伽罗语  <br> NTESVerifyCodeLangKM 表示高棉语 <br> NTESVerifyCodeLangUZ 表示乌兹别克语 <br> NTESVerifyCodeLangAZ 表示阿塞拜疆语 <br> NTESVerifyCodeLangKA 表示格鲁吉亚语 <br> NTESVerifyCodeLangEU 表示巴斯克语 <br> NTESVerifyCodeLangGL 表示加利西亚语 <br> NTESVerifyCodeLangCA 表示加泰罗尼亚语<br> NTESVerifyCodeLangFA 表示波斯语 <br> NTESVerifyCodeLangUK 表示乌克兰语 <br> NTESVerifyCodeLangHR 表示克罗地亚语 <br> NTESVerifyCodeLangSL 表示斯洛文尼亚语 <br> NTESVerifyCodeLangLT 表示立陶宛语 <br> NTESVerifyCodeLangLV 表示拉脱维亚语 <br> NTESVerifyCodeLangET 爱沙尼亚语 <br> NTESVerifyCodeLangFI 表示芬兰语 <br> NTESVerifyCodeLangBG 表示保加利亚语 <br> NTESVerifyCodeLangMK 表示马其顿语 <br> NTESVerifyCodeLangBS 表示波斯尼亚语 <br> NTESVerifyCodeLangSR 表示塞尔维亚语（拉丁文）<br> NTESVerifyCodeLangEL 表示希腊语 <br> NTESVerifyCodeLangRO 表示罗马尼亚语 <br> NTESVerifyCodeLangSK 表示斯洛伐克语 <br> NTESVerifyCodeLangHU 表示匈牙利语 <br> NTESVerifyCodeLangCS 表示捷克语 <br> NTESVerifyCodeLangDA 表示丹麦语 <br> NTESVerifyCodeLangNN 表示挪威语 <br> NTESVerifyCodeLangSV 表示瑞典语 <br> NTESVerifyCodeLangPTBR 表示巴西葡语 <br> NTESVerifyCodeLangESLA 表示拉美西语|
 | extraData | NSString | 否 | 无 |extraData透传业务数据|
+| deviceOrientation | enum | 否 | 无 |NTESDeviceOrientationUnknown 方向未知 <br> NTESDeviceOrientationPortrait 固定竖屏，验证码不会跟随设备旋转而旋转  <br> NTESDeviceOrientationLandscape 固定横屏，验证码不会跟随设备旋转而旋转 |
 
 ### 4 弹出验证码
 
@@ -126,15 +127,46 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |类型|是否必填|默认值|描述|
     |----|--------|------|----|
     |UIView|否|无|在指定的视图上展示验证码视图，如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]|
+
+### 5 弹出验证码、自定义加载页和错误页
+
+#### 代码说明：
+
+```
+[[self.manager openVerifyCodeView:nil customLoading:YES customErrorPage:YES];];
+```
+ * 入参说明：
+
+    |类型|是否必填|默认值|描述|
+    |----|--------|------|----|
+    |UIView|否|无|在指定的视图上展示验证码视图，如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]|
+    |customLoading|否|NO|传YES,自行设置加载页，在 verifyCodeInitFinish 方法里面隐藏加载页。NO,显示易盾加载页|
+    |customErrorPage|否|NO|传YES,自行设置错误页，在verifyCodeInitFailed 里显示错误页。NO,显示易盾加载页|
+
+### 6 弹出无感知验证码、自定义加载页和错误页
+
+#### 代码说明：
+
+```
+[[self.manager openVerifyCodeView:nil loadingView nil customLoading:YES customErrorPage:YES];];
+```
+ * 入参说明：
+
+    |类型|是否必填|默认值|描述|
+    |----|--------|------|----|
+    |UIView|否|无|在指定的视图上展示验证码视图，如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]|
+    |loadingView|否|无|如果是智能无感知验证码，并且是自定义loading页面，loadingView必传|
+    |customLoading|否|NO|传YES,自行设置加载页，在 verifyCodeInitFinish 方法里面隐藏加载页。NO,显示易盾加载页|
+    |customErrorPage|否|NO|传YES,自行设置错误页，在verifyCodeInitFailed 里显示错误页。NO,显示易盾加载页|
     
-### 5 关闭验证码
+### 7 关闭验证码
 
 #### 代码说明：
 
 ```
 [self.manager closeVerifyCodeView];
 ```
-### 6 SDK 日志打印
+### 8 SDK 日志打印
 
 #### 代码说明：
 
@@ -148,7 +180,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |----|--------|------|----|
     |BOOL|否|NO|是否开启 SDK 日志打印,YES 表示开启;NO 表示不开启。默认为 NO|
     
-### 7 验证码 SDK 版本号
+### 9 验证码 SDK 版本号
 
 #### 代码说明：
 
@@ -162,7 +194,7 @@ NSString  *version = [self.manager getSDKVersion];
     |----|----|
     |NSString|当前 SDK 的版本号|
     
-### 8 验证码协议方法
+### 10 验证码协议方法
 
 #### 代码说明：
 
@@ -197,4 +229,60 @@ NSString  *version = [self.manager getSDKVersion];
 - (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close;
 
 ```
+## 错误码
+
+| code | 含义 |
+|------|------|
+| 200  | 校验未通过，是因为业务错误，包含超限 |
+| 300  | 校验未通过，包含轨迹错误等|
+| 432  | 非法业务ID，包含业务到期等|
+| 501  | 请求失败，包括网络原因等 |
+| 502  | 请求脚本资源失败 |
+| 503  | 请求图片资源失败 |
+| 505  | 请求音频资源失败 |
+| 1000 | 未知错误 |
+| 1004  |初始化失败，接口超时 |
+|-1 | 未知的错误|
+|-999| 请求被取消|
+|-1000| 请求的URL错误，无法启动请求|
+|-1001| 请求超时|
+| -1002|不支持的URL Scheme|
+|-1003/-1006|URL的host名称无法解析，即DNS有问题|
+|-1004|连接host失败|
+|-1005|连接过程中被中断|
+|-1007|重定向次数超过限制|
+|-1008|无法获取所请求的资源|
+|-1009|断网状态|
+|-1010|重定向到一个不存在的位置|
+|-1011|服务器返回数据有误|
+|-1012|身份验证请求被用户取消|
+|-1013|访问资源需要身份验证|
+|-1014|服务器报告URL数据不为空，却未返回任何数据|
+|-1015|响应数据无法解码为已知内容编码|
+|-1016|请求数据存在未知内容编码|
+|-1017|响应数据无法解析|
+|-1018|漫游时请求数据，但是漫游开关已关闭|
+|-1019|EDGE、GPRS等网络不支持电话和流量同时进行，当正在通话过程中，请求失败错误码|
+|-1020|手机网络不允许连接|
+|-1021|请求的body流被耗尽|
+|-1100|请求的文件路径上文件不存在|
+|-1101|请求的文件只是一个目录，而非文件|
+|-1102|缺少权限无法读取文件|
+|-1103|资源数据大小超过最大限制|
+|-1200|安全连接失败|
+|-1201|服务器证书过期|
+|-1202|不受信任的根服务器签名证书|
+|-1203|服务器证书没有任何根服务器签名|
+|-1204|服务器证书还未生效|
+|-1205|服务器证书被拒绝|
+|-1206|需要客户端证书来验证SSL连接|
+|-2000|请求只能加载缓存中的数据，无法加载网络数据|
+|-3000|下载操作无法创建文件|
+|-3001|下载操作无法打开文件|
+|-3002|下载操作无法关闭文件|
+|-3003|下载操作无法写文件|
+|-3004|下载操作无法删除文件|
+|-3005|下载操作无法移动文件|
+|-3006|下载操作在下载过程中，对编码文件进行解码时失败|
+|-3007|下载操作在下载完成后，对编码文件进行解码时失败|
 
