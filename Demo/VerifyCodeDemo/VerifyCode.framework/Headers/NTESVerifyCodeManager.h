@@ -135,6 +135,13 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
     NTESVerifyCodeCloseAuto,
 };
 
+
+typedef NS_ENUM(NSInteger, NTESDeviceOrientation) {
+    NTESDeviceOrientationUnknown,
+    NTESDeviceOrientationPortrait,            // Device oriented vertically
+    NTESDeviceOrientationLandscape            // Device oriented horizontally
+};
+
 @protocol NTESVerifyCodeManagerDelegate
 @optional
 
@@ -314,6 +321,9 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  */
 @property (nonatomic) NSString *extraData;
 
+// 设置验证码方向,验证码不会跟随设备旋转而旋转。
+@property(nonatomic, assign)NTESDeviceOrientation deviceOrientation;
+
 /**
  *  @abstract   初始化方法
  *
@@ -371,6 +381,30 @@ typedef NS_ENUM(NSInteger, NTESVerifyCodeClose) {
  *
  */
 - (void)openVerifyCodeView:(UIView *  _Nullable)topView;
+
+/**
+ *  @abstract   在指定的视图上展示验证码视图
+ *  @param      topView         加载验证码控件的父视图,可以为nil。
+ *  @param      customLoading       自定义加载页，在 verifyCodeInitFinish 组件初始化完成的代理方面里面关闭 ，默认用易盾自带的加载页。
+ *  @param      customErrorPage       自定义错误页， 默认用易盾自带的错误页。
+ *
+ */
+- (void)openVerifyCodeView:(UIView *  _Nullable)topView
+             customLoading:(BOOL)customLoading
+           customErrorPage:(BOOL)customErrorPage;
+
+/**
+ *  @abstract   在指定的视图上展示验证码视图
+ *  @param      topView         加载验证码控件的父视图,可以为nil。
+ *  @param      loadingView        如果是智能无感知验证码，并且是自定义loading页面，loadingView必传。
+ *  @param      customLoading       自定义加载页，在 verifyCodeInitFinish 组件初始化完成的代理方面里面关闭 ，默认用易盾自带的加载页。
+ *  @param      customErrorPage       自定义错误页， 默认用易盾自带的错误页。
+ *
+ */
+- (void)openVerifyCodeView:(UIView *  _Nullable)topView
+               loadingView:(UIView * _Nullable)loadingView
+             customLoading:(BOOL)customLoading
+           customErrorPage:(BOOL)customErrorPage;
 
 /**
  *  @abstract   关闭验证码视图

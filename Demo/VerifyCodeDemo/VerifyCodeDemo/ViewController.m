@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "UIImage+VerfityCodeDemo.h"
+#import "Masonry.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) UIImageView *loadingImageView;
+
 
 @end
 
@@ -59,17 +64,24 @@
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
 
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
+        NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];
+        self.loadingImageView = [[UIImageView alloc] init];
+        self.loadingImageView.image = [UIImage ntes_animatedGIFWithData:imageData];
+        UIView *win = [UIApplication sharedApplication].keyWindow;
+        [win addSubview:_loadingImageView];
+        [self.view addSubview:_loadingImageView];
+        [_loadingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(win);
+            make.size.mas_equalTo(CGSizeMake(100, 100));
+        }];
+        
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
         NSString  *version = [self.manager getSDKVersion];
-        
-//        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
-//        NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];
-//        [self.manager configLoadingImage:nil gifData:imageData];
-//        [self.manager configLoadingText:@"1111"];
-        
+
         // 显示验证码
-        [self.manager openVerifyCodeView:nil];
+        [self.manager openVerifyCodeView:nil customLoading:YES customErrorPage:YES];
     }    
 }
 
@@ -78,6 +90,7 @@
  * 验证码组件初始化完成
  */
 - (void)verifyCodeInitFinish{
+    self.loadingImageView.hidden = YES;
     NSLog(@"收到初始化完成的回调");
 }
 
