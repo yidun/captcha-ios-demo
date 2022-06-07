@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4CBBB6B787FF2740F0A5C9A /* libPods-VerifyCodeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C315254B96532F760BB8160C /* libPods-VerifyCodeDemo.a */; };
 		CA4F4E8824E29A9500CF870C /* face.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA4F4E8724E29A9500CF870C /* face.gif */; };
-		CAA54DE12664E9B3007FBE05 /* NTESVerifyCodeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */; };
 		CAD23B2F2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B2E2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.m */; };
 		CAD23B4D2835E31200B7FFD7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CAD23B312835E31200B7FFD7 /* LICENSE */; };
 		CAD23B4E2835E31200B7FFD7 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B342835E31200B7FFD7 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -22,7 +22,6 @@
 		CAD23B562835E31200B7FFD7 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */; };
 		CAD23B572835E31200B7FFD7 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */; };
 		CAD23B582835E31200B7FFD7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAD23B4C2835E31200B7FFD7 /* README.md */; };
-		CAF76C42284F1C9900D1348E /* VerifyCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF76C41284F1C9900D1348E /* VerifyCode.framework */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -30,9 +29,6 @@
 		E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6BA08481E1B980800B34EF1 /* Assets.xcassets */; };
 		E6BA084C1E1B980800B34EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6BA084A1E1B980800B34EF1 /* LaunchScreen.storyboard */; };
 		E6BA08571E1B980800B34EF1 /* VerifyCodeDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08561E1B980800B34EF1 /* VerifyCodeDemoTests.m */; };
-		E6BA08671E1B9ACF00B34EF1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BA08661E1B9ACF00B34EF1 /* SystemConfiguration.framework */; };
-		E6BA08691E1B9AD600B34EF1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BA08681E1B9AD600B34EF1 /* JavaScriptCore.framework */; };
-		E6BA086B1E1B9ADA00B34EF1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BA086A1E1B9ADA00B34EF1 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14099CC526653246CC13BE15 /* Pods-VerifyCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.release.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
+		A2CD335DF82A22FC5A9D279A /* Pods-VerifyCodeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.debug.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C315254B96532F760BB8160C /* libPods-VerifyCodeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VerifyCodeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4F4E7E24E299A400CF870C /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.6/VerifyCode.framework; sourceTree = "<group>"; };
 		CA4F4E8724E29A9500CF870C /* face.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face.gif; sourceTree = "<group>"; };
-		CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NTESVerifyCodeResources.bundle; sourceTree = "<group>"; };
 		CAD23B2D2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+VerfityCodeDemo.h"; sourceTree = "<group>"; };
 		CAD23B2E2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+VerfityCodeDemo.m"; sourceTree = "<group>"; };
 		CAD23B312835E31200B7FFD7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		CAD23B4C2835E31200B7FFD7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CAF76C41284F1C9900D1348E /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VerifyCode.framework; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,10 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAF76C42284F1C9900D1348E /* VerifyCode.framework in Frameworks */,
-				E6BA086B1E1B9ADA00B34EF1 /* WebKit.framework in Frameworks */,
-				E6BA08691E1B9AD600B34EF1 /* JavaScriptCore.framework in Frameworks */,
-				E6BA08671E1B9ACF00B34EF1 /* SystemConfiguration.framework in Frameworks */,
+				C4CBBB6B787FF2740F0A5C9A /* libPods-VerifyCodeDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		983A2AC775F2BB61C554B315 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2CD335DF82A22FC5A9D279A /* Pods-VerifyCodeDemo.debug.xcconfig */,
+				14099CC526653246CC13BE15 /* Pods-VerifyCodeDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CAD23B302835E31200B7FFD7 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,12 +170,11 @@
 		E6BA08301E1B980800B34EF1 = {
 			isa = PBXGroup;
 			children = (
-				CAF76C41284F1C9900D1348E /* VerifyCode.framework */,
-				CAA54DE02664E9B3007FBE05 /* NTESVerifyCodeResources.bundle */,
 				E6BA083B1E1B980800B34EF1 /* VerifyCodeDemo */,
 				E6BA08551E1B980800B34EF1 /* VerifyCodeDemoTests */,
 				E6BA083A1E1B980800B34EF1 /* Products */,
 				E6BA08631E1B9AC400B34EF1 /* Frameworks */,
+				983A2AC775F2BB61C554B315 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +234,7 @@
 				E6BA08681E1B9AD600B34EF1 /* JavaScriptCore.framework */,
 				E6BA08661E1B9ACF00B34EF1 /* SystemConfiguration.framework */,
 				E6BA08641E1B9AC400B34EF1 /* Security.framework */,
+				C315254B96532F760BB8160C /* libPods-VerifyCodeDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -243,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6BA085B1E1B980800B34EF1 /* Build configuration list for PBXNativeTarget "VerifyCodeDemo" */;
 			buildPhases = (
+				A0F540BD2EAE2BA053F82BB2 /* [CP] Check Pods Manifest.lock */,
 				E6BA08351E1B980800B34EF1 /* Sources */,
 				E6BA08361E1B980800B34EF1 /* Frameworks */,
 				E6BA08371E1B980800B34EF1 /* Resources */,
+				65015C4162361B416FA91968 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -326,7 +331,6 @@
 				CA4F4E8824E29A9500CF870C /* face.gif in Resources */,
 				CAD23B582835E31200B7FFD7 /* README.md in Resources */,
 				E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */,
-				CAA54DE12664E9B3007FBE05 /* NTESVerifyCodeResources.bundle in Resources */,
 				E6BA08471E1B980800B34EF1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +343,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65015C4162361B416FA91968 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo-resources.sh",
+				"${PODS_ROOT}/NTESVerifyCode/Assets/NTESVerifyCodeResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NTESVerifyCodeResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0F540BD2EAE2BA053F82BB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VerifyCodeDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6BA08351E1B980800B34EF1 /* Sources */ = {
@@ -492,18 +539,22 @@
 		};
 		E6BA085C1E1B980800B34EF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2CD335DF82A22FC5A9D279A /* Pods-VerifyCodeDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = XB333SWTAF;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = neteaseGeneralProfile;
@@ -512,6 +563,7 @@
 		};
 		E6BA085D1E1B980800B34EF1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14099CC526653246CC13BE15 /* Pods-VerifyCodeDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -519,12 +571,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = XB333SWTAF;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = neteaseGeneralProfile;
