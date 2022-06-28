@@ -94,8 +94,62 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |----|----|--------|------|----|
     | businessId |NSString|是|无|易盾分配的业务id|
     | timeout |NSString|是|无|加载验证码的超时时间,最长12秒。这个时间尽量设置长一些，比如7秒以上(7-12秒)|
+
+### 3 初始化与定制化UI配置
+
+#### 代码说明：
+
+```
+ NTESVerifyCodeStyleConfig *styleConfig = [[NTESVerifyCodeStyleConfig alloc] init];
+[self.manager configureVerifyCode:请输入易盾业务ID timeout:超时时间 styleConfig:styleConfig];
+```   
+
+ * 基础入参说明：
+
+    |参数|类型|是否必填|默认值|描述|
+    |----|----|--------|------|----|
+    | businessId |NSString|是|无|易盾分配的业务id|
+    | timeout |NSString|是|无|加载验证码的超时时间,最长12秒。这个时间尽量设置长一些，比如7秒以上(7-12秒)|
+
+* styleConfig入参说明：
+
+    |参数|类型|是否必填|默认值|描述|
+    |----|----|--------|------|----|
+    | radius |NSUInteger|否|无|验证码圆角|
+    | capBarTextAlign |enum|否|无|NTESCapBarTextAlignLeft 居左显示<br> NTESCapBarTextAlignRight 居右显示 <br> NTESCapBarTextAlignCenter 居中显示|
+    | capBarBorderColor |NSString|否|无|弹框头部下边框颜色，想要去掉的话可取 transparent 或者与背景色同色 #fff|
+    | capBarTextColor |NSString|否|无|弹框头部标题文字颜色|
+    | capBarTextSize |NSUInteger|否|无|弹框头部标题文字字体大小|
+    | capBarTextWeight |NSString|否|无|弹框头部标题文字字体体重，可设置粗细，<br>参考：capBarTextWeight: normal、bold、lighter、bolder、100、200、300、400、500、600、700、800、900<br>更多详情参考：https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight|
+    | capBarTitleHeight |NSUInteger|否|无|弹框头部标题所在容器高度|
+    | capBodyPadding |NSUInteger|否|无|验证码弹框 body 部分的内边距，相当于总体设置 capPaddingTop，capPaddingRight，capPaddingBottom，capPaddingLeft|
+    | capPaddingTop |NSString|否|无|验证码弹框 body 部分的【上】内边距，覆盖 capPadding 对于上内边距的设置,单位px|
+    | capPaddingRight |NSString|否|无|验证码弹框 body 部分的【右】内边距，覆盖 capPadding 对于右内边距的设置,单位px|
+    | capPaddingBottom |NSString|否|无|验证码弹框 body 部分的【底】内边距，覆盖 capPadding 对于底内边距的设置,单位px|
+    | capPaddingLeft |NSString|否|无|验证码弹框 body 部分的【左】内边距，覆盖 capPadding 对于左内边距的设置,单位px|
+    | paddingTop |NSString|否|无|弹框【上】内边距，实践时候可与 capPaddingTop 配合,单位px|
+    | paddingBottom |NSString|否|无|弹框【下】内边距，实践时候可与 capPaddingBottom 配合,单位px|
+    | capBorderRadius |NSUInteger|否|无|验证码弹框body圆角|
+    | borderColor |NSString|否|无|滑块的边框颜色|
+    | background |NSString|否|无|滑块的背景颜色|
+    | borderColorMoving |NSString|否|无|滑块的滑动时边框颜色，滑动类型验证码下有效|
+    | backgroundMoving |NSString|否|无|滑块的滑动时背景颜色，滑动类型验证码下有效|
+    | borderColorSuccess |NSString|否|无| 滑块的成功时边框颜色，此颜色同步了文字成功时文字颜色、滑块背景颜色|
+    | backgroundSuccess |NSString|否|无|滑块的成功时背景颜色|
+    | backgroundError |NSString|否|无| 滑块的失败时背景颜色|
+    | borderColorError |NSString|否|无|失败时边框颜色|
+    | slideBackground |NSString|否|无| 滑块的滑块背景颜色|
+    | textSize |NSUInteger|否|无|滑块的内容文本大小|
+    | textColor |NSString|否|无| 滑块内容文本颜色（滑块滑动前的颜色，失败、成功前的颜色）|
+    | height |NSUInteger|否|无|滑块的高度|
+    | borderRadius |NSUInteger|否|无| 滑块的圆角|
+    | gap |NSString|否|无|滑块与验证码视图之间的距离,单位px|
+    | executeBorderRadius |NSUInteger|否|无|  组件圆角大小|
+    | executeBackground |NSString|否|无|组件背景色|
+    | executeTop |NSString|否|无|组件外层容器距离组件顶部距离,单位px|
+    | executeRight |NSString|否|无|组件外层容器距离组件右侧距离,单位px|
     
-### 3 验证码元素配置
+### 4 验证码元素配置
 配置项可以通过 self.manager 点语法配置 例如 self.manager.mode = NTESVerifyCodeNormal。
 
 | 配置项 |类型|是否必填|默认值|描述|
@@ -115,7 +169,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
 | extraData | NSString | 否 | 无 |extraData透传业务数据|
 | deviceOrientation | enum | 否 | 无 |NTESDeviceOrientationUnknown 方向未知 <br> NTESDeviceOrientationPortrait 固定竖屏，验证码不会跟随设备旋转而旋转  <br> NTESDeviceOrientationLandscape 固定横屏，验证码不会跟随设备旋转而旋转 |
 
-### 4 弹出验证码
+### 5🐙 弹出验证码
 
 #### 代码说明：
 
@@ -128,7 +182,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |----|--------|------|----|
     |UIView|否|无|在指定的视图上展示验证码视图，如果传递值为nil,则使用默认值:[[[UIApplication sharedApplication] delegate] window]|
 
-### 5 弹出验证码、自定义加载页和错误页
+### 6 弹出验证码、自定义加载页和错误页
 
 #### 代码说明：
 
@@ -143,7 +197,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |customLoading|否|NO|传YES,自行设置加载页，在 verifyCodeInitFinish 方法里面隐藏加载页。NO,显示易盾加载页|
     |customErrorPage|否|NO|传YES,自行设置错误页，在verifyCodeInitFailed 里显示错误页。NO,显示易盾加载页|
 
-### 6 弹出无感知验证码、自定义加载页和错误页
+### 7 弹出无感知验证码、自定义加载页和错误页
 
 #### 代码说明：
 
@@ -159,14 +213,14 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |customLoading|否|NO|传YES,自行设置加载页，在 verifyCodeInitFinish 方法里面隐藏加载页。NO,显示易盾加载页|
     |customErrorPage|否|NO|传YES,自行设置错误页，在verifyCodeInitFailed 里显示错误页。NO,显示易盾加载页|
     
-### 7 关闭验证码
+### 8 关闭验证码
 
 #### 代码说明：
 
 ```
 [self.manager closeVerifyCodeView];
 ```
-### 8 SDK 日志打印
+### 9 SDK 日志打印
 
 #### 代码说明：
 
@@ -180,7 +234,7 @@ self.manager = [NTESVerifyCodeManager getInstance];
     |----|--------|------|----|
     |BOOL|否|NO|是否开启 SDK 日志打印,YES 表示开启;NO 表示不开启。默认为 NO|
     
-### 9 验证码 SDK 版本号
+### 10 验证码 SDK 版本号
 
 #### 代码说明：
 
@@ -194,7 +248,7 @@ NSString  *version = [self.manager getSDKVersion];
     |----|----|
     |NSString|当前 SDK 的版本号|
     
-### 10 验证码协议方法
+### 11 验证码协议方法
 
 #### 代码说明：
 

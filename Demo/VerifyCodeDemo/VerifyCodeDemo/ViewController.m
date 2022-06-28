@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UIImage+VerfityCodeDemo.h"
 #import "Masonry.h"
+#import <VerifyCode/NTESVerifyCodeStyleConfig.h>
 
 @interface ViewController ()
 
@@ -44,7 +45,13 @@
         NSString *captchaid = @"请输入易盾业务ID";
         self.manager.mode = NTESVerifyCodeNormal;
         
-        [self.manager configureVerifyCode:captchaid timeout:7.0];
+        NTESVerifyCodeStyleConfig *styleConfig = [[NTESVerifyCodeStyleConfig alloc] init];
+        styleConfig.capBarTextAlign = NTESCapBarTextAlignCenter;
+        styleConfig.capBarTextColor = @"#25D4D0";
+        styleConfig.capBarTextSize = 15;
+        styleConfig.capBarTextWeight = @"bold";
+        styleConfig.borderColor = @"#25D4D0";
+        [self.manager configureVerifyCode:captchaid timeout:7.0 styleConfig:styleConfig];
         
         // 设置语言
         self.manager.lang = NTESVerifyCodeLangCN;
@@ -54,7 +61,6 @@
         
         // 设置颜色
         self.manager.color = [UIColor blackColor];
-        self.manager.fontSize = NTESVerifyCodeFontSizeLarge;
         
         // 设置frame
         self.manager.frame = CGRectNull;
@@ -64,24 +70,13 @@
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
 
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
-        NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];
-        self.loadingImageView = [[UIImageView alloc] init];
-        self.loadingImageView.image = [UIImage ntes_animatedGIFWithData:imageData];
-        UIView *win = [UIApplication sharedApplication].keyWindow;
-        [win addSubview:_loadingImageView];
-        [self.view addSubview:_loadingImageView];
-        [_loadingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(win);
-            make.size.mas_equalTo(CGSizeMake(100, 100));
-        }];
         
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
         NSString  *version = [self.manager getSDKVersion];
 
         // 显示验证码
-        [self.manager openVerifyCodeView:nil customLoading:YES customErrorPage:YES];
+        [self.manager openVerifyCodeView:nil customLoading:NO customErrorPage:NO];
     }    
 }
 
