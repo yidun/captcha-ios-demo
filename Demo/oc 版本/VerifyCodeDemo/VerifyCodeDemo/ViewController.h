@@ -13,7 +13,5 @@
 
 @property(nonatomic,strong)NTESVerifyCodeManager *manager;
 
-- (IBAction)openView:(id)sender;
-
 @end
 
