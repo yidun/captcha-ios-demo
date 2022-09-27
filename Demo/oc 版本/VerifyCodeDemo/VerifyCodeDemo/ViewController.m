@@ -84,7 +84,7 @@
         // captchaid的值是每个产品从后台生成的,比如 @""
         
         // 传统验证码
-        NSString *captchaid = @"请输入易盾业务ID";
+        NSString *captchaid = @"易盾业务ID";
         self.manager.mode = NTESVerifyCodeNormal;
         [self.manager configureVerifyCode:captchaid timeout:7.0 styleConfig:nil];
         
@@ -93,6 +93,8 @@
         
         // 设置透明度
         self.manager.alpha = 0.3;
+        
+        self.manager.userInterfaceStyle = NTESUserInterfaceStyleDark;
         
         // 设置颜色
         self.manager.color = [UIColor blackColor];

@@ -22,7 +22,6 @@
 		CAD23B552835E31200B7FFD7 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B482835E31200B7FFD7 /* MASConstraint.m */; };
 		CAD23B562835E31200B7FFD7 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */; };
 		CAD23B572835E31200B7FFD7 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */; };
-		CAD23B582835E31200B7FFD7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAD23B4C2835E31200B7FFD7 /* README.md */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -46,6 +45,7 @@
 		14099CC526653246CC13BE15 /* Pods-VerifyCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.release.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A2CD335DF82A22FC5A9D279A /* Pods-VerifyCodeDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.debug.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C315254B96532F760BB8160C /* libPods-VerifyCodeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VerifyCodeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA2AC67128E2F11B00AA14CA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA4F4E7E24E299A400CF870C /* VerifyCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VerifyCode.framework; path = ../../Release/3.2.6/VerifyCode.framework; sourceTree = "<group>"; };
 		CA4F4E8724E29A9500CF870C /* face.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = face.gif; sourceTree = "<group>"; };
 		CAC8408F287FADE1002A7FF0 /* NTESToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESToastView.h; sourceTree = "<group>"; };
@@ -78,7 +78,6 @@
 		CAD23B492835E31200B7FFD7 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
-		CAD23B4C2835E31200B7FFD7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,7 +87,6 @@
 		E6BA08461E1B980800B34EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6BA08481E1B980800B34EF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6BA084B1E1B980800B34EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E6BA084D1E1B980800B34EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6BA08521E1B980800B34EF1 /* VerifyCodeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerifyCodeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA08561E1B980800B34EF1 /* VerifyCodeDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerifyCodeDemoTests.m; sourceTree = "<group>"; };
 		E6BA08581E1B980800B34EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 			children = (
 				CAD23B312835E31200B7FFD7 /* LICENSE */,
 				CAD23B322835E31200B7FFD7 /* Masonry */,
-				CAD23B4C2835E31200B7FFD7 /* README.md */,
 			);
 			path = Masonry;
 			sourceTree = "<group>";
@@ -204,9 +201,9 @@
 				CAC8408F287FADE1002A7FF0 /* NTESToastView.h */,
 				CAC84090287FADE2002A7FF0 /* NTESToastView.m */,
 				E6BA08451E1B980800B34EF1 /* Main.storyboard */,
+				CA2AC67128E2F11B00AA14CA /* Info.plist */,
 				E6BA08481E1B980800B34EF1 /* Assets.xcassets */,
 				E6BA084A1E1B980800B34EF1 /* LaunchScreen.storyboard */,
-				E6BA084D1E1B980800B34EF1 /* Info.plist */,
 				E6BA083C1E1B980800B34EF1 /* Supporting Files */,
 			);
 			path = VerifyCodeDemo;
@@ -334,7 +331,6 @@
 				CAD23B4D2835E31200B7FFD7 /* LICENSE in Resources */,
 				E6BA084C1E1B980800B34EF1 /* LaunchScreen.storyboard in Resources */,
 				CA4F4E8824E29A9500CF870C /* face.gif in Resources */,
-				CAD23B582835E31200B7FFD7 /* README.md in Resources */,
 				E6BA08491E1B980800B34EF1 /* Assets.xcassets in Resources */,
 				E6BA08471E1B980800B34EF1 /* Main.storyboard in Resources */,
 			);

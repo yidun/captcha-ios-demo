@@ -1,0 +1,16 @@
+PODS:
+  - NTESVerifyCode (3.4.4)
+
+DEPENDENCIES:
+  - NTESVerifyCode (= 3.4.4)
+
+SPEC REPOS:
+  trunk:
+    - NTESVerifyCode
+
+SPEC CHECKSUMS:
+  NTESVerifyCode: bf22079a91c57b0d075050a9c3432c25303aad29
+
+PODFILE CHECKSUM: c99c8239f454dc096a763a14855fcff9ec96dcf2
+
+COCOAPODS: 1.11.3
