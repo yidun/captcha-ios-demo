@@ -15,6 +15,7 @@
 		CAA199A828FFA78300A28E9A /* VerifyCodeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA199A728FFA78300A28E9A /* VerifyCodeDemoTests.swift */; };
 		CAA199B228FFA78300A28E9A /* VerifyCodeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA199B128FFA78300A28E9A /* VerifyCodeDemoUITests.swift */; };
 		CAA199B428FFA78300A28E9A /* VerifyCodeDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA199B328FFA78300A28E9A /* VerifyCodeDemoUITestsLaunchTests.swift */; };
+		CAA199C928FFFE2E00A28E9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA199C828FFFE2E00A28E9A /* SceneDelegate.swift */; };
 		F207D704B62FD3A60C61CC1E /* libPods-VerifyCodeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0758D4BE7890C11A253A2C1F /* libPods-VerifyCodeDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		CAA199B128FFA78300A28E9A /* VerifyCodeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeDemoUITests.swift; sourceTree = "<group>"; };
 		CAA199B328FFA78300A28E9A /* VerifyCodeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CAA199C028FFA8DD00A28E9A /* VerifyCodeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VerifyCodeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		CAA199C828FFFE2E00A28E9A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F738220A8B2C6B5D948CB262 /* Pods-VerifyCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.release.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				CAA1999028FFA78100A28E9A /* AppDelegate.swift */,
 				CAA1999428FFA78100A28E9A /* ViewController.swift */,
 				CAA1999628FFA78100A28E9A /* Main.storyboard */,
+				CAA199C828FFFE2E00A28E9A /* SceneDelegate.swift */,
 				CAA1999928FFA78200A28E9A /* Assets.xcassets */,
 				CAA1999B28FFA78200A28E9A /* LaunchScreen.storyboard */,
 				CAA1999E28FFA78200A28E9A /* Info.plist */,
@@ -328,6 +331,7 @@
 			files = (
 				CAA1999528FFA78100A28E9A /* ViewController.swift in Sources */,
 				CAA1999128FFA78100A28E9A /* AppDelegate.swift in Sources */,
+				CAA199C928FFFE2E00A28E9A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

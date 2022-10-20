@@ -201,6 +201,8 @@
         // 是否开启降级方案
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
+        
+        self.manager.mode = NTESVerifyCodeBind;
 
         
         // 是否隐藏关闭按钮
@@ -223,7 +225,7 @@
             make.size.mas_equalTo(CGSizeMake(100, 100));
         }];
         
-        [self.manager openVerifyCodeView:backgroundView customLoading:YES customErrorPage:YES];
+        [self.manager openVerifyCodeView:backgroundView loadingView:self.loadingImageView  customLoading:YES customErrorPage:YES];
     }
 }
 
