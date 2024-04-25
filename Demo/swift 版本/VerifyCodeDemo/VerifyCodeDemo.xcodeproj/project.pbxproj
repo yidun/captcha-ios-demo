@@ -51,7 +51,6 @@
 		CAA199AD28FFA78300A28E9A /* VerifyCodeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerifyCodeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA199B128FFA78300A28E9A /* VerifyCodeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeDemoUITests.swift; sourceTree = "<group>"; };
 		CAA199B328FFA78300A28E9A /* VerifyCodeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CAA199C028FFA8DD00A28E9A /* VerifyCodeDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VerifyCodeDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		CAA199C828FFFE2E00A28E9A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F738220A8B2C6B5D948CB262 /* Pods-VerifyCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerifyCodeDemo.release.xcconfig"; path = "Target Support Files/Pods-VerifyCodeDemo/Pods-VerifyCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,7 +130,6 @@
 				CAA1999928FFA78200A28E9A /* Assets.xcassets */,
 				CAA1999B28FFA78200A28E9A /* LaunchScreen.storyboard */,
 				CAA1999E28FFA78200A28E9A /* Info.plist */,
-				CAA199C028FFA8DD00A28E9A /* VerifyCodeDemo-Bridging-Header.h */,
 			);
 			path = VerifyCodeDemo;
 			sourceTree = "<group>";
@@ -527,7 +525,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "VerifyCodeDemo/VerifyCodeDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,7 +555,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.netease.VerifyCodeDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "VerifyCodeDemo/VerifyCodeDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

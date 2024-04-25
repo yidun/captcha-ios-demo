@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VerifyCode
 
 class ViewController: UIViewController {
     
@@ -25,9 +26,8 @@ class ViewController: UIViewController {
     }
 
     @objc func buttonDidTipped() {
-        manager?.configureVerifyCode("deecf3951a614b71b4b1502c072be1c1", timeout: 10)
+        manager?.configureVerifyCode("请输入易盾业务ID", timeout: 10)
         manager?.delegate = self
-        manager?.mode = .normal
         manager?.lang = .CN
         manager?.alpha = 0.3
         manager?.userInterfaceStyle = .dark

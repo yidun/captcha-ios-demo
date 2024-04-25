@@ -1,0 +1,6 @@
+framework module VerifyCode {
+  umbrella header "VerifyCode.h"
+
+  export *
+  module * { export * }
+}

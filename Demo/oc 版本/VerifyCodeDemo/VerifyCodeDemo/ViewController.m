@@ -84,8 +84,8 @@
         // captchaid的值是每个产品从后台生成的,比如 @""
         
         // 传统验证码
-        NSString *captchaid = @"易盾业务ID";
-        self.manager.mode = NTESVerifyCodeNormal;
+        NSString *captchaid = @"ef0d0f556d384d9185a74cd80b34b45f";
+//        self.manager.mode = NTESVerifyCodeNormal;
         [self.manager configureVerifyCode:captchaid timeout:7.0 styleConfig:nil];
         
         // 设置语言
@@ -127,7 +127,7 @@
         
         // 传统验证码
         NSString *captchaid = @"请输入易盾业务ID";
-        self.manager.mode = NTESVerifyCodeNormal;
+//        self.manager.mode = NTESVerifyCodeNormal;
         
         // 自定义验证码样式
         NTESVerifyCodeStyleConfig *styleConfig = [[NTESVerifyCodeStyleConfig alloc] init];
@@ -181,7 +181,7 @@
         
         // 传统验证码
         NSString *captchaid = @"请输入易盾业务ID";
-        self.manager.mode = NTESVerifyCodeNormal;
+//        self.manager.mode = NTESVerifyCodeNormal;
     
         [self.manager configureVerifyCode:captchaid timeout:7.0 styleConfig:nil];
         
@@ -202,7 +202,7 @@
         self.manager.openFallBack = YES;
         self.manager.fallBackCount = 3;
         
-        self.manager.mode = NTESVerifyCodeBind;
+//        self.manager.mode = NTESVerifyCodeBind;
 
         
         // 是否隐藏关闭按钮

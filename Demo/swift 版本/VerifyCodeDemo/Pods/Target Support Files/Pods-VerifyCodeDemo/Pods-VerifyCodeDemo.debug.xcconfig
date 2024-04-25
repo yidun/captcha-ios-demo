@@ -1,5 +1,5 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/NTESVerifyCode/Classes"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/NTESVerifyCode/Classes" "${PODS_XCFRAMEWORKS_BUILD_DIR}/NTESVerifyCode"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 OTHER_LDFLAGS = $(inherited) -ObjC -framework "CoreFoundation" -framework "CoreGraphics" -framework "Foundation" -framework "JavaScriptCore" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "VerifyCode" -framework "WebKit"
 PODS_BUILD_DIR = ${BUILD_DIR}

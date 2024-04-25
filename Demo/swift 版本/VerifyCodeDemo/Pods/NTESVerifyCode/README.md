@@ -37,9 +37,9 @@ platform :ios, '8.0'
 	 
 	 **RN Demo下载：** [React Native Demo](https://nos.netease.com/cloud-website-bucket/6903d3dcb564b09f3971351bf039e848.rar)
      
- 2.导入 `VerifyCode.framework` 到XCode工程：
+ 2.导入 `VerifyCode.xcframework` 到XCode工程：
    
-	 拖拽`VerifyCode.framework`文件到Xcode工程内(请勾选Copy items if needed选项)
+	 拖拽`VerifyCode.xcframework`文件到Xcode工程内(请勾选Copy items if needed选项)
   
  3.导入`NTESVerifyCodeResources.bundle`到工程中：
    

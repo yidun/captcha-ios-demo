@@ -1,16 +1,16 @@
 PODS:
-  - NTESVerifyCode (3.4.4)
+  - NTESVerifyCode (3.5.9)
 
 DEPENDENCIES:
-  - NTESVerifyCode (= 3.4.4)
+  - NTESVerifyCode (= 3.5.9)
 
 SPEC REPOS:
   trunk:
     - NTESVerifyCode
 
 SPEC CHECKSUMS:
-  NTESVerifyCode: bf22079a91c57b0d075050a9c3432c25303aad29
+  NTESVerifyCode: 2af7f9c8bcc760ee6dcd05a6427baec2f9d7bdda
 
-PODFILE CHECKSUM: c99c8239f454dc096a763a14855fcff9ec96dcf2
+PODFILE CHECKSUM: d2454f066ba60bed7c3cd50bb1965086ca720275
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.13.0
