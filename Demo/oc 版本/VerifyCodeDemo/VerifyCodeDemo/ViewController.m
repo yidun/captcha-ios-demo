@@ -84,7 +84,7 @@
         // captchaid的值是每个产品从后台生成的,比如 @""
         
         // 传统验证码
-        NSString *captchaid = @"ef0d0f556d384d9185a74cd80b34b45f";
+        NSString *captchaid = @"请输入易盾业务ID";
 //        self.manager.mode = NTESVerifyCodeNormal;
         [self.manager configureVerifyCode:captchaid timeout:7.0 styleConfig:nil];
         
@@ -208,12 +208,15 @@
         // 是否隐藏关闭按钮
         self.manager.closeButtonHidden = NO;
     
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeVerifyCodeDidTipped)];
         [backgroundView addGestureRecognizer:tap];
         self.backgroundView = backgroundView;
         backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         [[UIApplication sharedApplication].keyWindow addSubview:backgroundView];
+        [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.bottom.mas_offset(0);
+        }];
         
         NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"gif"];
         NSData *imageData = [NSData dataWithContentsOfFile:bundlePath];

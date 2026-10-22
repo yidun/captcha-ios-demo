@@ -1,16 +1,16 @@
 PODS:
-  - NTESVerifyCode (3.5.9)
+  - NTESVerifyCode (3.8.2)
 
 DEPENDENCIES:
-  - NTESVerifyCode (= 3.5.9)
+  - NTESVerifyCode (= 3.8.2)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - NTESVerifyCode
 
 SPEC CHECKSUMS:
-  NTESVerifyCode: 2af7f9c8bcc760ee6dcd05a6427baec2f9d7bdda
+  NTESVerifyCode: 7273e5605bb120d1ab7782843481a0f6769026d4
 
-PODFILE CHECKSUM: d2454f066ba60bed7c3cd50bb1965086ca720275
+PODFILE CHECKSUM: 55e390e279a21bb0d90c139e156374e97b3c6f4c
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2

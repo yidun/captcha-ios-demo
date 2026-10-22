@@ -22,6 +22,7 @@
 		CAD23B552835E31200B7FFD7 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B482835E31200B7FFD7 /* MASConstraint.m */; };
 		CAD23B562835E31200B7FFD7 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */; };
 		CAD23B572835E31200B7FFD7 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */; };
+		E66A6B5B3089DFEE009A4369 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E66A6B5A3089DFEE009A4369 /* SceneDelegate.m */; };
 		E6BA083E1E1B980800B34EF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA083D1E1B980800B34EF1 /* main.m */; };
 		E6BA08411E1B980800B34EF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08401E1B980800B34EF1 /* AppDelegate.m */; };
 		E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BA08431E1B980800B34EF1 /* ViewController.m */; };
@@ -78,6 +79,8 @@
 		CAD23B492835E31200B7FFD7 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		CAD23B4A2835E31200B7FFD7 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		CAD23B4B2835E31200B7FFD7 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		E66A6B593089DFEE009A4369 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		E66A6B5A3089DFEE009A4369 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		E6BA08391E1B980800B34EF1 /* VerifyCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifyCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA083D1E1B980800B34EF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E6BA083F1E1B980800B34EF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				CAD23B2E2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.m */,
 				E6BA083F1E1B980800B34EF1 /* AppDelegate.h */,
 				E6BA08401E1B980800B34EF1 /* AppDelegate.m */,
+				E66A6B593089DFEE009A4369 /* SceneDelegate.h */,
+				E66A6B5A3089DFEE009A4369 /* SceneDelegate.m */,
 				E6BA08421E1B980800B34EF1 /* ViewController.h */,
 				E6BA08431E1B980800B34EF1 /* ViewController.m */,
 				CAC8408F287FADE1002A7FF0 /* NTESToastView.h */,
@@ -396,6 +401,7 @@
 				CAD23B562835E31200B7FFD7 /* MASViewConstraint.m in Sources */,
 				CAD23B572835E31200B7FFD7 /* MASViewAttribute.m in Sources */,
 				E6BA08441E1B980800B34EF1 /* ViewController.m in Sources */,
+				E66A6B5B3089DFEE009A4369 /* SceneDelegate.m in Sources */,
 				CAD23B2F2835E2F300B7FFD7 /* UIImage+VerfityCodeDemo.m in Sources */,
 				CAD23B532835E31200B7FFD7 /* NSArray+MASAdditions.m in Sources */,
 				CAD23B4F2835E31200B7FFD7 /* ViewController+MASAdditions.m in Sources */,
@@ -550,7 +556,7 @@
 				DEVELOPMENT_TEAM = XB333SWTAF;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = (
@@ -575,7 +581,7 @@
 				DEVELOPMENT_TEAM = XB333SWTAF;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VerifyCodeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = "-fembed-bitcode";
 				OTHER_LDFLAGS = (

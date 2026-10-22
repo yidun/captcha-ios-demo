@@ -26,16 +26,16 @@ class ViewController: UIViewController {
     }
 
     @objc func buttonDidTipped() {
-        manager?.configureVerifyCode("请输入易盾业务ID", timeout: 10)
-        manager?.delegate = self
-        manager?.lang = .CN
-        manager?.alpha = 0.3
-        manager?.userInterfaceStyle = .dark
-        manager?.color = UIColor.black
-        manager?.protocol = .https
-        manager?.openFallBack = true
-        manager?.fallBackCount = 3
-        manager?.openVerifyCodeView()
+        manager.configureVerifyCode("请输入易盾业务ID", timeout: 10)
+        manager.delegate = self
+        manager.lang = .CN
+        manager.alpha = 0.3
+        manager.userInterfaceStyle = .dark
+        manager.color = UIColor.black
+        manager.protocol = .https
+        manager.openFallBack = true
+        manager.fallBackCount = 3
+        manager.openVerifyCodeView()
     }
 
 }
